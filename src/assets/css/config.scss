@@ -1,0 +1,59 @@
+/* FONE SIZE */
+$size-text-xs: 10px;
+$size-text-sm: 12px;
+$size-text-md: 14px;
+$size-text-lg: 24px;
+$size-text-xl: 36px;
+$size-section-titles: 19px;
+
+/* THEME */
+$color-primary: #253759;
+$color-primary-highlight: #e9f7ff;
+$color-primary-with-alpha: rgb(194, 34, 74);
+$color-secondary: #1F1F26;
+$color-secondary-highlight: rgb(0,45,116,0.7);
+$color-alternative: #302F40;
+$color-alternative-highlight: #ffffff;
+$color-alternative-with-alpha:#1F1F26;
+$color-accent: #e66948;
+$color-accent-highlight: #fd8b6c;
+$color-element: #f0f0f3;
+$color-exception: #f6f6f9;
+
+/* EXTRA COLORS */
+$color-accent: #e66948;
+$color-rose: #ff375e;
+$color-sky: #1bced8;
+$color-purple: #a54ee1;
+$color-sun: #fff039;
+$color-light-green: #00c48c;
+$color-alternative: #748aa1;
+$color-disabled: #55433c;
+$color-sand: #5c5400;
+$color-success: #05c46b;
+$color-warning: #ffd400;
+$color-danger: #dc3545;
+$color-button-text: #ffffff;
+
+/* RANKING COLORS */
+$color-rank-one: #ffd801;
+$color-rank-two: #cbcccc;
+$color-rank-three: #bd7b65;
+
+/* ROUNDED CORNER */
+$size-rounded-corner-xs: 5px;
+$size-rounded-corner-sm: 8px;
+$size-rounded-corner-md: 15px;
+$size-rounded-corner-lg: 25px;
+$size-rounded-circle: 50%;
+
+/* BREAK POINTS */
+$breakpoint-xs: 575px;
+$breakpoint-sm: 767px;
+$breakpoint-md: 991px;
+$breakpoint-lg: 1200px;
+$breakpoint-xl: 1999px;
+
+/* ANIMATION SPEED */
+$animation-speed-slow: 400ms;
+$animation-speed-fast: 200ms;

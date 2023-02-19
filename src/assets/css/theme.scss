@@ -1,0 +1,552 @@
+@import "config";
+
+/* BODY ELEMENT */
+.t-element
+{
+    background-color: $color-element !important;
+    color: $color-alternative-highlight;
+    border:2px solid transparent;
+    outline: none !important;
+    -webkit-transition: border $animation-speed-slow ease-in-out;
+	transition: border $animation-speed-slow ease-in-out;
+}
+.t-element::-moz-placeholder,
+.t-element:-moz-placeholder,
+.t-element:-ms-input-placeholder,
+.t-element::-webkit-input-placeholder
+{
+    color: $color-alternative !important;
+}
+.t-element:focus
+{
+    border:2px solid $color-alternative-highlight;
+    -webkit-transition: border $animation-speed-slow ease-in-out;
+	transition: border $animation-speed-slow ease-in-out;
+}
+
+/* BUTTON DISABLED */
+.t-custom-disabled-button:disabled, .t-custom-disabled-button:disabled:hover
+{
+    cursor: not-allowed !important;
+    opacity: 1 !important;
+    background-color: $color-exception !important;
+    color: #838383 !important;    
+}
+
+/* INPUT ELEMENT */
+.t-input:-webkit-autofill,
+.t-input:-webkit-autofill:hover, 
+.t-input:-webkit-autofill:focus
+{
+    border: unset;
+    -webkit-text-fill-color: $color-alternative-highlight;
+    background-color: unset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* BACKGROUND COLOR */
+.t-bg-dark
+{
+    background-color: $color-secondary;
+}
+.t-bg-exception
+{
+    background-color: $color-exception !important;
+}
+.t-bg-body
+{
+    background-color: $color-primary;
+}
+.t-bg-primary
+{
+    background-color: $color-primary;
+}
+.t-bg-primary-highlight
+{
+    background-color: $color-primary-highlight;
+}
+.t-bg-secondary
+{
+    background-color: $color-secondary !important;
+}
+.t-bg-secondary-highlight
+{
+    background-color: $color-secondary-highlight;
+}
+.t-bg-tertiary
+{
+    background-color: $color-secondary !important;
+}
+.t-bg-tertiary-highlight
+{
+    background-color: $color-secondary-highlight !important;
+}
+.t-bg-accent
+{
+    background-color: $color-accent;
+}
+.t-bg-accent-highlight
+{
+    background-color: $color-accent-highlight;
+}
+.t-bg-alternative
+{
+    background-color: $color-alternative;
+}
+.t-bg-alternative-highlight
+{
+    background-color: $color-alternative-highlight;
+}
+
+.t-bg-alternative-with-alpha
+{
+    background-color: $color-alternative-with-alpha !important;
+}
+
+/* TEXT COLOR */
+.t-text-primary
+{
+    -webkit-text-fill-color: $color-primary ;
+    color: $color-primary;
+    fill: $color-primary;
+}
+.t-text-primary-highlight
+{
+    color: $color-primary-highlight;
+    fill: $color-primary-highlight;
+}
+.t-text-secondary
+{
+    color: $color-primary-highlight;
+    fill:$color-primary-highlight;
+}
+.t-text-secondary-highlight
+{
+    color: $color-secondary-highlight;
+    fill: $color-secondary-highlight;
+}
+.t-text-accent
+{
+    color: $color-accent !important;
+    fill: $color-accent;
+}
+.t-text-accent-highlight
+{
+    color: $color-accent-highlight;
+    fill: $color-accent-highlight;
+}
+.t-text-alternative
+{
+    color: $color-alternative-with-alpha;
+    fill: $color-alternative-with-alpha;
+}
+.t-text-alternative-highlight
+{
+    color: $color-alternative-highlight;
+    fill: $color-alternative-highlight;
+}
+
+/* BORDER */
+.t-border-primary
+{
+    border-color: $color-primary-with-alpha !important;
+}
+.t-border-primary-highlight
+{
+    border-color: $color-primary-highlight !important;
+}
+.t-border-secondary
+{
+    border-color: $color-secondary !important;
+}
+.t-border-secondary-highlight
+{
+    border-color: $color-secondary-highlight !important;
+}
+.t-border-accent
+{
+    border-color: $color-accent !important;
+}
+.t-border-accent-highlight
+{
+    border-color: $color-accent-highlight !important;
+}
+.t-border-alternative
+{
+    border-color: $color-alternative !important;
+}
+.t-border-alternative-highlight
+{
+    border-color: $color-alternative-highlight !important;
+}
+
+/* BORDER BOTTOM */
+.t-bb-primary
+{
+    border-bottom-color: $color-primary-with-alpha !important;
+}
+.t-bb-primary-highlight
+{
+    border-bottom-color: $color-primary-highlight !important;
+}
+.t-bb-secondary
+{
+    border-bottom-color: $color-secondary !important;
+}
+.t-bb-secondary-highlight
+{
+    border-bottom-color: $color-secondary-highlight !important;
+}
+.t-bb-accent
+{
+    border-bottom-color: $color-accent !important;
+}
+.t-bb-accent-highlight
+{
+    border-bottom-color: $color-accent-highlight !important;
+}
+.t-bb-alternative
+{
+    border-bottom-color: $color-alternative !important;
+}
+.t-bb-alternative-highlight
+{
+    border-bottom-color: $color-alternative-highlight !important;
+}
+
+/* BORDER TOP */
+.t-bt-primary
+{
+    border-top-color: $color-primary-with-alpha !important;
+}
+.t-bt-primary-highlight
+{
+    border-top-color: $color-primary-highlight !important;
+}
+.t-bt-secondary
+{
+    border-top-color: $color-secondary !important;
+}
+.t-bt-secondary-highlight
+{
+    border-top-color: $color-secondary-highlight !important;
+}
+.t-bt-accent
+{
+    border-top-color: $color-accent !important;
+}
+.t-bt-accent-highlight
+{
+    border-top-color: $color-accent-highlight !important;
+}
+.t-bt-alternative
+{
+    border-top-color: $color-alternative !important;
+}
+.t-bt-alternative-highlight
+{
+    border-top-color: $color-alternative-highlight !important;
+}
+
+/* BORDER RIGHT */
+.t-br-primary
+{
+    border-right-color: $color-primary-with-alpha !important;
+}
+.t-br-primary-highlight
+{
+    border-right-color: $color-primary-highlight !important;
+}
+.t-br-secondary
+{
+    border-right-color: $color-secondary !important;
+}
+.t-br-secondary-highlight
+{
+    border-right-color: $color-secondary-highlight !important;
+}
+.t-br-accent
+{
+    border-right-color: $color-accent !important;
+}
+.t-br-accent-highlight
+{
+    border-right-color: $color-accent-highlight !important;
+}
+.t-br-alternative
+{
+    border-right-color: $color-alternative !important;
+}
+.t-br-alternative-highlight
+{
+    border-right-color: $color-alternative-highlight !important;
+}
+
+/* BORDER LEFT */
+.t-bl-primary
+{
+    border-left-color: $color-primary-with-alpha !important;
+}
+.t-bl-primary-highlight
+{
+    border-left-color: $color-primary-highlight !important;
+}
+.t-bl-secondary
+{
+    border-left-color: $color-secondary !important;
+}
+.t-bl-secondary-highlight
+{
+    border-left-color: $color-secondary-highlight !important;
+}
+.t-bl-accent
+{
+    border-left-color: $color-accent !important;
+}
+.t-bl-accent-highlight
+{
+    border-left-color: $color-accent-highlight !important;
+}
+.t-bl-alternative
+{
+    border-left-color: $color-alternative !important;
+}
+.t-bl-alternative-highlight
+{
+    border-left-color: $color-alternative-highlight !important;
+}
+
+/* HOVER */
+.t-hover-body:hover
+{
+    background-color: $color-primary !important;
+}
+.t-hover-exception:hover
+{
+    background-color: $color-exception !important;
+}
+.t-hover-primary:hover
+{
+    background-color: $color-primary;
+}
+.t-hover-primary-highlight:hover
+{
+    background-color: $color-primary-highlight;
+}
+.t-hover-secondary:hover
+{
+    background-color: $color-secondary;
+}
+.t-hover-secondary-highlight:hover
+{
+    background-color: $color-secondary-highlight;
+}
+.t-hover-accent:hover
+{
+    background-color: $color-accent;
+}
+.t-hover-accent-highlight:hover
+{
+    background-color: $color-accent-highlight;
+}
+.t-hover-alternative:hover
+{
+    background-color: $color-alternative;
+}
+.t-hover-alternative-highlight:hover
+{
+    background-color: $color-alternative-highlight;
+}
+
+/* TEXT HOVER */
+.t-text-hover-primary:hover
+{
+    color: $color-primary;
+    fill: $color-primary;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-text-hover-primary-highlight:hover
+{
+    color: $color-primary-highlight;
+    fill: $color-primary-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-text-hover-secondary:hover
+{
+    color: $color-secondary;
+    fill: $color-secondary;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-text-hover-secondary-highlight:hover
+{
+    color: $color-secondary-highlight;
+    fill: $color-secondary-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-text-hover-accent:hover
+{
+    color: $color-accent;
+    fill: $color-accent;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-text-hover-accent-highlight:hover
+{
+    color: $color-accent-highlight;
+    fill: $color-accent-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-text-hover-alternative:hover
+{
+    color: $color-alternative;
+    fill: $color-alternative;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-text-hover-alternative-highlight:hover
+{
+    color: $color-alternative-highlight !important;
+    fill: $color-alternative-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+
+/* FOCUS */
+.t-focus-primary:focus
+{
+    background-color: $color-primary;
+}
+.t-focus-primary-highlight:focus
+{
+    background-color: $color-primary-highlight;
+}
+.t-focus-secondary:focus
+{
+    background-color: $color-secondary;
+}
+.t-focus-secondary-highlight:focus
+{
+    background-color: $color-secondary-highlight;
+}
+.t-focus-accent:focus
+{
+    background-color: $color-accent;
+}
+.t-focus-accent-highlight:focus
+{
+    background-color: $color-accent-highlight;
+}
+.t-focus-alternative:focus
+{
+    background-color: $color-alternative;
+}
+.t-focus-alternative-highlight:focus
+{
+    background-color: $color-alternative-highlight;
+}
+
+/* FOCUS TEXT COLOR */
+.t-focus-color-primary:focus
+{
+    color: $color-primary;
+    fill: $color-primary;
+}
+.t-focus-color-primary-highlight:focus
+{
+    color: $color-primary-highlight;
+    fill: $color-primary-highlight;
+}
+.t-focus-color-secondary:focus
+{
+    color: $color-secondary;
+    fill: $color-secondary;
+}
+.t-focus-color-secondary-highlight:focus
+{
+    color: $color-secondary-highlight;
+    fill: $color-secondary-highlight;
+}
+.t-focus-color-accent:focus
+{
+    color: $color-accent;
+    fill: $color-accent;
+}
+.t-focus-color-accent-highlight:focus
+{
+    color: $color-accent-highlight;
+    fill: $color-accent-highlight;
+}
+.t-focus-color-alternative:focus
+{
+    color: $color-alternative;
+    fill: $color-alternative;
+}
+.t-focus-color-alternative-highlight:focus
+{
+    color: $color-alternative-highlight;
+    fill: $color-alternative-highlight;
+}
+
+/* CARET COLOR */
+.t-caret-color-primary
+{
+    caret-color: $color-primary;
+}
+.t-caret-color-primary-highlight
+{
+    caret-color: $color-primary-highlight;
+}
+.t-caret-color-secondary
+{
+    caret-color: $color-secondary;
+}
+.t-caret-color-secondary-highlight
+{
+    caret-color: $color-secondary-highlight;
+}
+.t-caret-color-accent
+{
+    caret-color: $color-accent;
+}
+.t-caret-color-accent-highlight
+{
+    caret-color: $color-accent-highlight;
+}
+.t-caret-color-alternative
+{
+    caret-color: $color-alternative;
+}
+.t-caret-color-alternative-highlight
+{
+    caret-color: $color-alternative-highlight;
+}

@@ -1,0 +1,56 @@
+@import "../../../assets/css/config.scss";
+
+.masterLayout-sidebarMenu
+{
+    -webkit-transition: width $animation-speed-fast linear !important;
+    transition: width $animation-speed-fast linear !important;
+}
+
+.masterLayout-children
+{
+    -webkit-transition: all $animation-speed-fast linear !important;
+    transition: all $animation-speed-fast linear !important;
+}
+
+.masterLayout-mainContainer
+{
+    position: relative; 
+}
+
+.masterLayout-bodyContainer
+{
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    z-index: 10 !important;
+}
+
+.masterLayout-headerContainer
+{
+    width: 100%;
+}
+
+.masterLayout-childrenContainer
+{
+    flex-grow : 1;
+}
+
+.masterLayout-manage-dropdown
+{
+    width: 250px !important;
+    max-width: 250px !important;
+    margin-top: 5px !important;
+    z-index: 50 !important;
+}
+
+.masterLayout-user-avatar
+{
+    height: 50px;
+    width: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: white;
+    border-radius: 50%;
+}
