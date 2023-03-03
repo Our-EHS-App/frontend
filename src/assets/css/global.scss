@@ -159,15 +159,15 @@ body.swal2-height-auto
 }
 .swal2-show .blackout-swal2-title
 {
-	color: $color-alternative-highlight !important;
+	color: $color-blackout-alternative-highlight !important;
 }
 .swal2-show .dark-swal2-title
 {
-	color: $color-alternative-highlight !important;
+	color: $color-dark-alternative-highlight !important;
 }
 .swal2-show .light-swal2-title
 {
-	color: $color-alternative-highlight !important;
+	color: $color-light-alternative-highlight !important;
 }
 
 .swal2-show .rtl-swal2-title
@@ -247,6 +247,10 @@ button:focus {
 {
 	line-height: 200% !important;
 }
+.overflow-wrap-break {
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
 .table-borderless > tbody > tr > td,
 .table-borderless > tbody > tr > th,
 .table-borderless > tfoot > tr > td,
@@ -258,6 +262,12 @@ button:focus {
 .borderless
 {
 	border: none !important;
+}
+
+.border-around
+{
+	border-width: 1px !important;
+	border-style: solid !important;
 }
 
 .ltr-border-leading
@@ -395,9 +405,6 @@ button:focus {
 }
 .nowrap {
 	white-space: nowrap;
-}
-.overflow-wrap-break {
-	overflow-wrap: break-word;
 }
 .scrollable-x {
 	overflow-x: scroll !important;
@@ -837,7 +844,7 @@ button:focus {
 }
 .textarea+div
 {
-    margin-top: -5px !important;
+    margin-top: -10px !important;
 }
 .textarea-comment+div
 {
@@ -909,10 +916,12 @@ button:focus {
 .custom-searchable-list-body
 {
 	filter:drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.3));
-	padding-bottom: 55px !important;
-    min-height: 200px;
+	padding: 0px !important;
+	top: 8px !important;
+	height: auto !important;
     max-height: 200px;
     overflow-x: hidden;
+	background: transparent;
 }
 
 .custom-searchable-list-body-with-input
@@ -920,7 +929,7 @@ button:focus {
 	filter:drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.3));
 	padding-bottom: 70px !important;
     min-height: 200px;
-    max-height: 200px;
+    max-height: 100px;
     overflow-x: hidden;
 }
 
@@ -947,8 +956,8 @@ button:focus {
 
 .border-bottom
 {
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
+	border-bottom-width: 1px !important;
+	border-bottom-style: solid !important;
 }
 
 .border-top
@@ -1119,6 +1128,11 @@ svg
 .inputs-padding
 {
 	padding:10px ;
+}
+
+.datePicker-padding
+{
+	padding:8px ;
 }
 
 .buttons-padding

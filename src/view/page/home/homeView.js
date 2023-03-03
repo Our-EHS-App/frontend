@@ -6,7 +6,7 @@ export default class HomeView extends View
     {  
         return (
             <>
-                <div className={`font-lg`}>
+                <div className={`font-lg p-1`}>
                     {this.i18n('title_home')}
                 </div>
             </>

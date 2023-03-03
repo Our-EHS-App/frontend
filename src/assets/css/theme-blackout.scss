@@ -1,0 +1,784 @@
+@import "config";
+
+/* BODY ELEMENT */
+.t-blackout-element
+{
+    background-color: $color-blackout-element !important;
+    color: $color-blackout-primary-highlight !important;
+    border:2px solid transparent;
+    outline: none !important;
+    -webkit-transition: border $animation-speed-slow ease-in-out;
+	transition: border $animation-speed-slow ease-in-out;
+}
+.t-blackout-element::-moz-placeholder,
+.t-blackout-element:-moz-placeholder,
+.t-blackout-element:-ms-input-placeholder,
+.t-blackout-element::-webkit-input-placeholder
+{
+    color: $color-blackout-alternative !important;
+}
+.t-blackout-element:focus
+{
+    border:2px solid $color-blackout-alternative-highlight;
+    -webkit-transition: border $animation-speed-slow ease-in-out;
+	transition: border $animation-speed-slow ease-in-out;
+}
+
+/* BUTTON DISABLED */
+.t-blackout-custom-disabled-button:disabled, .t-blackout-custom-disabled-button:disabled:hover 
+{
+    cursor: not-allowed !important;
+    opacity: 1 !important;
+    background-color: $color-blackout-secondary !important;
+    color: #838383 !important;
+}
+
+/* INPUT ELEMENT */
+.t-blackout-input:-webkit-autofill,
+.t-blackout-input:-webkit-autofill:hover, 
+.t-blackout-input:-webkit-autofill:focus
+{
+    border: unset;
+    -webkit-text-fill-color: $color-blackout-alternative-highlight;
+    background-color: unset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* BACKGROUND COLOR */
+.t-blackout-bg-body
+{
+    background-color: $color-blackout-primary !important;
+}
+.t-blackout-bg-primary
+{
+    background-color: $color-blackout-primary !important;
+}
+.t-blackout-bg-primary-highlight
+{
+    background-color: $color-blackout-primary-highlight !important;
+}
+.t-blackout-bg-secondary
+{
+    background-color: $color-blackout-secondary !important;
+}
+.t-blackout-bg-secondary-highlight
+{
+    background-color: $color-blackout-secondary-highlight !important;
+}
+.t-blackout-bg-secondary-light
+{
+    background-color: $color-blackout-secondary-light !important;
+}
+.t-blackout-bg-tertiary
+{
+    background-color: $color-blackout-tertiary !important;
+}
+.t-blackout-bg-tertiary-highlight
+{
+    background-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-bg-accent
+{
+    background-color: $color-blackout-accent !important;
+}
+.t-blackout-bg-accent-highlight
+{
+    background-color: $color-blackout-accent-highlight !important;
+}
+.t-blackout-bg-alternative
+{
+    background-color: $color-blackout-alternative !important;
+}
+.t-blackout-bg-alternative-highlight
+{
+    background-color: $color-blackout-alternative-highlight !important;
+}
+.t-blackout-bg-quaternary
+{
+    background-color: $color-blackout-quaternary !important;
+}
+.t-blackout-bg-alternative-quaternary
+{
+    background-color: $color-blackout-quaternary-highlight !important;
+}
+.t-blackout-bg-rose
+{
+    background-color: $color-blackout-rose !important;
+}
+
+.t-blackout-bg-darkblack
+{
+    background-color: $color-blackout-darkblack !important;
+}
+
+/* TEXT COLOR */
+.t-blackout-text-primary
+{
+    color: $color-blackout-primary;
+    fill: $color-blackout-primary;
+}
+.t-blackout-text-primary-highlight
+{
+    color: $color-blackout-primary-highlight;
+    fill: $color-blackout-primary-highlight;
+}
+.t-blackout-text-primary-with-alpha
+{
+    color: $color-blackout-primary-with-alpha;
+    fill: $color-blackout-primary-with-alpha;
+}
+.t-blackout-text-secondary
+{
+    color: $color-blackout-secondary;
+    fill: $color-blackout-secondary;
+}
+.t-blackout-text-secondary-highlight
+{
+    color: $color-blackout-secondary-highlight;
+    fill: $color-blackout-secondary-highlight;
+}
+.t-blackout-text-tertiary
+{
+    color: $color-blackout-tertiary !important;
+    fill: $color-blackout-tertiary-highlight;
+}
+.t-blackout-text-tertiary-highlight
+{
+    color: $color-blackout-tertiary-highlight !important;
+    fill: $color-blackout-tertiary-highlight;
+}
+.t-blackout-text-accent
+{
+    color: $color-blackout-accent !important;
+    fill: $color-blackout-accent;
+}
+.t-blackout-text-accent-highlight
+{
+    color: $color-blackout-accent-highlight;
+    fill: $color-blackout-accent-highlight;
+}
+.t-blackout-text-alternative
+{
+    color: $color-blackout-alternative;
+    fill: $color-blackout-alternative;
+}
+.t-blackout-text-alternative-highlight
+{
+    color: $color-blackout-alternative-highlight !important;
+    fill: $color-blackout-alternative-highlight;
+}
+.t-blackout-text-quaternary
+{
+    color: $color-blackout-quaternary !important;
+    fill: $color-blackout-quaternary;
+}
+.t-blackout-text-quaternary-highlight
+{
+    color: $color-blackout-quaternary-highlight !important;
+    fill: $color-blackout-quaternary-highlight;
+}
+.t-blackout-text-blue
+{
+    color: $color-sky !important;
+    fill: $color-sky;
+}
+.t-blackout-text-rose
+{
+    color: $color-blackout-rose !important;
+    fill: $color-blackout-rose;
+}
+
+
+/* BORDER */
+.t-blackout-border-primary
+{
+    border-color: $color-blackout-primary-with-alpha !important;
+}
+.t-blackout-border-primary-highlight
+{
+    border-color: $color-blackout-primary-highlight !important;
+}
+.t-blackout-border-secondary
+{
+    border-color: $color-blackout-secondary !important;
+}
+.t-blackout-border-secondary-highlight
+{
+    border-color: $color-blackout-secondary-highlight !important;
+}
+.t-blackout-border-tertiary
+{
+    border-color: $color-blackout-tertiary !important;
+}
+.t-blackout-border-tertiary-highlight
+{
+    border-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-border-accent
+{
+    border-color: $color-blackout-accent !important;
+}
+.t-blackout-border-accent-highlight
+{
+    border-color: $color-blackout-accent-highlight !important;
+}
+.t-blackout-border-alternative
+{
+    border-color: $color-blackout-alternative !important;
+}
+.t-blackout-border-alternative-highlight
+{
+    border-color: $color-blackout-alternative-highlight !important;
+}
+.t-blackout-border-quaternary
+{
+    border-color: $color-blackout-quaternary !important;
+}
+.t-blackout-border-quaternary-highlight
+{
+    border-color:$color-blackout-quaternary-highlight !important;
+}
+
+/* BORDER BOTTOM */
+.t-blackout-bb-primary
+{
+    border-bottom-color: $color-blackout-primary-with-alpha !important;
+}
+.t-blackout-bb-primary-highlight
+{
+    border-bottom-color: $color-blackout-primary-highlight !important;
+}
+.t-blackout-bb-secondary
+{
+    border-bottom-color: $color-blackout-secondary !important;
+}
+.t-blackout-bb-secondary-highlight
+{
+    border-bottom-color: $color-blackout-secondary-highlight !important;
+}
+.t-blackout-bb-tertiary
+{
+    border-bottom-color: $color-blackout-tertiary !important;
+}
+.t-blackout-bb-tertiary-highlight
+{
+    border-bottom-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-bb-accent
+{
+    border-bottom-color: $color-blackout-accent !important;
+}
+.t-blackout-bb-accent-highlight
+{
+    border-bottom-color: $color-blackout-accent-highlight !important;
+}
+.t-blackout-bb-alternative
+{
+    border-bottom-color: $color-blackout-alternative !important;
+}
+.t-blackout-bb-alternative-highlight
+{
+    border-bottom-color: $color-blackout-alternative-highlight !important;
+}
+.t-blackout-bb-quaternary
+{
+    border-bottom-color: $color-blackout-quaternary !important;
+}
+.t-blackout-bb-quaternary-highlight
+{
+    border-bottom-color: $color-blackout-quaternary-highlight !important;
+}
+
+/* BORDER TOP */
+.t-blackout-bt-primary
+{
+    border-top-color:$color-blackout-primary-with-alpha !important;
+}
+.t-blackout-bt-primary-highlight
+{
+    border-top-color: $color-blackout-primary-highlight !important;
+}
+.t-blackout-bt-secondary
+{
+    border-top-color: $color-blackout-secondary !important;
+}
+.t-blackout-bt-secondary-highlight
+{
+    border-top-color: $color-blackout-secondary-highlight !important;
+}
+.t-blackout-bt-tertiary
+{
+    border-top-color: $color-blackout-tertiary !important;
+}
+.t-blackout-bt-tertiary-highlight
+{
+    border-top-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-bt-accent
+{
+    border-top-color: $color-blackout-accent !important;
+}
+.t-blackout-bt-accent-highlight
+{
+    border-top-color: $color-blackout-accent-highlight !important;
+}
+.t-blackout-bt-alternative
+{
+    border-top-color: $color-blackout-alternative !important;
+}
+.t-blackout-bt-alternative-highlight
+{
+    border-top-color: $color-blackout-alternative-highlight !important;
+}
+.t-blackout-bt-quaternary
+{
+    border-top-color: $color-blackout-quaternary !important;
+}
+.t-blackout-bt-quaternary-highlight
+{
+    border-top-color: $color-blackout-quaternary-highlight !important;
+}
+
+/* BORDER RIGHT */
+.t-blackout-br-primary
+{
+    border-right-color: $color-blackout-primary-with-alpha !important;
+}
+.t-blackout-br-primary-highlight
+{
+    border-right-color: $color-blackout-primary-highlight !important;
+}
+.t-blackout-br-secondary
+{
+    border-right-color: $color-blackout-secondary !important;
+}
+.t-blackout-br-secondary-highlight
+{
+    border-right-color: $color-blackout-secondary-highlight !important;
+}
+.t-blackout-br-tertiary
+{
+    border-right-color: $color-blackout-tertiary !important;
+}
+.t-blackout-br-tertiary-highlight
+{
+    border-right-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-br-accent
+{
+    border-right-color: $color-blackout-accent !important;
+}
+.t-blackout-br-accent-highlight
+{
+    border-right-color: $color-blackout-accent-highlight !important;
+}
+.t-blackout-br-alternative
+{
+    border-right-color: $color-blackout-alternative !important;
+}
+.t-blackout-br-alternative-highlight
+{
+    border-right-color: $color-blackout-alternative-highlight !important;
+}
+.t-blackout-br-quaternary
+{
+    border-right-color: $color-blackout-quaternary !important;
+}
+.t-blackout-br-quaternary-highlight
+{
+    border-right-color: $color-blackout-quaternary-highlight !important;
+}
+
+
+/* BORDER LEFT */
+.t-blackout-bl-primary
+{
+    border-left-color: $color-blackout-primary-with-alpha !important;
+}
+.t-blackout-bl-primary-highlight
+{
+    border-left-color: $color-blackout-primary-highlight !important;
+}
+.t-blackout-bl-secondary
+{
+    border-left-color: $color-blackout-secondary !important;
+}
+.t-blackout-bl-secondary-highlight
+{
+    border-left-color: $color-blackout-secondary-highlight !important;
+}
+.t-blackout-bl-tertiary
+{
+    border-left-color: $color-blackout-tertiary !important;
+}
+.t-blackout-bl-tertiary-highlight
+{
+    border-left-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-bl-accent
+{
+    border-left-color: $color-blackout-accent !important;
+}
+.t-blackout-bl-accent-highlight
+{
+    border-left-color: $color-blackout-accent-highlight !important;
+}
+.t-blackout-bl-alternative
+{
+    border-left-color: $color-blackout-alternative !important;
+}
+.t-blackout-bl-alternative-highlight
+{
+    border-left-color: $color-blackout-alternative-highlight !important;
+}
+.t-blackout-bl-quaternary
+{
+    border-left-color: $color-blackout-quaternary !important;
+}
+.t-blackout-bl-quaternary-highlight
+{
+    border-left-color: $color-blackout-quaternary-highlight !important;
+}
+
+/* BG HOVER */
+.t-blackout-hover-body:hover
+{
+    background-color: $color-blackout-primary !important;
+}
+.t-blackout-hover-primary:hover
+{
+    background-color: $color-blackout-primary !important;
+}
+.t-blackout-hover-primary-highlight:hover
+{
+    background-color: $color-blackout-primary-highlight !important;
+}
+.t-blackout-hover-secondary:hover
+{
+    background-color: $color-blackout-secondary !important;
+}
+.t-blackout-hover-secondary-highlight:hover
+{
+    background-color: $color-blackout-secondary-highlight !important;
+}
+.t-blackout-hover-tertiary:hover
+{
+    background-color: $color-blackout-tertiary !important;
+}
+.t-blackout-hover-tertiary-highlight:hover
+{
+    background-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-hover-accent:hover
+{
+    background-color: $color-blackout-accent !important;
+}
+.t-blackout-hover-accent-highlight:hover
+{
+    background-color: $color-blackout-accent-highlight !important;
+}
+.t-blackout-hover-alternative:hover
+{
+    background-color: $color-blackout-alternative !important;
+}
+.t-blackout-hover-alternative-highlight:hover
+{
+    background-color: $color-blackout-alternative-highlight !important;
+}
+.t-blackout-hover-primary-with-alpha:hover
+{
+    background-color: $color-blackout-primary-with-alpha !important;
+}
+.t-blackout-hover-quaternary:hover
+{
+    background-color: $color-blackout-quaternary !important;
+}
+.t-blackout-hover-quaternary-highlight:hover
+{
+    background-color: $color-blackout-quaternary-highlight !important;
+}
+/* TEXT HOVER */
+.t-blackout-text-hover-primary:hover
+{
+    color: $color-blackout-primary;
+    fill: $color-blackout-primary;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-primary-highlight:hover
+{
+    color: $color-blackout-primary-highlight;
+    fill: $color-blackout-primary-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-secondary:hover
+{
+    color: $color-blackout-secondary;
+    fill: $color-blackout-secondary;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-secondary-highlight:hover
+{
+    color: $color-blackout-secondary-highlight;
+    fill: $color-blackout-secondary-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-tertiary:hover
+{
+    color: $color-blackout-tertiary;
+    fill: $color-blackout-tertiary;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+    background-color: $color-blackout-tertiary !important;
+}
+.t-blackout-text-hover-tertiary-highlight:hover
+{
+    color: $color-blackout-tertiary-highlight;
+    fill: $color-blackout-tertiary-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-accent:hover
+{
+    color: $color-blackout-accent !important;
+    fill: $color-blackout-accent !important;
+    -webkit-transition: all $animation-speed-slow ease-in-out;
+    -moz-transition:    all $animation-speed-slow ease-in-out;
+    -o-transition:      all $animation-speed-slow ease-in-out;
+    -ms-transition:     all $animation-speed-slow ease-in-out;
+    transition:         all $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-accent-highlight:hover
+{
+    color: $color-blackout-accent-highlight;
+    fill: $color-blackout-accent-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-alternative:hover
+{
+    color: $color-blackout-alternative;
+    fill: $color-blackout-alternative;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-alternative-highlight:hover
+{
+    color: $color-blackout-alternative-highlight !important;
+    fill: $color-blackout-alternative-highlight;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-quaternary:hover
+{
+    color: $color-blackout-quaternary !important;
+    fill: $color-blackout-quaternary;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+.t-blackout-text-hover-quaternary-highlight:hover
+{
+    color: $color-blackout-quaternary-highlight !important;
+    fill: $color-blackout-quaternary-highlight ;
+    -webkit-transition: color $animation-speed-slow ease-in-out;
+    -moz-transition:    color $animation-speed-slow ease-in-out;
+    -o-transition:      color $animation-speed-slow ease-in-out;
+    -ms-transition:     color $animation-speed-slow ease-in-out;
+    transition:         color $animation-speed-slow ease-in-out;
+}
+
+/* FOCUS BACKGROUND COLOR*/
+.t-blackout-focus-primary:focus
+{
+    background-color: $color-blackout-primary;
+}
+.t-blackout-focus-primary-highlight:focus
+{
+    background-color: $color-blackout-primary-highlight;
+}
+.t-blackout-focus-secondary:focus
+{
+    background-color: $color-blackout-secondary;
+}
+.t-blackout-focus-secondary-highlight:focus
+{
+    background-color: $color-blackout-secondary-highlight;
+}
+.t-blackout-focus-tertiary:focus
+{
+    background-color: $color-blackout-tertiary !important;
+}
+.t-blackout-focus-tertiary-highlight:focus
+{
+    background-color: $color-blackout-tertiary-highlight !important;
+}
+.t-blackout-focus-accent:focus
+{
+    background-color: $color-blackout-accent;
+}
+.t-blackout-focus-accent-highlight:focus
+{
+    background-color: $color-blackout-accent-highlight;
+}
+.t-blackout-focus-alternative:focus
+{
+    background-color: $color-blackout-alternative;
+}
+.t-blackout-focus-alternative-highlight:focus
+{
+    background-color: $color-blackout-alternative-highlight;
+}
+.t-blackout-focus-quaternary:focus
+{
+    background-color: $color-blackout-quaternary !important;
+}
+.t-blackout-focus-quaternary-highlight:focus
+{
+    background-color: $color-blackout-quaternary-highlight !important;
+}
+
+/* FOCUS TEXT COLOR */
+.t-blackout-focus-color-primary:focus
+{
+    color: $color-blackout-primary;
+    fill: $color-blackout-primary;
+}
+.t-blackout-focus-color-primary-highlight:focus
+{
+    color: $color-blackout-primary-highlight;
+    fill: $color-blackout-primary-highlight;
+}
+.t-blackout-focus-color-secondary:focus
+{
+    color: $color-blackout-secondary;
+    fill: $color-blackout-secondary;
+}
+.t-blackout-focus-tertiary:focus
+{
+    color: $color-blackout-tertiary;
+    fill: $color-blackout-tertiary;
+}
+.t-blackout-focus-tertiary-highlight:focus
+{
+    color: $color-blackout-tertiary-highlight;
+    fill: $color-blackout-tertiary-highlight;
+}
+.t-blackout-focus-color-secondary-highlight:focus
+{
+    color: $color-blackout-secondary-highlight;
+    fill: $color-blackout-secondary-highlight;
+}
+.t-blackout-focus-color-accent:focus
+{
+    color: $color-blackout-accent;
+    fill: $color-blackout-accent;
+}
+.t-blackout-focus-color-accent-highlight:focus
+{
+    color: $color-blackout-accent-highlight;
+    fill: $color-blackout-accent-highlight;
+}
+.t-blackout-focus-color-alternative:focus
+{
+    color: $color-blackout-alternative;
+    fill: $color-blackout-alternative;
+}
+.t-blackout-focus-color-alternative-highlight:focus
+{
+    color: $color-blackout-alternative-highlight;
+    fill: $color-blackout-alternative-highlight;
+}
+.t-blackout-focus-color-quaternary:focus
+{
+    color: $color-blackout-quaternary;
+    fill: $color-blackout-quaternary;
+}
+.t-blackout-focus-color-quaternary-highlight:focus
+{
+    color: $color-blackout-quaternary-highlight;
+    fill: $color-blackout-quaternary-highlight;
+}
+
+/* CARET COLOR */
+.t-blackout-caret-color-primary
+{
+    caret-color: $color-blackout-primary;
+}
+.t-blackout-caret-color-primary-highlight
+{
+    caret-color: $color-blackout-primary-highlight;
+}
+.t-blackout-caret-color-secondary
+{
+    caret-color: $color-blackout-secondary;
+}
+.t-blackout-caret-color-secondary-highlight
+{
+    caret-color: $color-blackout-secondary-highlight;
+}
+.t-blackout-caret-color-tertiary
+{
+    caret-color: $color-blackout-tertiary;
+}
+.t-blackout-caret-color-tertiary-highlight
+{
+    caret-color: $color-blackout-tertiary-highlight;
+}
+.t-blackout-caret-color-accent
+{
+    caret-color: $color-blackout-accent;
+}
+.t-blackout-caret-color-accent-highlight
+{
+    caret-color: $color-blackout-accent-highlight;
+}
+.t-blackout-caret-color-alternative
+{
+    caret-color: $color-blackout-alternative;
+}
+.t-blackout-caret-color-alternative-highlight
+{
+    caret-color: $color-blackout-alternative-highlight;
+}
+.t-blackout-caret-color-quaternary
+{
+    caret-color: $color-blackout-quaternary;
+}
+.t-blackout-caret-color-quaternary-highlight
+{
+    caret-color: $color-blackout-quaternary-highlight;
+}

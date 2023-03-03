@@ -6,19 +6,49 @@ $size-text-lg: 24px;
 $size-text-xl: 36px;
 $size-section-titles: 19px;
 
-/* THEME */
-$color-primary: #253759;
-$color-primary-highlight: #e9f7ff;
-$color-primary-with-alpha: rgb(194, 34, 74);
-$color-secondary: #1F1F26;
-$color-secondary-highlight: rgb(0,45,116,0.7);
-$color-alternative: #302F40;
-$color-alternative-highlight: #ffffff;
-$color-alternative-with-alpha:#1F1F26;
-$color-accent: #e66948;
-$color-accent-highlight: #fd8b6c;
-$color-element: #f0f0f3;
-$color-exception: #f6f6f9;
+/* THEME-LIGHT */
+$color-light-primary: #000000;
+$color-light-primary-highlight: #000000;
+$color-light-primary-with-alpha: #000000;
+$color-light-secondary: #000000;
+$color-light-secondary-highlight: #000000;
+$color-light-alternative: #000000;
+$color-light-alternative-highlight: #000000;
+$color-light-accent: #000000;
+$color-light-accent-highlight: #000000;
+$color-light-element: #000000;
+$color-light-exception:#000000;
+
+/* THEME-DARK */
+$color-dark-primary: #000000;
+$color-dark-primary-highlight: #000000;
+$color-dark-primary-with-alpha: #000000;
+$color-dark-secondary: #000000;
+$color-dark-secondary-highlight: #000000;
+$color-dark-alternative: #000000;
+$color-dark-alternative-highlight: #000000;
+$color-dark-accent: #000000;
+$color-dark-accent-highlight: #000000;
+$color-dark-element: #000000;
+
+/* THEME-BLACKOUT */
+$color-blackout-primary: #131f35;
+$color-blackout-primary-highlight: #c8d9f8;
+$color-blackout-primary-with-alpha: #1e2f4e;
+$color-blackout-secondary: #1e2f4e;
+$color-blackout-secondary-highlight: #ffffff;
+$color-blackout-tertiary:#000000;
+$color-blackout-tertiary-highlight:#000000;
+$color-blackout-alternative: #000000;
+$color-blackout-alternative-highlight: #000000;
+$color-blackout-accent: #000000;
+$color-blackout-accent-highlight: #000000;
+$color-blackout-element: #000000;
+$color-blackout-quaternary:#000000;
+$color-blackout-quaternary-highlight:#000000;
+$color-blackout-rose:#000000;
+$color-blackout-secondary-light: #000000;
+$color-blackout-darkblack :#000000;
 
 /* EXTRA COLORS */
 $color-accent: #e66948;

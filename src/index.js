@@ -2,17 +2,19 @@ import React, {useEffect } from "react";
 import "./helper/i18n";
 import {render} from "react-dom";
 import { BrowserRouter, Routes , useNavigate, useLocation, Route,Navigate} from 'react-router-dom';
-
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { ReactNotifications } from 'react-notifications-component';
 
 import MasterLayout from "./view/layout/master/masterLayout";
 
 import HomeViewController from "./viewController/home/homeViewController";
 
-require('bootstrap/dist/css/bootstrap.min.css');
+// require('bootstrap/dist/css/bootstrap.min.css');
 require("./assets/css/dir-ltr.scss");
 require("./assets/css/dir-rtl.scss");
-require("./assets/css/theme.scss");
+require("./assets/css/theme-light.scss");
+require("./assets/css/theme-dark.scss");
+require("./assets/css/theme-blackout.scss");
 require("./assets/css/global.scss");
 require('react-notifications-component/dist/theme.css');
 

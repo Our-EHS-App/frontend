@@ -11,7 +11,8 @@ const COMMON =
 	// i18n
 	defaultLanguage: "en",
 	supportedLanguages: ["ar", "en"],
-
+	
+	defaultTheme:"blackout",
 	// direction
 	defaultDirection: "ltr",
 	supportedDirections: ["ltr", "rtl"],

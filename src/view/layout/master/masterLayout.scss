@@ -12,45 +12,35 @@
     transition: all $animation-speed-fast linear !important;
 }
 
-.masterLayout-mainContainer
+.masterLayout-body-container
 {
-    position: relative; 
+    padding: 0px;
 }
 
-.masterLayout-bodyContainer
+@media (max-width: $breakpoint-sm)
 {
-    top: 0;
-    height: 100%;
-    display: flex;
-    flex-flow: column;
-    z-index: 10 !important;
+    .masterLayout-body-container
+    {
+        padding: 0 0 130px 0 !important;
+    }
+}
+.masterLayout-bottom-menu-container
+{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+.masterLayout-middle-col-light-theme
+{
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
 
-.masterLayout-headerContainer
+.cA-DTIM svg
 {
-    width: 100%;
-}
+    color: unset !important;
+    fill: unset !important;
+} 
 
-.masterLayout-childrenContainer
-{
-    flex-grow : 1;
-}
-
-.masterLayout-manage-dropdown
-{
-    width: 250px !important;
-    max-width: 250px !important;
-    margin-top: 5px !important;
-    z-index: 50 !important;
-}
-
-.masterLayout-user-avatar
-{
-    height: 50px;
-    width: 50px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: white;
-    border-radius: 50%;
-}
