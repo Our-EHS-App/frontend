@@ -1,0 +1,11 @@
+export { ReactComponent as FilterSVG } from './filter.svg';
+export { ReactComponent as AddressSVG } from './address.svg';
+export { ReactComponent as radioSVG } from './radio-button.svg';
+export { ReactComponent as exportIcon } from './export.svg';
+export { ReactComponent as NewNcaLogo } from './nca-logo.svg';
+export { ReactComponent as HaseenLogo } from './haseen.svg';
+export { ReactComponent as SurveyIcon } from './survey.svg';
+export { ReactComponent as ContentSVG } from './content.svg';
+export { ReactComponent as FilesSVG } from './Files.svg';
+export { ReactComponent as EditSVG } from './edit.svg';
+export { ReactComponent as DeleteSVG } from './delete.svg';

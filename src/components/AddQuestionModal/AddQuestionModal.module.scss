@@ -1,0 +1,29 @@
+.addQuestionModal-container {
+  :global(.ant-modal-content .ant-modal-header .ant-modal-title) {
+
+    font-weight: 500;
+    padding-bottom: 22px;
+    font-size: 19px;
+
+  }
+
+  :global(.ant-modal-content .ant-modal-footer .ant-btn) {
+    box-shadow: 0 0px 0 rgba(3, 17, 45, 0.29);
+
+  }
+
+  :global(.ant-modal-content .ant-modal-body)
+  {
+    @apply mb-20
+  }
+
+  :global(.ant-modal-footer .ant-btn-default > span)
+  {
+    @apply px-3
+  }
+
+  :global(.ant-modal-footer .ant-btn-primary > span)
+  {
+    @apply px-2
+  }
+}

@@ -1,0 +1,14 @@
+.primaryButton-Container
+{
+  :global(.ant-btn-primary) {
+    box-shadow:unset;
+    padding-bottom: 30px;
+    border-radius: 3px;
+  }
+  :global(.ant-btn > span) {
+    @apply px-3
+  }
+  :global(.ant-btn:not(.anticon) > span) {
+    @apply px-0
+  }
+}

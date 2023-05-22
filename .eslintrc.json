@@ -1,0 +1,62 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 13,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier",
+        "@typescript-eslint",
+        "react-hooks"
+    ],
+    "rules": {
+        "quotes": "off",
+        "prettier/prettier": ["error",{
+            "arrowParens": "always",
+            "bracketSpacing": true,
+            "endOfLine": "auto",
+            "htmlWhitespaceSensitivity": "css",
+            "insertPragma": false,
+            "jsxBracketSameLine": true,
+            "jsxSingleQuote": true,
+            "printWidth": 80,
+            "proseWrap": "preserve",
+            "quoteProps": "as-needed",
+            "requirePragma": false,
+            "semi": true,
+            "singleQuote": true,
+            "tabWidth": 2,
+            "trailingComma": "es5",
+            "useTabs": false,
+            "vueIndentScriptAndStyle": false,
+            "parser": "typescript"
+        }],
+        "no-unused-vars": "warn",
+        "require-jsdoc": "off",
+        "max-len": ["warn", 80],
+        "react/prop-types": "off",
+        "no-console": "warn",
+        "prefer-const": "warn",
+        "camelcase": "off",
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/display-name": [0, { "ignoreTranspilerName": true }],
+        "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+        "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+    }
+}

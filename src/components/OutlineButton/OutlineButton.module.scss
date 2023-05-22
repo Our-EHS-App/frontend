@@ -1,0 +1,18 @@
+.outlineButton-Container
+{
+  :global(.ant-btn) {
+    box-shadow:unset;
+    padding-bottom: 30px;
+    color: #4959A2;
+    border-color:#4959A2;
+    border-radius: 3px;
+  }
+
+  :global(.ant-btn > span) {
+    @apply px-3
+  }
+
+  :global(.ant-btn:not(.anticon) > span) {
+    @apply px-0
+  }
+}

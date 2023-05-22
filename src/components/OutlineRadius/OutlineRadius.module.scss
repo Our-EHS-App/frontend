@@ -1,0 +1,18 @@
+.outlineRadius-Container
+{
+  :global(.ant-btn) {
+    box-shadow:unset;
+    padding-bottom: 30px;
+    color: #4959A2;
+    border-color:#4959A2;
+  }
+}
+
+.out-lined {
+  &:global(.ant-radio-wrapper) {
+    @apply border-[#7D7D7D] text-[#7D7D7D]  rounded border border-solid me-3 p-1;
+  }
+  &:global(.ant-radio-wrapper-checked) {
+    @apply border-[#3D488C] text-[#3D488C];
+  }
+}

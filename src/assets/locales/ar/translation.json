@@ -1,0 +1,187 @@
+{
+  "Layout": {
+    "Logout": "تسجيل خروج",
+    "LOGIN": "تسجيل دخول"
+  },
+  "GENERAL": {
+    "APPLY": "حفظ",
+    "RESET": "مسح",
+    "EXPORT": "تصدير",
+    "NOT_AVAILABLE": "غير متاحة",
+    "ALL": "الكل",
+    "NO_RESULT": "لا توجد نتائج",
+    "BACK_HOME": "العودة للصفحة الرئيسية",
+    "INFORMATION_HAS_BEEN_SAVE": "تم حفظ المتغيرات بنجاح"
+  },
+  "footer": {
+    "privacy": "الخصوصية والسرية"
+  },
+  "NOT_AUTHORIZED": {
+    "TITLE": "غير مصرح بالوصول",
+    "DETAILS": "عذرًا! لم تسند لك صلاحيات لاستخدام النظام، الرجاء التواصل مع مسؤول الامن السيبراني في جهتك.",
+    "LOGGED_IN": "عذرا, لا يمكنك الوصول للصفحة الرجاء تسجيل الخروج."
+  },
+  "NCA_FOOTER": "© 2022 الهيئة الوطنية للأمن السيبراني",
+  "ERRORS": {
+    "MAIN_DATA_MISSING": "يجب اكمال البيانات الرئيسية",
+    "POC_DATA_MISSING": "يجب إضافة ضابط إتصال واحد على الأقل",
+    "ERROR_CODE": "خطأ {{code}}",
+    "ERROR_404_MESSAGE": "الصفحة غير موجودة",
+    "ERROR_401_MESSAGE": "لايمكنك الوصول لهذه الصفحة",
+    "CREATMODAL_NAME_MISSING": "هذا الحقل إلزامي",
+    "CREATMODAL_MAXLENGTH": "تم تجاوز الحد الأقصى لعدد الأحرف",
+    "REQUIRED": "هذا الحقل إلزامي",
+    "ADDED_FIELD": "لم يتم إضافة حقل",
+    "UNABLE_ADD_NEW_SECTION": "لا يمكن إضافة قسم، تم تجاوز الحد الأعلى من عدد الأقسام \t",
+    "UNABLE_ADD_NEW_PAGE": "لا يمكن إضافة صفحة، تم تجاوز الحد الأعلى من عدد الصفحات",
+    "UNABLE_ADD_NEW_FIELD": "لا يمكن إضافة حقل، تم تجاوز الحد الأعلى من عدد الحقول",
+    "ALREADY_USED": " تم استخدامه مسبقا\t",
+    "UNABLE_ADD_NEW_COLUMN": "لا يمكن إضافة عمود، تم تجاوز الحد الأعلى من عدد الأعمدة\t",
+    "UNABLE_ADD_NEW_ANSWER": "لا يمكن إضافة إجابة، تم تجاوز الحد الأعلى من عدد الأجوبة\t",
+    "UNABLE_ADD_NEW_QUESTIONS": "لا يمكن إضافة سؤال، تم تجاوز الحد الأعلى من عدد الأسئلة\t",
+    "UNABLE_ADD_NEW_LEVEL": "لا يمكن إضافة مستوى، تم تجاوز الحد الأعلى من عدد المستويات",
+    "ADDED_THIRED_LEVEL": "لم يتم إضافة المستوى الثالث"
+  },
+  "ACTION": {
+    "CREATE": "إنشاء",
+    "CREATE_NEW_FORM": "إنشاء نموذج جديد",
+    "FORM_ASSIGN": "إسناد النموذج",
+    "FORM_SETTINGS": "إعدادات النموذج",
+    "FORM_UPDATE": "تحديث بيانات النموذج",
+    "FORM_DELETE": "حذف النموذج",
+    "SAVE": "حفظ",
+    "ADD_NEW_PAGE": "إضافة صفحة جديدة",
+    "ADD": "إضافة",
+    "CANCEL": "إلغاء",
+    "ADD_NEW_CONTENT": "اضغط هنا لإضافة المحتوى",
+    "ADD_NEW_SECTION": "اضغط هنا لإضافة قسم",
+    "SAVE_CHANGES": "حفظ التغيرات",
+    "Edit": "تعديل",
+    "NEXT": "التالي",
+    "UPDATE": "تحديث",
+    "VIEW": "عرض",
+    "BACK": "عودة",
+    "SAVE_SECTION": "حفظ النموذج",
+    "CREATE_QUESTION": "إضافة سؤال جديد",
+    "ADD_FIELDS": "إضافة حقول",
+    "CREATE_COLUMN": "إضافة عمود جديد",
+    "DELETE_COLUMN": "حذف العمود",
+    "ADD_SECTION": "إضافة قسم جديد ",
+    "DELETE_QUESTION": "حذف السؤال",
+    "ADD_SUB_QUESTION": "إضافة سؤال فرعي",
+    "SECTIONS_DELETE": "حذف القسم",
+    "CREATE_LEVEL": "إضافة مستوى جديد",
+    "ADD_LEVELS": "إضافة مستوى فرعي",
+    "DELETE_LEVEL": "حذف المستوى",
+    "ADD_THIRD_LEVEL": "إضافة مستوى الثالث",
+    "SHOW_FIELDS": "عرض الحقول",
+    "SHOW_THIRD_LEVEL": "عرض المستوى الثالث",
+    "FORM_COPY": "نسخ النموذج",
+    "COPY_NEW_FORM": "نسخ النموذج"
+  },
+  "CREATMODAL": {
+    "INFORMATION_FORM": "تفاصيل النموذج",
+    "NAME": "اسم النموذج",
+    "DESCRIPTION": "وصف النموذج",
+    "UPDATE_INFORMATION_FORM": "تحديث بيانات النموذج"
+  },
+  "FORM_TABLE": {
+    "NUMBER": "رقم النموذج",
+    "NAME": "اسم النموذج",
+    "DESCRIPTION": "وصف النموذج",
+    "STATUS": "حالة النموذج",
+    "TYPE": "نوع النموذج",
+    "DETAILS": "تفاصيل",
+    "ACTIVE": "نشط",
+    "UNACTIVE": "غير نشط",
+    "COMPLETE": "مكتمل",
+    "UNCOMPLETE": "مسودة",
+    "DRAFT": "مسودة",
+    "COMPLETED": "مكتمل",
+    "ASSIGNED": "مسند",
+    "CREATED_AT": "تاريخ الإنشاء",
+    "CREATED_BY": "أنشئ بواسطة",
+    "UPDATE_AT": "آخر تحديث",
+    "UPDATE_BY": "آخر تحديث بواسطة",
+    "SUCCESS_MESSAGE": "تم إنشاء النموذج بنجاح",
+    "UPDATE_SUCCESS": "تم تحديث النموذج بنجاح",
+    "NUMBER_OF_PARTNERS": " عدد الجهات",
+    "ASSIGNED_AT": " تاريخ الإسناد",
+    "ASSIGNED_BY": "أسند بواسطة"
+  },
+  "TITLE": {
+    "HOME": "الرئيسية",
+    "FORMS_LIST": "نماذج",
+    "UNASSIGNED_FORMS": "النماذج غير المسندة",
+    "ASSIGNED_FORMS": "النماذج المسندة",
+    "ADD_NEW_SECTION": "إضافة قسم جديد",
+    "ADD_LEVELS": "إنشاء المستويات",
+    "THIRD_LEVEL": "المستوى الثالث"
+  },
+  "CREATE_PAGE": {
+    "SURVEY_PAGE": "صفحة استبيانات",
+    "CONTENT_PAGE": "صفحة محتوى",
+    "PAGE_NAME": "اسم الصفحة",
+    "SURVEY_TYPE": {
+      "BASIC": "استبيان بسيط",
+      "TABLE": "جدول",
+      "ADVANCE": "متقدم"
+    }
+  },
+  "PAGE_DETAILS": {
+    "NO_PAGE_CONTENT": "لا يوجد محتوى للصفحة",
+    "NO_PAGE_SECTION": "لا يوجد قسم",
+    "NO_PAGE": "لا يوجد صفحة",
+    "SUCCESS_MESSAGE": "تم إنشاء الصفحة بنجاح",
+    "DELETE_PAGE": "هل أنت متأكد؟",
+    "DELETE_SUCCESS": "تم حذف الصفحة بنجاح",
+    "UPDATE_SUCCESS": "تم تحديث بيانات الصفحة بنجاح",
+    "CREATED_CONTENT_SUCCESS": "تم تحديث المحتوى بنجاح"
+  },
+  "language": "اللغة",
+  "LANGUAGE": "اللغة",
+  "NO_DATA": "لا يوجد بيانات",
+  "POWERED_BY": "تطوير وتشغيل",
+  "TITLE_DELETE_PAGE": "حذف الصفحة",
+  "SURVEY": {
+    "TYPE": "نوع القسم",
+    "DESCRIPTION": "الوصف",
+    "SUCCESS_MESSAGE": "تم حفظ الإستبيان بنجاح",
+    "TEXT": "نص",
+    "NUMBER": "رقم",
+    "SELECT_ONE": "اختيار واحد",
+    "MULTI_SELECT": "اختيار متعدد",
+    "QUESTION": "السؤال",
+    "REQUIRED": "إلزامي؟",
+    "MAIN_QUESTION": "السؤال الرئيسي",
+    "TYPE_ANSWER": "نوع الإجابة",
+    "COLUMN": "العمود",
+    "HAS_OTHERS": "إضافة حقل \" أخرى\"",
+    "Main_QUESTION": "السؤال الرئيسي",
+    "SUP_QUESTION": "السؤال الفرعي",
+    "DELETE_SUCCESS_MESSAGE": "تم حذف القسم بنجاح\t",
+    "MAIN_LEVEL": "المستوى الرئيسي",
+    "Main_LEVEL": "المستوى الرئيسي",
+    "SECOND_LEVEL_TITLE": "عنوان المستوى الثاني",
+    "DROPDOWN_MENU": "قائمة منسدلة"
+  },
+  "BASIC_SECTION": {
+    "DESCRIPTION": "وصف النموذج",
+    "ADD_QUESTION": "إنشاء الأسئلة"
+  },
+  "ACCTION": {
+    "DELETE": "حذف السؤال"
+  },
+  "TABLE_SECTION": {
+    "NUMBER_ROW": "عدد الصفوف ",
+    "ADD_COLUMN": "إنشاء جدول",
+    "ADD_TABLE": "إنشاء جدول "
+  },
+  "Yes": "نعم",
+  "No": "لا",
+  "ADDED_THIRD_LEVEL": "لم يتم إضافة المستوى الثالث",
+  "COPY_FORM_MESSAGE": "يرجى التنوية، عند نسخ النموذج سيتم إعادة إنشاء نموذج جديد بدون الجهات المسند لها في النموذج الأساسي",
+  "FOOTER": {
+    "PRIVACY": "الخصوصية والسرية"
+  }
+}

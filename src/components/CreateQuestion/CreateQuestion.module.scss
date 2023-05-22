@@ -1,0 +1,29 @@
+.custom-collapse {
+  @apply flex gap-3 flex-col py-2;
+
+  :global(.ant-collapse-header-text) {
+    @apply font-bold;
+  }
+
+  :global(.ant-collapse-header-text) {
+    @apply whitespace-nowrap overflow-ellipsis overflow-hidden;
+  }
+}
+
+.primary-panel {
+  &:global(.ant-collapse-item.ant-collapse-no-arrow) {
+    @apply border border-solid border-[#C2C2C2] rounded-lg cursor-grab;
+  }
+  &:global(.ant-collapse-item-active.ant-collapse-no-arrow) {
+    @apply border border-solid border-[#2D3982] rounded-lg cursor-grab;
+  }
+}
+.danger-panel {
+  &:global(.ant-collapse-item.ant-collapse-no-arrow) {
+    @apply border border-solid border-danger rounded-lg cursor-grab;
+  }
+}
+
+.form-label {
+  @apply mb-2 text-[#888888] h-6;
+}

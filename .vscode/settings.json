@@ -1,0 +1,8 @@
+{
+  "i18n-ally.localesPaths": ["src/assets/locales"],
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "i18n-ally.keystyle": "nested"
+}

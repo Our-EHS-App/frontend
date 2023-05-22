@@ -1,0 +1,13 @@
+.table-design {
+  :global {
+    .ant-table-thead .ant-table-cell {
+      color: var(--primary-color);
+      background-color: #F2F3F7;
+    }
+    .ant-table-container table > thead > tr:first-child th:first-child,
+    .ant-table-container table > thead > tr:last-child th:last-child {
+      border-radius: 0;
+    }
+  }
+}
+

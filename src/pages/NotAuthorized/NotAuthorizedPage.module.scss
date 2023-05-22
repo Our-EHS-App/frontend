@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
+.not-allowed-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.not-allowed {
+  font-size: 40px;
+  color: red;
+}

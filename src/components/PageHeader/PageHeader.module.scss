@@ -1,0 +1,19 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  .page-title {
+    font-size: 32px;
+      font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.extra {
+  min-width: fit-content;
+}
