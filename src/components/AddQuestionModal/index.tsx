@@ -1,13 +1,13 @@
 import { Input, Modal, notification, Checkbox, Col } from 'antd';
 import { FC, useEffect, useState } from 'react';
 import { PlusCircleFilled } from '@ant-design/icons';
-import { DeleteSVG } from '@assets/svg';
 import { useTranslation } from 'react-i18next';
 import { Control, Controller, UseFormWatch } from 'react-hook-form';
 
-import { QuestionList, SurveyI } from '@interfaces/ISurvey';
+import { QuestionList, SurveyI } from '../../interfaces/ISurvey';
 
 import classes from './AddQuestionModal.module.scss';
+import React from 'react';
 
 interface Iprops {
   open: boolean;
@@ -83,10 +83,10 @@ export const AddQuestionModal: FC<Iprops> = ({
                 // eslint-disable-next-line max-len
                 'flex justify-center items-center w-5 h-5 bg-danger rounded-full'
               }>
-              <DeleteSVG
+              {/* <DeleteSVG
                 className={'w-[11px] h-[11px] text-white'}
                 onClick={() => removeQuestion(i)}
-              />
+              /> */}
             </div>
           )}
         </div>

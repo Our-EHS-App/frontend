@@ -12,13 +12,14 @@ import { WhiteContainer } from '../../components/WhiteContainer';
 import { PrimaryButton } from '../../components/PrimaryButton';
 import { Tag } from '../../components/Tag';
 
-import { useSurveyForm } from '@services/surveyService';
-import { HandleChangeArgs, PageConfig } from '@interfaces/ICommon';
+import { useSurveyForm } from '../../services/surveyService';
+import { HandleChangeArgs, PageConfig } from '../../interfaces/ICommon';
 import { useQuery } from '@tanstack/react-query';
-import { keys } from '@helpers';
+import { keys } from '../../helpers';
 import { dateFormatter } from '../../helpers/dateFormatter';
 
 import classes from './ListOfForms.module.scss';
+import React from 'react';
 
 export const getStatusColor = (s: string) => {
   switch (s) {
@@ -40,7 +41,6 @@ export const ListOfForms: FC = () => {
     totalElements: 0,
     totalPages: 0,
     page: 1,
-    sort: 'lastUpdatedAt,desc',
   });
 
   const FormListQuery = useQuery([keys.formList, pageConfig?.page], () =>
@@ -53,51 +53,20 @@ export const ListOfForms: FC = () => {
   const unassignedColumns: ColumnsType<any> = [
     {
       title: `${t('FORM_TABLE.NUMBER')}`,
-      dataIndex: 'formNumber',
-      key: 'formNumber',
+      dataIndex: 'id',
+      key: 'id',
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'titleAr',
+      key: 'titleAr',
       ellipsis: true,
       render: (text) => <span title={text}>{text}</span>,
     },
     {
-      title: `${t('FORM_TABLE.CREATED_BY')}`,
-      dataIndex: 'createdName',
-      key: 'createdName',
-      ellipsis: true,
-      render: (createdName) => <span title={createdName}>{createdName}</span>,
-    },
-    {
-      title: `${t('FORM_TABLE.CREATED_AT')}`,
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-      ellipsis: true,
-      render: (createdAt: Dayjs) =>
-        createdAt && <div>{dateFormatter(createdAt, language)}</div>,
-    },
-    {
-      title: `${t('FORM_TABLE.STATUS')}`,
-      dataIndex: 'active',
-      key: 'active',
-      width: 130,
-      render: (state) => (
-        <>
-          {state ? (
-            <Tag color={'teal'}>{`${t('FORM_TABLE.ACTIVE')}`}</Tag>
-          ) : (
-            <Tag>{`${t('FORM_TABLE.UNACTIVE')}`}</Tag>
-          )}
-        </>
-      ),
-    },
-    {
       title: ``,
-      dataIndex: 'uuid',
-      key: 'uuid',
-      width: 100,
+      dataIndex: 'id',
+      key: 'id',
       render: (text) => (
         <Link className={`text-[#0075EF]`} to={`${text}/view`}>
           {t('FORM_TABLE.DETAILS')}
@@ -138,10 +107,10 @@ export const ListOfForms: FC = () => {
 
   return (
     <PagePadding>
-      <PageHeader title={`${t('TITLE.FORMS_LIST')}`} extra={pageExtra()} />
+      <PageHeader title={``} extra={pageExtra()} />
       <WhiteContainer className={classes.listOfFormsRoundedContainer}>
         <HaseenTable
-          dataSource={FormListQuery?.data?.content}
+          dataSource={FormListQuery?.data}
           columns={unassignedColumns}
           loading={FormListQuery?.isLoading}
           pagination={{

@@ -4,6 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { resolveLang } from '../../helpers/resolveLang';
 import { useTranslation } from 'react-i18next';
 import { Spin } from 'antd';
+import React from 'react';
 
 interface OnChangeHandler {
   (e: any): void;

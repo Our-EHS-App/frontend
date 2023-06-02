@@ -3,10 +3,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ConfigProvider, Empty, notification, ThemeConfig } from 'antd';
-import { AuthProvider } from './AuthProvider';
-import { FullScreenLoading } from '@components';
+import { FullScreenLoading } from '../components/Loading/index';
 import { useTranslation } from 'react-i18next';
-import { FCProps } from '@interfaces/ICommon';
+import { FCProps } from '../interfaces/ICommon';
+import React from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,12 +65,7 @@ export const Providers: FC<FCProps> = ({ children }) => {
           direction={i18n.dir(i18n.language)}
           theme={antDTheme}
           renderEmpty={customEmpty}>
-          <AuthProvider>
             {children}
-            {import.meta.env.DEV && import.meta.env.VITE_ENABLE_DEVTOOL && (
-              <ReactQueryDevtools />
-            )}
-          </AuthProvider>
         </ConfigProvider>
       </QueryClientProvider>
     </Suspense>

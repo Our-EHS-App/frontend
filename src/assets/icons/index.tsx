@@ -8,7 +8,8 @@ import {
   ContentSVG,
   FilesSVG,
   EditSVG,
-} from '@assets/svg';
+} from '../svg';
+import React from 'react';
 export const AddressIcon = (props: any) => (
   <Icon component={AddressSVG} {...props} />
 );

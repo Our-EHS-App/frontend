@@ -1,19 +1,24 @@
-import { useApi } from '@hooks';
-import { Page } from '@interfaces/ICommon';
-import { IForm } from '@interfaces/IForm';
-import { SurveyI, AdvancedSurveyI } from '@interfaces/ISurvey';
+import { useApi } from '../hooks';
+import { Page } from '../interfaces/ICommon';
+import { IForm } from '../interfaces/IForm';
+import { SurveyI, AdvancedSurveyI } from '../interfaces/ISurvey';
 
 const API_URL = '/private/form';
 
 const SURVEY_URL = '/private/survey';
 
 export const useSurveyForm = () => {
-  const { apiPrivate } = useApi();
+  const { apiPrivate, apiPublic } = useApi();
 
   const getForms = async (params?: any) => {
-    const { data } = await apiPrivate.get<Page<IForm>>(API_URL, {
+    const { data } = await apiPrivate.get<any>('/api/templates', {
       params,
     });
+    return data;
+  };
+
+  const login = async (body: any) => {
+    const { data } = await apiPublic.post('/api/authenticate', body);
     return data;
   };
 
@@ -42,8 +47,8 @@ export const useSurveyForm = () => {
     return data;
   };
 
-  const addSurvey = async (body: SurveyI) => {
-    const { data } = await apiPrivate.post(SURVEY_URL, body);
+  const addSurvey = async (body: any) => {
+    const { data } = await apiPrivate.post('api/templates', body);
     return data;
   };
 
@@ -99,6 +104,7 @@ export const useSurveyForm = () => {
   };
 
   return {
+    login,
     getForms,
     addForm,
     editForm,

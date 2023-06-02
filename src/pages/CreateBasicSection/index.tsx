@@ -24,22 +24,25 @@ import { PrimaryButton } from '../../components/PrimaryButton';
 import { AffirmationModal } from '../../components/AffirmationModal';
 
 import { handleErrorNotifications } from '../../helpers/errorHandler';
-import { useSurveyForm } from '@services/surveyService';
-import { Question, QuestionList, SurveyI } from '@interfaces/ISurvey';
+import { useSurveyForm } from '../../services/surveyService';
+import { Question, QuestionList, SurveyI } from '../../interfaces/ISurvey';
+import React from 'react';
 
 const { TextArea } = Input;
 
 export const defaultQuestion: Question = {
-  type: 'TEXT',
+  fieldType: '1',
 };
 
 const defaultValues: QuestionList = {
-  description: '',
+  titleAr: '',
+  titleEn: '',
   questionList: [defaultQuestion],
 };
 const defaultTableValues: QuestionList = {
   rowSize: 1,
-  description: '',
+  titleAr: '',
+  titleEn: '',
   questionList: [defaultQuestion],
 };
 
@@ -88,7 +91,7 @@ export const CreateBasicSection: FC<{
 
   const schema = z.object({
     rowSize: z.number().or(z.null()).or(z.undefined()),
-    description: z
+    titleAr: z
       .string()
       .max(1000, { message: `${t('ERRORS.CREATMODAL_MAXLENGTH')}` }),
     questionList: z.array(questionSchema),
@@ -137,7 +140,7 @@ export const CreateBasicSection: FC<{
         message: t('SURVEY.SUCCESS_MESSAGE'),
         duration: 1.5,
       });
-      // navigate(`/form-list/${uuid}/view`);
+      navigate(`/form-list`);
     },
   });
 
@@ -163,7 +166,7 @@ export const CreateBasicSection: FC<{
         message: t('SURVEY.DELETE_SUCCESS_MESSAGE'),
         duration: 1.5,
       });
-      navigate(`/form-list/${uuid}/view`);
+      navigate(`/form-lis`);
     },
   });
 
@@ -188,24 +191,27 @@ export const CreateBasicSection: FC<{
   }, [data]);
 
   const onSubmit = (body: QuestionList) => {
-    const surveyPayload: SurveyI = {
+    console.log(body);
+
+    const surveyPayload: any = {
       ...body,
-      questionList: body.questionList.map((v, i) => ({
+      fields: body.questionList.map((v, i) => ({
         ...v,
         orderNumber: i + 1,
       })),
     };
+    mutate(surveyPayload);
 
-    if (mode == 'CREATE') {
-      console.log(surveyPayload, 'Payload');
-      // mutate(surveyPayload);
-    } else {
-      editMutate({
-        ...surveyPayload,
-        pageUuid: data?.pageUuid as string,
-        uuid: surveyUuid as string,
-      });
-    }
+    // if (mode == 'CREATE') {
+    //   console.log(surveyPayload, 'Payload');
+    //   // mutate(surveyPayload);
+    // } else {
+    //   editMutate({
+    //     ...surveyPayload,
+    //     pageUuid: data?.pageUuid as string,
+    //     uuid: surveyUuid as string,
+    //   });
+    // }
   };
 
   const closeKey = (index: number) => {
@@ -321,21 +327,20 @@ export const CreateBasicSection: FC<{
       <form onSubmit={handleSubmit(onSubmit)}>
         <PageHeader title={pageName ?? ''} extra={renderExtra()} />
         <WhiteContainer className={'mb-4'}>
-          <div className={'text-primary text-lg mb-4 font-bold'}>
-            {t('BASIC_SECTION.DESCRIPTION')}
-          </div>
+          <div className={'text-primary text-lg mb-4 font-bold'}>{'title'}</div>
           <Controller
-            name={`description`}
+            name={`titleAr`}
             control={control}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
-                <TextArea
-                  id={`description`}
-                  placeholder={`${t('BASIC_SECTION.DESCRIPTION')}`}
+                <Input
+                  id={`titleAr`}
+                  placeholder={`العنوان`}
                   value={value}
                   disabled={data?.completed || data?.assigned}
                   onChange={onChange}
                 />
+
                 {error && (
                   <div className={'mt-2 text-danger'}>{error.message}</div>
                 )}

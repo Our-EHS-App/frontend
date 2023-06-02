@@ -14,11 +14,12 @@ import { Checkbox, Col, Collapse, Input, Row, Select } from 'antd';
 import { AddQuestionModal } from '../AddQuestionModal';
 import { PlusCircleFilled, EyeFilled } from '@ant-design/icons';
 
-import { QuestionList, SurveyI } from '@interfaces/ISurvey';
+import { QuestionList, SurveyI } from '../../interfaces/ISurvey';
 
 import { AffirmationModal } from '../AffirmationModal';
 
 import classes from './CreateQuestion.module.scss';
+import React from 'react';
 
 const { Option } = Select;
 const { Panel } = Collapse;
@@ -67,10 +68,10 @@ export const CreateQuestion: FC<{
     setOpenAffirmationModal(true);
   };
 
-  const moreQuestions = () =>
-    ['MULTI_SELECT', 'SELECT_ONE'].includes(
-      watch(`questionList.${index}.type`) ?? ''
-    );
+  // const moreQuestions = () =>
+  //   ['MULTI_SELECT', 'SELECT_ONE'].includes(
+  //     watch(`questionList.${index}.fieldType`) ?? ''
+  //   );
 
   const isValuesError = (i: number) => {
     return Boolean(errors.questionList && errors.questionList[i]?.values);
@@ -144,7 +145,7 @@ export const CreateQuestion: FC<{
           </Col>
           <Col span={5}>
             <Controller
-              name={`questionList.${index}.type`}
+              name={`questionList.${index}.fieldType`}
               control={control}
               render={({ field: { value, onChange } }) => (
                 <div>
@@ -152,24 +153,24 @@ export const CreateQuestion: FC<{
                     {t('SURVEY.TYPE_ANSWER')}
                   </div>
                   <Select
-                    id={`questionList.${index}.type`}
+                    id={`questionList.${index}.fieldType`}
                     disabled={data?.completed || data?.assigned}
                     onChange={(v) => {
                       onChange(v);
-                      if (['TEXT', 'NUMBER'].includes(v ?? '')) {
+                      if (['1', 'NUMBER'].includes(v ?? '')) {
                         unregister(`questionList.${index}.values`);
                       }
                     }}
                     value={value}
                     className={'w-full'}>
-                    <Option value={'TEXT'}>{t('SURVEY.TEXT')}</Option>
-                    <Option value={'NUMBER'}>{t('SURVEY.NUMBER')}</Option>
-                    <Option value={'SELECT_ONE'}>
+                    <Option value={'1'}>{t('SURVEY.TEXT')}</Option>
+                    <Option value={'2'}>{t('SURVEY.NUMBER')}</Option>
+                    {/* <Option value={'SELECT_ONE'}>
                       {t('SURVEY.SELECT_ONE')}
                     </Option>
                     <Option value={'MULTI_SELECT'}>
                       {t('SURVEY.MULTI_SELECT')}
-                    </Option>
+                    </Option> */}
                   </Select>
                 </div>
               )}
@@ -178,7 +179,7 @@ export const CreateQuestion: FC<{
               <div className={'mt-2 text-danger'}>{valuesError(index)}</div>
             )}
           </Col>
-          {moreQuestions() && (
+          {/* {moreQuestions() && (
             <Col span={3}>
               <div>
                 <div className={classes.formLabel}></div>
@@ -251,7 +252,7 @@ export const CreateQuestion: FC<{
               onOk={addQuestions}
               watch={watch}
             />
-          )}
+          )} */}
           <Col span={24}>
             <Controller
               name={`questionList.${index}.required`}

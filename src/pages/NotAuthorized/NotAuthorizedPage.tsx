@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Button } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FC, useEffect } from 'react';
+import React from 'react';
 
 export const NotAuthorizedPage: FC = () => {
   const { t } = useTranslation();

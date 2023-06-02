@@ -12,11 +12,11 @@ export default defineConfig({
     host: 'localhost',
     proxy: {
       '/api': {
-        // target: 'http://localhost:8080',
-        target: 'https://nca-if.dev.site.sa/api',
-        changeOrigin: true,
+        target: 'http://localhost:8080',
+        // target: 'https://nca-if.dev.site.sa/api',
+        changeOrigin: false,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        // rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

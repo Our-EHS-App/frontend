@@ -1,7 +1,7 @@
 export interface Question {
   required?: boolean;
   title?: string;
-  type?: 'TEXT' | 'NUMBER' | 'SELECT_ONE' | 'MULTI_SELECT';
+  fieldType?: '1' | '2' | '3' | '4';
   values?: string[];
   orderNumber?: number;
   hasOthers?: boolean;
@@ -27,6 +27,8 @@ export interface secondLevel extends Level {
 export type AdvancedQuestionList = {
   rowSize?: number;
   description: string;
+  titleEn?: string;
+  titleAr?: string;
   questionList: QuestionWithSub[];
   levelList: secondLevel[];
 };
@@ -42,7 +44,8 @@ export type AdvancedSurveyI = {
 
 export type QuestionList = {
   rowSize?: number;
-  description: string;
+  titleAr: string;
+  titleEn: string;
   questionList: Question[];
 };
 

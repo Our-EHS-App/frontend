@@ -20,7 +20,7 @@ export const useApi = () => {
 
       config.headers = {
         ...config.headers,
-        Authorization: `Bearer `,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       };
 
       return config;

@@ -1,4 +1,4 @@
-import { Providers } from '@context';
+import { Providers } from './context';
 import { createRoot } from 'react-dom/client';
 import 'dayjs/locale/ar-sa.js';
 import './i18n';
@@ -7,6 +7,7 @@ import './index.scss';
 import { RouterProvider } from 'react-router-dom';
 
 import { useRouterLinks } from './hooks/useRouterLinks';
+import React from 'react';
 
 const container = document.getElementById('root');
 

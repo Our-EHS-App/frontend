@@ -2,8 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { BellOutlined, DownOutlined, UserOutlined } from '@ant-design/icons';
-import { HaseenLogo, NewNcaLogo, SurveyIcon } from '@assets/svg';
-import { getKeyClockFullName, SITE_LOGO } from '@helpers';
 import {
   Badge,
   Button,
@@ -25,6 +23,9 @@ import { conditionalInObject } from '../../helpers/isEmptyObj';
 import { FullScreenLoading } from '../Loading';
 
 import classes from './Layout.module.scss';
+import React from 'react';
+import { SurveyIcon } from '@assets/svg';
+import keycloak from 'keycloak-js';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -38,11 +39,21 @@ export const MainLayout: FC = () => {
   const { dir, changeLanguage, language } = i18n;
   const { pathname } = location;
   const [openKeys, setOpenKeys] = useState<string[]>([]);
+
   const menuKey = {
     HOME: '',
     TEST: 'test',
     FORMSLIST: 'form-list',
   };
+
+  const items: ItemType[] = [
+    {
+      label: `${t('TITLE.HOME')}`,
+      key: menuKey.FORMSLIST,
+      icon: <SurveyIcon />,
+      onClick: () => navigateTo('/form-list'),
+    },
+  ];
 
   const menu: MenuProps = {
     items: [
@@ -66,11 +77,6 @@ export const MainLayout: FC = () => {
             </Radio.Group>
           </Space>
         ),
-      },
-      {
-        key: 'logout-btn',
-        label: t('LAYOUT.LOGOUT'),
-        className: classes.signOut,
       },
     ],
     className: classes.dropDown,
@@ -105,7 +111,7 @@ export const MainLayout: FC = () => {
           </Content>
         </Layout>
         <Footer className={classes.footer}>
-          <div></div>
+          <div>{''}</div>
         </Footer>
       </Layout>
     );
@@ -118,6 +124,22 @@ export const MainLayout: FC = () => {
   return (
     <>
       <Layout>
+        <Sider className={classes.sider}>
+          <Row>
+            <Col span={24} className='p-10 text-white'>
+              LOGO
+            </Col>
+          </Row>
+          <Menu
+            selectedKeys={[pathname.split('/')[1]]}
+            onClick={handleClick}
+            mode='inline'
+            theme='dark'
+            openKeys={openKeys}
+            onOpenChange={onOpenChange}
+            items={items}
+          />
+        </Sider>
         <Layout>
           <Header className={classes.mainHeader}>
             <Space size={12}>

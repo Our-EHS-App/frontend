@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { CloseCircleOutlined } from '@ant-design/icons';
+import React from 'react';
 
 export const AppNotAuthorized: FC = () => {
   const { t } = useTranslation();

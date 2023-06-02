@@ -1,11 +1,12 @@
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
-import { MainLayout } from '@components';
+import { MainLayout } from '../components/Layout';
 import { PrivateRoute } from '../routes/PrivateRoute';
-import { LoginPage } from '@pages';
+import { LoginPage } from '../pages/Login';
 import { NotAuthorizedPage } from '../pages/NotAuthorized';
 import { ListOfForms } from '../pages/ListOfForms';
 import { CreateBasicSection } from '../pages/CreateBasicSection';
 import { AppNotFound } from '../pages/AppNotFound';
+import React from 'react';
 
 export const useRouterLinks = () => {
   const routerObjects: RouteObject[] = [
@@ -13,10 +14,6 @@ export const useRouterLinks = () => {
       path: '/',
       element: <MainLayout />,
       children: [
-        {
-          path: 'login',
-          element: <LoginPage />,
-        },
         {
           path: 'unauthorized',
           element: (
@@ -37,11 +34,6 @@ export const useRouterLinks = () => {
                   component={<ListOfForms />}
                 />
               ),
-            },
-            {
-              path: ':uuid/create',
-              index: true,
-              element: <PrivateRoute component={<CreateBasicSection />} />,
             },
           ],
         },
@@ -65,9 +57,17 @@ export const useRouterLinks = () => {
         },
         {
           path: '*',
-          element: <Navigate to={'/'} replace />,
+          element: <Navigate to={'/form-list'} replace />,
+        },
+        {
+          path: '/',
+          element: <Navigate to={'/form-list'} replace />,
         },
       ],
+    },
+    {
+      path: 'login',
+      element: <LoginPage />,
     },
   ];
   const router = createBrowserRouter(routerObjects);
