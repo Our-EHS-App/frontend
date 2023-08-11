@@ -11,7 +11,8 @@
     "ALL": "الكل",
     "NO_RESULT": "لا توجد نتائج",
     "BACK_HOME": "العودة للصفحة الرئيسية",
-    "INFORMATION_HAS_BEEN_SAVE": "تم حفظ المتغيرات بنجاح"
+    "INFORMATION_HAS_BEEN_SAVE": "تم حفظ المتغيرات بنجاح",
+    "Templates_Completed": "اكتملت القوالب"
   },
   "footer": {
     "privacy": "الخصوصية والسرية"
@@ -107,7 +108,8 @@
     "UPDATE_SUCCESS": "تم تحديث النموذج بنجاح",
     "NUMBER_OF_PARTNERS": " عدد الجهات",
     "ASSIGNED_AT": " تاريخ الإسناد",
-    "ASSIGNED_BY": "أسند بواسطة"
+    "ASSIGNED_BY": "أسند بواسطة",
+    "IMPORT": "يستورد"
   },
   "TITLE": {
     "HOME": "الرئيسية",
@@ -116,7 +118,12 @@
     "ASSIGNED_FORMS": "النماذج المسندة",
     "ADD_NEW_SECTION": "إضافة قسم جديد",
     "ADD_LEVELS": "إنشاء المستويات",
-    "THIRD_LEVEL": "المستوى الثالث"
+    "THIRD_LEVEL": "المستوى الثالث",
+    "Dashboards": "لوحات القيادة",
+    "Templates": "القوالب",
+    "Inspections": "التفتيش",
+    "SETTING": "جلسة",
+    "MY_Templates": "قوالبي"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "صفحة استبيانات",

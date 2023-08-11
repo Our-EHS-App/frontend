@@ -17,8 +17,23 @@ export const useSurveyForm = () => {
     return data;
   };
 
+  const getMyForms = async (params?: any) => {
+    const { data } = await apiPrivate.get<any>('/api/forms', {
+      params,
+    });
+    return data;
+  };
+
   const login = async (body: any) => {
     const { data } = await apiPublic.post('/api/authenticate', body);
+    return data;
+  };
+
+  const organizationTemplateImport = async (body: any) => {
+    const { data } = await apiPrivate.post(
+      '/api/organization-template/import',
+      body
+    );
     return data;
   };
 
@@ -106,6 +121,8 @@ export const useSurveyForm = () => {
   return {
     login,
     getForms,
+    getMyForms,
+    organizationTemplateImport,
     addForm,
     editForm,
     getFormById,

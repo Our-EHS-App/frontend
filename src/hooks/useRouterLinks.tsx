@@ -7,6 +7,8 @@ import { ListOfForms } from '../pages/ListOfForms';
 import { CreateBasicSection } from '../pages/CreateBasicSection';
 import { AppNotFound } from '../pages/AppNotFound';
 import React from 'react';
+import { Dashboards } from '../pages/Dashboards';
+import { ListOfMyForms } from '../pages/ListOfMyForms';
 
 export const useRouterLinks = () => {
   const routerObjects: RouteObject[] = [
@@ -32,6 +34,34 @@ export const useRouterLinks = () => {
                 <PrivateRoute
                   title={'TITLE.FORMS_LIST'}
                   component={<ListOfForms />}
+                />
+              ),
+            },
+          ],
+        },
+        {
+          path: 'Dashboards',
+          children: [
+            {
+              index: true,
+              element: (
+                <PrivateRoute
+                  title={'TITLE.Dashboards'}
+                  component={<Dashboards />}
+                />
+              ),
+            },
+          ],
+        },
+        {
+          path: 'my-form-list',
+          children: [
+            {
+              index: true,
+              element: (
+                <PrivateRoute
+                  title={'TITLE.FORMS_LIST'}
+                  component={<ListOfMyForms />}
                 />
               ),
             },

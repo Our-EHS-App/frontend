@@ -16,7 +16,7 @@ import { keys } from '../../helpers';
 import { HandleChangeArgs, PageConfig } from '../../interfaces/ICommon';
 import { useSurveyForm } from '../../services/surveyService';
 
-import classes from './ListOfForms.module.scss';
+import classes from './ListOfMyForms.module.scss';
 import { handleErrorNotifications } from '../../helpers/errorHandler';
 import { notification } from 'antd';
 
@@ -28,10 +28,10 @@ export const getStatusColor = (s: string) => {
       return 'blue';
   }
 };
-export const ListOfForms: FC = () => {
+export const ListOfMyForms: FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { organizationTemplateImport, getForms } = useSurveyForm();
+  const { organizationTemplateImport, getMyForms } = useSurveyForm();
   const { mutate } = useMutation(organizationTemplateImport, {
     onError: (error) => {
       handleErrorNotifications(error as any);
@@ -52,7 +52,7 @@ export const ListOfForms: FC = () => {
   });
 
   const FormListQuery = useQuery([keys.formList, pageConfig?.page], () =>
-    getForms({
+    getMyForms({
       ...pageConfig,
       page: pageConfig.page - 1,
     })
@@ -73,47 +73,37 @@ export const ListOfForms: FC = () => {
       ellipsis: true,
       render: (text) => <span title={text}>{text}</span>,
     },
-    {
-      title: ``,
-      dataIndex: 'id',
-      key: 'id',
-      width: 30, render: (id) => (
-        <div
-          className={`text-[#0075EF] cursor-pointer`}
-          onClick={() => {
-            mutate({
-              orgId: 1101,
-              templateId: id,
-              locationIds: [1201],
-            });
-          }}>
-          {t('FORM_TABLE.IMPORT')}
-        </div>
-      ),
-    },
     // {
     //   title: ``,
     //   dataIndex: 'id',
     //   key: 'id',
     //   width: 30,
-    //   render: (text) => (
-    //     <Link className={`text-[#0075EF]`} to={`${text}/view`}>
-    //       {t('FORM_TABLE.DETAILS')}
-    //     </Link>
+    //   render: (id) => (
+    //     <div
+    //       className={`text-[#0075EF] cursor-pointer`}
+    //       onClick={() => {
+    //         mutate({
+    //           orgId: 1101,
+    //           templateId: id,
+    //           locationIds: [1201],
+    //         });
+    //       }}>
+    //       {t('FORM_TABLE.IMPORT')}
+    //     </div>
     //   ),
     // },
+    {
+      title: ``,
+      dataIndex: 'id',
+      key: 'id',
+      width: 30,
+      render: (text) => (
+        <Link className={`text-[#0075EF]`} to={`${text}/view`}>
+          {t('FORM_TABLE.DETAILS')}
+        </Link>
+      ),
+    },
   ];
-
-  const pageExtra = () => {
-    return (
-      <PrimaryButton
-        id={'create_new_form'}
-        text={`${t('ACTION.CREATE_NEW_FORM')}`}
-        onClick={() => navigate(`/form-create`)}
-        icon={<PlusOutlined />}
-      />
-    );
-  };
 
   const handleTableChange: HandleChangeArgs<any> = async (
     pagination,
@@ -136,7 +126,7 @@ export const ListOfForms: FC = () => {
 
   return (
     <PagePadding>
-      <PageHeader title={`${t('TITLE.Templates')}`} extra={pageExtra()} />
+      <PageHeader title={`${t('TITLE.MY_Templates')}`} />
       <WhiteContainer className={classes.listOfFormsRoundedContainer}>
         <HaseenTable
           dataSource={FormListQuery?.data}

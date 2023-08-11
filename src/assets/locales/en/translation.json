@@ -11,7 +11,8 @@
     "ALL": "All",
     "NO_RESULT": " No Results",
     "BACK_HOME": "Back to home",
-    "INFORMATION_HAS_BEEN_SAVE": "The information has been saved successfully."
+    "INFORMATION_HAS_BEEN_SAVE": "The information has been saved successfully.",
+    "Templates_Completed": "Templates Completed"
   },
   "FOOTER": {
     "PRIVACY": "Privacy Policy"
@@ -68,7 +69,8 @@
     "UPDATE_SUCCESS": "The Form has been updated successfully.",
     "NUMBER_OF_PARTNERS": "Number of Partners",
     "ASSIGNED_AT": "Assigned at",
-    "ASSIGNED_BY": "Assigned by"
+    "ASSIGNED_BY": "Assigned by",
+    "IMPORT": "Import"
   },
   "ACTION": {
     "CREATE": "Create",
@@ -115,7 +117,12 @@
     "ASSIGNED_FORMS": "Assigned Forms",
     "ADD_NEW_SECTION": "Add new section",
     "ADD_LEVELS": "Create Lavel",
-    "THIRD_LEVEL": "Third level"
+    "THIRD_LEVEL": "Third level",
+    "Dashboards": "Dashboards",
+    "Templates": "Templates",
+    "Inspections": "Inspections",
+    "SETTING": "Setting",
+    "MY_Templates": "My Templates"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "Survey page",

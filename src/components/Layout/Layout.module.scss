@@ -12,24 +12,40 @@
     flex-direction: column;
   }
 
+  :global(.ant-layout-sider-children) {
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F0EB;
+  }
+
   :global(.ant-menu.ant-menu-dark) {
-    background-color: var(--primary-dark-color);
+    margin-top:100px;
+    @apply mx-4
+  }
+
+
+  :global(.ant-menu.ant-menu-dark) {
+    background-color: #FFFFFF;
+    padding-top: 10px;
+    color: #9EA0AC;
+    @apply rounded-xl;
+    
     :global(.ant-menu-item-selected) {
       font-weight: bold;
-      color: var(--secondary-color);
-      background: var(--primary-light-color);
+      color: #2D3982;
       margin-inline: 0;
       width: 100%;
+      background-color: #FFFFFF;
 
       border-radius: 0;
-      border-inline-start: 4px solid var(--secondary-color);
+      border-inline-start: 4px solid #2D3982;
 
       :global(.ant-menu-title-content) {
-        color: var(--secondary-color);
+        color: #2D3982;
       }
 
       :global(.ant-menu-item-icon) {
-        color: var(--secondary-color);
+        color: #2D3982;
       }
     }
   }

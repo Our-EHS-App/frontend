@@ -1,31 +1,34 @@
-import { FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { BellOutlined, DownOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  BellOutlined,
+  DashboardOutlined,
+  FileSearchOutlined,
+  ImportOutlined,
+  RadiusSettingOutlined,
+} from '@ant-design/icons';
 import {
   Badge,
   Button,
   Col,
   Divider,
-  Dropdown,
+  Image,
   Layout,
   Menu,
+  MenuProps,
   Radio,
   Row,
   Space,
-  MenuProps,
 } from 'antd';
 import dayjs from 'dayjs';
+import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { ItemType } from 'antd/lib/menu/hooks/useItems';
-import { conditionalInObject } from '../../helpers/isEmptyObj';
 
-import { FullScreenLoading } from '../Loading';
-
-import classes from './Layout.module.scss';
-import React from 'react';
 import { SurveyIcon } from '@assets/svg';
-import keycloak from 'keycloak-js';
+import classes from './Layout.module.scss';
+
+import emythail from '../../assets/emtithal.jpeg';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -44,14 +47,42 @@ export const MainLayout: FC = () => {
     HOME: '',
     TEST: 'test',
     FORMSLIST: 'form-list',
+    Dashboards: 'dashboards',
+    Templates: 'my-form-list',
+    Inspections: 'inspections',
+    Setting: 'setting',
   };
 
   const items: ItemType[] = [
     {
-      label: `${t('TITLE.HOME')}`,
+      label: `${t('TITLE.Dashboards')}`,
+      key: menuKey.Dashboards,
+      icon: <DashboardOutlined />,
+      onClick: () => navigateTo('/dashboards'),
+    },
+    {
+      label: `${t('TITLE.Templates')}`,
       key: menuKey.FORMSLIST,
       icon: <SurveyIcon />,
       onClick: () => navigateTo('/form-list'),
+    },
+    {
+      label: `${t('TITLE.MY_Templates')}`,
+      key: menuKey.Templates,
+      icon: <ImportOutlined />,
+      onClick: () => navigateTo('/my-form-list'),
+    },
+    {
+      label: `${t('TITLE.Inspections')}`,
+      key: menuKey.Inspections,
+      icon: <FileSearchOutlined />,
+      onClick: () => navigateTo('/inspections'),
+    },
+    {
+      label: `${t('TITLE.SETTING')}`,
+      key: menuKey.Setting,
+      icon: <RadiusSettingOutlined />,
+      onClick: () => navigateTo('/setting'),
     },
   ];
 
@@ -125,9 +156,9 @@ export const MainLayout: FC = () => {
     <>
       <Layout>
         <Sider className={classes.sider}>
-          <Row>
-            <Col span={24} className='p-10 text-white'>
-              LOGO
+          <Row className='bg-white'>
+            <Col span={24} className='p-6 bg-white'>
+              <Image src={emythail} sizes='30' />
             </Col>
           </Row>
           <Menu
