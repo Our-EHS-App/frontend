@@ -24,8 +24,10 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
   const navigate = useNavigate();
 
   const { formId } = useParams();
-  const { addSurvey, getFormDetails, getFormDetailsFill } = useSurveyForm();
-  const { handleSubmit, control, reset } = useForm({ mode: 'onChange' });
+  const { fillSurvey, getFormDetails, getFormDetailsFill } = useSurveyForm();
+  const { handleSubmit, control, reset, setValue } = useForm({
+    mode: 'onChange',
+  });
   const payload: any = {
     formId: formId ?? '',
     uuid: null,
@@ -40,12 +42,9 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
     mutate: answerMutate,
     data,
     isLoading,
-  } = useMutation(addSurvey, {
+  } = useMutation(fillSurvey, {
     onSuccess: (data) => {
-      if (data) {
-        reset({ ...data });
-        // reset means setting all values
-      }
+      history.back();
     },
     onError: () => {
       navigate(`/404`, { replace: true });
@@ -53,29 +52,21 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
   });
 
   const onSubmit = (body: any) => {
-    // if there is other handle the object
-    let { answer } = body;
-    let others = false;
+    console.log(body, 'body');
+
     const answerPayload: any = {
       ...body,
-      others,
-      answer,
-      ...payload,
+      formId: formId,
     };
     answerMutate({ ...answerPayload });
-    clear();
   };
   const clear = () => reset();
 
   const saveAndGoBack = () => {
-    payload.uuid = data?.uuid ? data.uuid : null;
-    payload.next = true;
     handleSubmit(onSubmit)();
   };
 
   const saveAndGoNext = () => {
-    payload.uuid = data?.uuid ? data.uuid : null;
-    payload.next = true;
     handleSubmit(onSubmit)();
   };
 
@@ -287,101 +278,119 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
         }
         return v;
       }) */}
-              {FormQuery?.data?.template?.fields.map((question: any) => {
-                return (
-                  <div key={question?.id}>
-                    <div className='pt-4'>
-                      {question?.fieldType?.id === 1 ? (
-                        <div className='pt-4'>
-                          <div className='text-black pb-4'>
-                            {question?.nameAr}
-                          </div>
-                          <Controller
-                            name='answer'
-                            render={({
-                              field: { onChange, value },
-                              fieldState: { error },
-                            }) => (
-                              <>
-                                <TextArea
-                                  id={`answer`}
-                                  placeholder={`${t(
-                                    'GENERAL.WRITE_YOUR_ANSWER'
-                                  )}`}
-                                  disabled={mode == 'VIEW'}
-                                  value={question?.value}
-                                  onChange={onChange}
-                                />
-                                {error && (
-                                  <div className={'mt-2 text-danger'}>
-                                    {error?.message}
-                                  </div>
-                                )}
-                              </>
-                            )}
-                            rules={{
-                              maxLength: {
-                                value: 500,
-                                message: t('ERRORS.CREATMODAL_MAXLENGTH', {
-                                  count: 500,
-                                }),
-                              },
-                            }}
-                            control={control}
-                            defaultValue={null}
-                          />
-                        </div>
-                      ) : question?.fieldType?.id === 2 ? (
-                        <div>
-                          <div className='text-black pb-4'>
-                            {question?.nameAr}
-                          </div>
-                          <Controller
-                            render={({
-                              field: { onChange, value },
-                              fieldState: { error },
-                            }) => (
-                              <>
-                                <TextArea
-                                  id={`answer`}
-                                  placeholder={`${t(
-                                    'GENERAL.WRITE_YOUR_ANSWER'
-                                  )}`}
-                                  disabled={mode == 'VIEW'}
-                                  value={question?.value}
-                                  onChange={onChange}
-                                />
-                                {error && (
-                                  <div className={'mt-2 text-danger'}>
-                                    {error?.message}
-                                  </div>
-                                )}
-                              </>
-                            )}
-                            name='answer'
-                            rules={
-                              data?.canSave && {
+              {FormQuery?.data?.template?.fields.map(
+                (question: any, index: number) => {
+                  return (
+                    <div key={question?.id}>
+                      <div className='pt-4'>
+                        {question?.fieldType?.id === 2 ? (
+                          <div className='pt-4'>
+                            <div className='text-black pb-4'>
+                              {question?.nameAr}
+                            </div>
+                            <Controller
+                              name={`values.${index}.fieldId`}
+                              control={control}
+                              defaultValue={question?.id}
+                              render={({ field: { onChange, value } }) => (
+                                <>
+                                  <Input
+                                    id={`values.${index}.fieldId`}
+                                    value={question?.id}
+                                    hidden={true}
+                                  />
+                                </>
+                              )}
+                            />
+                            <Controller
+                              name={`values.${index}.value`}
+                              render={({
+                                field: { onChange, value },
+                                fieldState: { error },
+                              }) => (
+                                <>
+                                  <TextArea
+                                    id={`answer`}
+                                    placeholder={`${t(
+                                      'GENERAL.WRITE_YOUR_ANSWER'
+                                    )}`}
+                                    disabled={mode == 'VIEW'}
+                                    value={
+                                      mode == 'VIEW' ? question?.value : value
+                                    }
+                                    onChange={onChange}
+                                  />
+                                  {error && (
+                                    <div className={'mt-2 text-danger'}>
+                                      {error?.message}
+                                    </div>
+                                  )}
+                                </>
+                              )}
+                              rules={{
                                 maxLength: {
                                   value: 500,
                                   message: t('ERRORS.CREATMODAL_MAXLENGTH', {
                                     count: 500,
                                   }),
                                 },
-                                pattern: {
-                                  value: /^[0-9]*$/,
-                                  message: `${t('ERRORS.NUM_ERRORS')}`,
-                                },
+                              }}
+                              control={control}
+                              defaultValue={null}
+                            />
+                          </div>
+                        ) : question?.fieldType?.id === 1 ? (
+                          <div>
+                            <div className='text-black pb-4'>
+                              {question?.nameAr}
+                            </div>
+                            <Controller
+                              render={({
+                                field: { onChange, value },
+                                fieldState: { error },
+                              }) => (
+                                <>
+                                  <TextArea
+                                    id={`answer`}
+                                    placeholder={`${t(
+                                      'GENERAL.WRITE_YOUR_ANSWER'
+                                    )}`}
+                                    disabled={mode == 'VIEW'}
+                                    value={question?.value}
+                                    onChange={onChange}
+                                  />
+                                  {error && (
+                                    <div className={'mt-2 text-danger'}>
+                                      {error?.message}
+                                    </div>
+                                  )}
+                                </>
+                              )}
+                              name='answer'
+                              rules={
+                                data?.canSave && {
+                                  maxLength: {
+                                    value: 500,
+                                    message: t('ERRORS.CREATMODAL_MAXLENGTH', {
+                                      count: 500,
+                                    }),
+                                  },
+                                  pattern: {
+                                    value: /^[0-9]*$/,
+                                    message: `${t('ERRORS.NUM_ERRORS')}`,
+                                  },
+                                }
                               }
-                            }
-                            control={control}
-                            defaultValue={null}
-                          />
-                        </div>
-                      ) : null}
+                              control={control}
+                              defaultValue={null}
+                            />
+                          </div>
+                        ) : null}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                }
+              )}
 
               <div className='flex items-center justify-between pt-60'>
                 {data?.orderNumber !== data?.maxOrder ? (

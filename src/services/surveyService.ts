@@ -25,9 +25,7 @@ export const useSurveyForm = () => {
   };
 
   const getFormDetailsFill = async (id?: string) => {
-    const { data } = await apiPrivate.get<any>(
-      `/api/get-forms-by-org-id/${id}`
-    );
+    const { data } = await apiPrivate.get<any>(`/api/forms/${id}`);
     return data;
   };
 
@@ -90,7 +88,12 @@ export const useSurveyForm = () => {
   };
 
   const addSurvey = async (body: any) => {
-    const { data } = await apiPrivate.post('api/templates', body);
+    const { data } = await apiPrivate.post('/api/templates', body);
+    return data;
+  };
+
+  const fillSurvey = async (body: any) => {
+    const { data } = await apiPrivate.post('/api/submit-form', body);
     return data;
   };
 
@@ -150,6 +153,7 @@ export const useSurveyForm = () => {
     getForms,
     getMyForms,
     getFormDetails,
+    fillSurvey,
     getFormDetailsFill,
     organizationTemplateImport,
     getInspections,
