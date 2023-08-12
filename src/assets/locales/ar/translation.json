@@ -12,7 +12,11 @@
     "NO_RESULT": "لا توجد نتائج",
     "BACK_HOME": "العودة للصفحة الرئيسية",
     "INFORMATION_HAS_BEEN_SAVE": "تم حفظ المتغيرات بنجاح",
-    "Templates_Completed": "اكتملت القوالب"
+    "Templates_Completed": "اكتملت القوالب",
+    "Inspections_Completed": "التفتيش",
+    "Safety_compliance": "الامتثال سلامة",
+    "ISO_compliance": "الامتثال ISO",
+    "WRITE_YOUR_ANSWER": "ادخل اجابتك"
   },
   "footer": {
     "privacy": "الخصوصية والسرية"
@@ -78,7 +82,8 @@
     "SHOW_FIELDS": "عرض الحقول",
     "SHOW_THIRD_LEVEL": "عرض المستوى الثالث",
     "FORM_COPY": "نسخ النموذج",
-    "COPY_NEW_FORM": "نسخ النموذج"
+    "COPY_NEW_FORM": "نسخ النموذج",
+    "GO_BACK": "العودة"
   },
   "CREATMODAL": {
     "INFORMATION_FORM": "تفاصيل النموذج",
@@ -123,7 +128,8 @@
     "Templates": "القوالب",
     "Inspections": "التفتيش",
     "SETTING": "جلسة",
-    "MY_Templates": "قوالبي"
+    "MY_Templates": "قوالبي",
+    "EMTIITHAL": "امتثال"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "صفحة استبيانات",

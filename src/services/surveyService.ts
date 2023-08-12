@@ -17,10 +17,37 @@ export const useSurveyForm = () => {
     return data;
   };
 
+  const getFormDetails = async (id?: string) => {
+    const { data } = await apiPrivate.get<any>(
+      `/api/organization-template/get-by-template-id/${id}`
+    );
+    return data;
+  };
+
+  const getFormDetailsFill = async (id?: string) => {
+    const { data } = await apiPrivate.get<any>(
+      `/api/get-forms-by-org-id/${id}`
+    );
+    return data;
+  };
+
   const getMyForms = async (params?: any) => {
-    const { data } = await apiPrivate.get<any>('/api/forms', {
-      params,
-    });
+    const { data } = await apiPrivate.get<any>(
+      '/api/organization-template/get-all-by-org-id/1101',
+      {
+        params,
+      }
+    );
+    return data;
+  };
+
+  const getInspections = async (params?: any) => {
+    const { data } = await apiPrivate.get<any>(
+      '/api/get-forms-by-org-id/1101',
+      {
+        params,
+      }
+    );
     return data;
   };
 
@@ -122,7 +149,10 @@ export const useSurveyForm = () => {
     login,
     getForms,
     getMyForms,
+    getFormDetails,
+    getFormDetailsFill,
     organizationTemplateImport,
+    getInspections,
     addForm,
     editForm,
     getFormById,

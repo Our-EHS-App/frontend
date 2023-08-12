@@ -1,6 +1,7 @@
 export interface Question {
   required?: boolean;
   title?: string;
+  nameAr?: string;
   fieldType?: '1' | '2' | '3' | '4';
   values?: string[];
   orderNumber?: number;

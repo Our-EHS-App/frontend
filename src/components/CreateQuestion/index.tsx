@@ -106,8 +106,8 @@ export const CreateQuestion: FC<{
       <Panel
         key={index}
         header={
-          getValues(`questionList.${index}.title`)?.length
-            ? `${index + 1}.${getValues(`questionList.${index}.title`)}`
+          getValues(`questionList.${index}.nameAr`)?.length
+            ? `${index + 1}.${getValues(`questionList.${index}.nameAr`)}`
             : `${type == 'TABLE' ? t('SURVEY.COLUMN') : t('SURVEY.QUESTION')}
                  ${index + 1}`
         }
@@ -120,7 +120,7 @@ export const CreateQuestion: FC<{
         <Row align={'top'} gutter={[12, 12]}>
           <Col span={16}>
             <Controller
-              name={`questionList.${index}.title`}
+              name={`questionList.${index}.nameAr`}
               control={control}
               render={({
                 field: { value, onChange },
@@ -131,7 +131,7 @@ export const CreateQuestion: FC<{
                     {t('SURVEY.MAIN_QUESTION')}
                   </div>
                   <Input
-                    id={`questionList.${index}.title`}
+                    id={`questionList.${index}.nameAr`}
                     value={value}
                     disabled={data?.completed || data?.assigned}
                     onChange={onChange}

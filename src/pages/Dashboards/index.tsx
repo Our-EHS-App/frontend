@@ -64,11 +64,33 @@ export const Dashboards: FC = () => {
         </div>
         <div className='w-[500px] h-[300px] bg-white p-5 rounded-lg flex items-center justify-center'>
           <div>
-            <div className='text-lg pb-4'>{`${t(
-              'GENERAL.Templates_Completed'
+            <div className='text-lg pb-4 text-center'>{`${t(
+              'GENERAL.Inspections_Completed'
             )}`}</div>
-            <div className='ms-9'>
+            <div className=''>
               <Progress type='circle' percent={75} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='flex gap-4 mt-4'>
+        <div className='w-[500px] h-[300px] bg-white p-5 rounded-lg flex items-center justify-center'>
+          <div>
+            <div className='text-lg pb-4 text-center'>{`${t(
+              'GENERAL.Safety_compliance'
+            )}`}</div>
+            <div className=''>
+              <Progress type='circle' percent={90} />
+            </div>
+          </div>
+        </div>
+        <div className='w-[500px] h-[300px] bg-white p-5 rounded-lg flex items-center justify-center'>
+          <div>
+            <div className='text-lg pb-4 text-center'>{`${t(
+              'GENERAL.ISO_compliance'
+            )}`}</div>
+            <div className=''>
+              <Progress type='circle' percent={30} />
             </div>
           </div>
         </div>

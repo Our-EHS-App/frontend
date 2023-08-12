@@ -1,7 +1,8 @@
+import { useMutation } from '@tanstack/react-query';
 import { ColumnsType } from 'antd/es/table';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { HaseenTable } from '../../components/HaseenTable';
 import { PageHeader } from '../../components/PageHeader';
@@ -12,7 +13,9 @@ import { useQuery } from '@tanstack/react-query';
 import { HandleChangeArgs, PageConfig } from '../../interfaces/ICommon';
 import { useSurveyForm } from '../../services/surveyService';
 
+import { notification } from 'antd';
 import { Loading } from '../../components/Loading';
+import { handleErrorNotifications } from '../../helpers/errorHandler';
 import classes from './ListOfMyForms.module.scss';
 
 export const getStatusColor = (s: string) => {
@@ -23,9 +26,10 @@ export const getStatusColor = (s: string) => {
       return 'blue';
   }
 };
-export const ListOfMyForms: FC = () => {
+export const ListOfInspections: FC = () => {
   const { t } = useTranslation();
-  const { getMyForms } = useSurveyForm();
+  const navigate = useNavigate();
+  const { getInspections } = useSurveyForm();
 
   const [pageConfig, setPageConfig] = useState<PageConfig>({
     size: 10,
@@ -34,37 +38,35 @@ export const ListOfMyForms: FC = () => {
     page: 1,
   });
 
-  const FormListQuery = useQuery(
-    ['FormListQuery-mytmplt', pageConfig?.page],
-    () =>
-      getMyForms({
-        ...pageConfig,
-        page: pageConfig.page - 1,
-      })
+  const FormListQuery = useQuery(['ListOfInspections', pageConfig?.page], () =>
+    getInspections({
+      ...pageConfig,
+      page: pageConfig.page - 1,
+    })
   );
 
   const unassignedColumns: ColumnsType<any> = [
     {
       title: `${t('FORM_TABLE.NUMBER')}`,
-      dataIndex: ['templateDTO', 'id'],
+      dataIndex: 'id',
       key: 'id',
       width: 30,
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
-      dataIndex: ['templateDTO', 'titleAr'],
-      key: 'titleAr',
+      dataIndex: 'nameAr',
+      key: 'nameAr',
       width: 50,
       ellipsis: true,
       render: (text) => <span title={text}>{text}</span>,
     },
     {
-      title: ``,
-      dataIndex: ['templateDTO', 'id'],
+      title: '',
+      dataIndex: 'id',
       key: 'id',
       width: 30,
       render: (text) => (
-        <Link className={`text-[#0075EF]`} to={`/form/${text}`}>
+        <Link className={`text-[#0075EF]`} to={`/form/fill/${text}`}>
           {t('FORM_TABLE.DETAILS')}
         </Link>
       ),
@@ -96,10 +98,10 @@ export const ListOfMyForms: FC = () => {
 
   return (
     <PagePadding>
-      <PageHeader title={`${t('TITLE.MY_Templates')}`} />
+      <PageHeader title={`${t('TITLE.Inspections')}`} />
       <WhiteContainer className={classes.listOfFormsRoundedContainer}>
         <HaseenTable
-          dataSource={FormListQuery?.data?.templateLocationsDTOS}
+          dataSource={FormListQuery?.data}
           columns={unassignedColumns}
           loading={FormListQuery?.isLoading}
           pagination={{

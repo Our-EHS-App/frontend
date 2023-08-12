@@ -9,6 +9,8 @@ import { AppNotFound } from '../pages/AppNotFound';
 import React from 'react';
 import { Dashboards } from '../pages/Dashboards';
 import { ListOfMyForms } from '../pages/ListOfMyForms';
+import { ListOfInspections } from '../pages/ListOfInspections';
+import { FillingForm } from '../pages/FillingForm';
 
 export const useRouterLinks = () => {
   const routerObjects: RouteObject[] = [
@@ -32,7 +34,7 @@ export const useRouterLinks = () => {
               index: true,
               element: (
                 <PrivateRoute
-                  title={'TITLE.FORMS_LIST'}
+                  title={'TITLE.EMTIITHAL'}
                   component={<ListOfForms />}
                 />
               ),
@@ -46,7 +48,7 @@ export const useRouterLinks = () => {
               index: true,
               element: (
                 <PrivateRoute
-                  title={'TITLE.Dashboards'}
+                  title={'TITLE.EMTIITHAL'}
                   component={<Dashboards />}
                 />
               ),
@@ -60,8 +62,22 @@ export const useRouterLinks = () => {
               index: true,
               element: (
                 <PrivateRoute
-                  title={'TITLE.FORMS_LIST'}
+                  title={'TITLE.EMTIITHAL'}
                   component={<ListOfMyForms />}
+                />
+              ),
+            },
+          ],
+        },
+        {
+          path: 'inspections',
+          children: [
+            {
+              index: true,
+              element: (
+                <PrivateRoute
+                  title={'TITLE.EMTIITHAL'}
+                  component={<ListOfInspections />}
                 />
               ),
             },
@@ -74,8 +90,36 @@ export const useRouterLinks = () => {
               index: true,
               element: (
                 <PrivateRoute
-                  title={'TITLE.FORMS_LIST'}
+                  title={'TITLE.EMTIITHAL'}
                   component={<CreateBasicSection />}
+                />
+              ),
+            },
+          ],
+        },
+        {
+          path: 'form/:formId',
+          children: [
+            {
+              index: true,
+              element: (
+                <PrivateRoute
+                  title={'TITLE.EMTIITHAL'}
+                  component={<FillingForm mode={'VIEW'} />}
+                />
+              ),
+            },
+          ],
+        },
+        {
+          path: 'form/fill/:formId',
+          children: [
+            {
+              index: true,
+              element: (
+                <PrivateRoute
+                  title={'TITLE.EMTIITHAL'}
+                  component={<FillingForm mode={'FILL'} />}
                 />
               ),
             },

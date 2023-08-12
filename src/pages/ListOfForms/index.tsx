@@ -1,5 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { ColumnsType } from 'antd/es/table';
+import { ColumnsType } from 'antd/lib/table';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,6 +19,7 @@ import { useSurveyForm } from '../../services/surveyService';
 import classes from './ListOfForms.module.scss';
 import { handleErrorNotifications } from '../../helpers/errorHandler';
 import { notification } from 'antd';
+import { Loading } from '../../components/Loading';
 
 export const getStatusColor = (s: string) => {
   switch (s) {
@@ -26,8 +27,11 @@ export const getStatusColor = (s: string) => {
       return 'gold';
     case 'COMPLETED':
       return 'blue';
+    default:
+      return '';
   }
 };
+
 export const ListOfForms: FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -38,7 +42,7 @@ export const ListOfForms: FC = () => {
     },
     onSuccess: (data) => {
       notification.success({
-        message: 'success',
+        message: 'Success',
         duration: 1.5,
       });
     },
@@ -74,10 +78,11 @@ export const ListOfForms: FC = () => {
       render: (text) => <span title={text}>{text}</span>,
     },
     {
-      title: ``,
+      title: '',
       dataIndex: 'id',
       key: 'id',
-      width: 30, render: (id) => (
+      width: 30,
+      render: (id) => (
         <div
           className={`text-[#0075EF] cursor-pointer`}
           onClick={() => {
@@ -91,17 +96,17 @@ export const ListOfForms: FC = () => {
         </div>
       ),
     },
-    // {
-    //   title: ``,
-    //   dataIndex: 'id',
-    //   key: 'id',
-    //   width: 30,
-    //   render: (text) => (
-    //     <Link className={`text-[#0075EF]`} to={`${text}/view`}>
-    //       {t('FORM_TABLE.DETAILS')}
-    //     </Link>
-    //   ),
-    // },
+    {
+      title: '',
+      dataIndex: 'id',
+      key: 'id',
+      width: 30,
+      render: (text) => (
+        <Link className={`text-[#0075EF]`} to={`/form/${text}`}>
+          {t('FORM_TABLE.DETAILS')}
+        </Link>
+      ),
+    },
   ];
 
   const pageExtra = () => {
@@ -122,8 +127,7 @@ export const ListOfForms: FC = () => {
     const { current = 1, pageSize = 10 } = pagination;
     const { columnKey, order }: any = sorter;
 
-    let requestPrams: Partial<PageConfig> = {};
-    requestPrams = {
+    const requestParams: Partial<PageConfig> = {
       page: current,
       size: pageSize,
       sort:
@@ -131,15 +135,23 @@ export const ListOfForms: FC = () => {
           ? `${columnKey},${order.replace('end', '')}`
           : 'lastUpdatedAt,desc',
     };
-    setPageConfig((p) => ({ ...p, ...requestPrams }));
+
+    setPageConfig((prevPageConfig) => ({
+      ...prevPageConfig,
+      ...requestParams,
+    }));
   };
+
+  if (FormListQuery.isFetching) {
+    return <Loading />;
+  }
 
   return (
     <PagePadding>
       <PageHeader title={`${t('TITLE.Templates')}`} extra={pageExtra()} />
       <WhiteContainer className={classes.listOfFormsRoundedContainer}>
         <HaseenTable
-          dataSource={FormListQuery?.data}
+          dataSource={FormListQuery?.data ? FormListQuery?.data : []}
           columns={unassignedColumns}
           loading={FormListQuery?.isLoading}
           pagination={{

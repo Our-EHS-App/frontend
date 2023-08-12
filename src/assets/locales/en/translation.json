@@ -12,7 +12,11 @@
     "NO_RESULT": " No Results",
     "BACK_HOME": "Back to home",
     "INFORMATION_HAS_BEEN_SAVE": "The information has been saved successfully.",
-    "Templates_Completed": "Templates Completed"
+    "Templates_Completed": "Templates Completed",
+    "Inspections_Completed": "Inspections",
+    "Safety_compliance": "Safety compliance",
+    "ISO_compliance": "ISO compliance",
+    "WRITE_YOUR_ANSWER": "Enter your answer"
   },
   "FOOTER": {
     "PRIVACY": "Privacy Policy"
@@ -108,7 +112,8 @@
     "SHOW_FIELDS": "Display fields",
     "SHOW_THIRD_LEVEL": "View the third level",
     "FORM_COPY": "Copy Form",
-    "COPY_NEW_FORM": "Copy the form"
+    "COPY_NEW_FORM": "Copy the form",
+    "GO_BACK": "Back"
   },
   "TITLE": {
     "HOME": "Home",
@@ -122,7 +127,8 @@
     "Templates": "Templates",
     "Inspections": "Inspections",
     "SETTING": "Setting",
-    "MY_Templates": "My Templates"
+    "MY_Templates": "My Templates",
+    "EMTIITHAL": "Emtithal"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "Survey page",

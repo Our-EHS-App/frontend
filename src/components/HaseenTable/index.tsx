@@ -11,7 +11,7 @@ export const HaseenTable: FC<TableProps<any>> = (props) => {
     <WhiteContainer>
       <Table
         showSorterTooltip={false}
-        scroll={{ x: 1300 }}
+        scroll={{ x: 500 }}
         {...props}
         className={classNames(props.className, classes.tableDesign)}
         rowKey={props.rowKey ?? 'uuid'}

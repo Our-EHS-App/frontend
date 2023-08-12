@@ -1,0 +1,33 @@
+.list-of-forms-tabs {
+  font-size: 16px;
+  :global(.ant-tabs-nav) {
+    margin-bottom: 0;
+  }
+  :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+    color: var(--secondary-color);
+    font-weight: bold;
+  }
+
+  :global(.ant-tabs-ink-bar) {
+    background: var(--secondary-color);
+  }
+  :global(.ant-tabs-tab) {
+    padding-bottom: 16px;
+  }
+
+}
+
+.list-of-forms-rounded-container {
+  border-radius: 4px;
+  border: 1px solid var(--light-gray);
+  margin-bottom: 16px;
+  padding-bottom: 0;
+  padding-top: 8px;
+}
+
+.list-of-forms-add-form-button {
+  :global(.ant-btn) {
+    box-shadow: unset;
+    padding-bottom: 30px;
+  }
+}

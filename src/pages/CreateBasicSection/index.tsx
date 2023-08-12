@@ -54,39 +54,16 @@ export const CreateBasicSection: FC<{
   const { t } = useTranslation();
 
   const questionSchema = z.lazy(() =>
-    z
-      .object({
-        required: z.boolean().or(z.null()).or(z.undefined()),
-        title: z
-          .string()
-          .max(500, { message: `${t('ERRORS.CREATMODAL_MAXLENGTH')}` })
-          .or(z.undefined()),
-        type: z.string().or(z.undefined()),
-        values: z.array(z.string()).or(z.undefined()),
-        hasOthers: z.boolean().or(z.null()).or(z.undefined()),
-      })
-
-      .superRefine(({ type, values, title }, ctx) => {
-        if (!title || title?.trim() == '' || title?.length == 0) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: t('ERRORS.REQUIRED') ?? '',
-            path: ['title'],
-          });
-        }
-
-        if (
-          ['MULTI_SELECT', 'SELECT_ONE'].includes(type ?? '') &&
-          (!values?.length || !values)
-        ) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: t('ERRORS.REQUIRED') ?? '',
-            path: ['values'],
-          });
-        }
-        return z.NEVER;
-      })
+    z.object({
+      required: z.boolean().or(z.null()).or(z.undefined()),
+      nameAr: z
+        .string()
+        .max(500, { message: `${t('ERRORS.CREATMODAL_MAXLENGTH')}` })
+        .or(z.undefined()),
+      type: z.string().or(z.undefined()),
+      values: z.array(z.string()).or(z.undefined()),
+      hasOthers: z.boolean().or(z.null()).or(z.undefined()),
+    })
   );
 
   const schema = z.object({
