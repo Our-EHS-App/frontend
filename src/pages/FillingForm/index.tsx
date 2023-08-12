@@ -14,6 +14,7 @@ import { PrimaryButton } from '../../components/PrimaryButton';
 import { WhiteContainer } from '../../components/WhiteContainer';
 
 import { useSurveyForm } from '../../services/surveyService';
+import { Loading } from '../../components/Loading';
 
 const { TextArea } = Input;
 
@@ -259,6 +260,10 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
     // ),
   };
 
+  if (FormQuery.isFetching) {
+    return <Loading />;
+  }
+
   return (
     <PagePadding className={''}>
       <PageHeader title={FormQuery?.data?.nameAr} />
@@ -272,120 +277,66 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
             <form
               onSubmit={handleSubmit(onSubmit)}
               className='max-w-5xl mx-auto min-w-[700px]'>
-              {/* getValues().questionList.map((v, i) => {
-        if (index == i) {
-          return { ...v, values };
-        }
-        return v;
-      }) */}
               {FormQuery?.data?.template?.fields.map(
                 (question: any, index: number) => {
                   return (
                     <div key={question?.id}>
                       <div className='pt-4'>
-                        {question?.fieldType?.id === 2 ? (
-                          <div className='pt-4'>
-                            <div className='text-black pb-4'>
-                              {question?.nameAr}
-                            </div>
-                            <Controller
-                              name={`values.${index}.fieldId`}
-                              control={control}
-                              defaultValue={question?.id}
-                              render={({ field: { onChange, value } }) => (
-                                <>
-                                  <Input
-                                    id={`values.${index}.fieldId`}
-                                    value={question?.id}
-                                    hidden={true}
-                                  />
-                                </>
-                              )}
-                            />
-                            <Controller
-                              name={`values.${index}.value`}
-                              render={({
-                                field: { onChange, value },
-                                fieldState: { error },
-                              }) => (
-                                <>
-                                  <TextArea
-                                    id={`answer`}
-                                    placeholder={`${t(
-                                      'GENERAL.WRITE_YOUR_ANSWER'
-                                    )}`}
-                                    disabled={mode == 'VIEW'}
-                                    value={
-                                      mode == 'VIEW' ? question?.value : value
-                                    }
-                                    onChange={onChange}
-                                  />
-                                  {error && (
-                                    <div className={'mt-2 text-danger'}>
-                                      {error?.message}
-                                    </div>
-                                  )}
-                                </>
-                              )}
-                              rules={{
-                                maxLength: {
-                                  value: 500,
-                                  message: t('ERRORS.CREATMODAL_MAXLENGTH', {
-                                    count: 500,
-                                  }),
-                                },
-                              }}
-                              control={control}
-                              defaultValue={null}
-                            />
+                        <div className='pt-4'>
+                          <div className='text-black pb-4'>
+                            {question?.nameAr}
                           </div>
-                        ) : question?.fieldType?.id === 1 ? (
-                          <div>
-                            <div className='text-black pb-4'>
-                              {question?.nameAr}
-                            </div>
-                            <Controller
-                              render={({
-                                field: { onChange, value },
-                                fieldState: { error },
-                              }) => (
-                                <>
-                                  <TextArea
-                                    id={`answer`}
-                                    placeholder={`${t(
-                                      'GENERAL.WRITE_YOUR_ANSWER'
-                                    )}`}
-                                    disabled={mode == 'VIEW'}
-                                    value={question?.value}
-                                    onChange={onChange}
-                                  />
-                                  {error && (
-                                    <div className={'mt-2 text-danger'}>
-                                      {error?.message}
-                                    </div>
-                                  )}
-                                </>
-                              )}
-                              name='answer'
-                              rules={
-                                data?.canSave && {
-                                  maxLength: {
-                                    value: 500,
-                                    message: t('ERRORS.CREATMODAL_MAXLENGTH', {
-                                      count: 500,
-                                    }),
-                                  },
-                                  pattern: {
-                                    value: /^[0-9]*$/,
-                                    message: `${t('ERRORS.NUM_ERRORS')}`,
-                                  },
-                                }
-                              }
-                              control={control}
-                              defaultValue={null}
-                            />
-                          </div>
-                        ) : null}
+                          <Controller
+                            name={`values.${index}.fieldId`}
+                            control={control}
+                            defaultValue={question?.id}
+                            render={({ field: { onChange, value } }) => (
+                              <>
+                                <Input
+                                  id={`values.${index}.fieldId`}
+                                  value={question?.id}
+                                  hidden={true}
+                                />
+                              </>
+                            )}
+                          />
+                          <Controller
+                            name={`values.${index}.value`}
+                            render={({
+                              field: { onChange, value },
+                              fieldState: { error },
+                            }) => (
+                              <>
+                                <TextArea
+                                  id={`answer`}
+                                  placeholder={`${t(
+                                    'GENERAL.WRITE_YOUR_ANSWER'
+                                  )}`}
+                                  disabled={mode == 'VIEW'}
+                                  value={
+                                    mode == 'VIEW' ? question?.value : value
+                                  }
+                                  onChange={onChange}
+                                />
+                                {error && (
+                                  <div className={'mt-2 text-danger'}>
+                                    {error?.message}
+                                  </div>
+                                )}
+                              </>
+                            )}
+                            rules={{
+                              maxLength: {
+                                value: 500,
+                                message: t('ERRORS.CREATMODAL_MAXLENGTH', {
+                                  count: 500,
+                                }),
+                              },
+                            }}
+                            control={control}
+                            defaultValue={null}
+                          />
+                        </div>
                       </div>
                     </div>
                   );
