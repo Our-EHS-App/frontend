@@ -21,7 +21,7 @@ export const LoginPage: FC = () => {
         duration: 1.5,
       });
       localStorage.setItem('token', data?.id_token);
-      navigate(`/form-list`);
+      navigate(`/Dashboards`);
     },
   });
   const onFinish = (values: any) => {

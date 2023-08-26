@@ -2,6 +2,7 @@ import { ExoticComponent, FC, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import * as React from 'react';
+import { Navigate } from 'react-router-dom';
 
 interface RouteGuardProps {
   component: JSX.Element;
@@ -13,6 +14,10 @@ export const PrivateRoute: FC<RouteGuardProps> = ({
   title,
 }: RouteGuardProps) => {
   const { t } = useTranslation();
+
+  if (!localStorage.getItem('token')) {
+    return <Navigate to={'/login'} replace />;
+  }
 
   return (
     <>

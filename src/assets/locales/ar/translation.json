@@ -97,7 +97,7 @@
     "DESCRIPTION": "وصف النموذج",
     "STATUS": "حالة النموذج",
     "TYPE": "نوع النموذج",
-    "DETAILS": "تفاصيل",
+    "DETAILS": "عرض",
     "ACTIVE": "نشط",
     "UNACTIVE": "غير نشط",
     "COMPLETE": "مكتمل",
@@ -114,7 +114,8 @@
     "NUMBER_OF_PARTNERS": " عدد الجهات",
     "ASSIGNED_AT": " تاريخ الإسناد",
     "ASSIGNED_BY": "أسند بواسطة",
-    "IMPORT": "يستورد"
+    "IMPORT": "يستورد",
+    "Category": "فئة"
   },
   "TITLE": {
     "HOME": "الرئيسية",
@@ -129,7 +130,9 @@
     "Inspections": "التفتيش",
     "SETTING": "جلسة",
     "MY_Templates": "قوالبي",
-    "EMTIITHAL": "امتثال"
+    "EMTIITHAL": "امتثال",
+    "profile": "حساب تعريفي",
+    "Logout": "تسجيل خروج"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "صفحة استبيانات",

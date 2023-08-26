@@ -33,8 +33,9 @@ export const getStatusColor = (s: string) => {
 };
 
 export const ListOfForms: FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const { language } = i18n;
   const { organizationTemplateImport, getForms } = useSurveyForm();
   const { mutate } = useMutation(organizationTemplateImport, {
     onError: (error) => {
@@ -67,13 +68,29 @@ export const ListOfForms: FC = () => {
       title: `${t('FORM_TABLE.NUMBER')}`,
       dataIndex: 'id',
       key: 'id',
-      width: 30,
+      width: 150,
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
       dataIndex: 'titleAr',
       key: 'titleAr',
-      width: 50,
+      width: 200,
+      ellipsis: true,
+      render: (text) => <span title={text}>{text}</span>,
+    },
+    {
+      title: `${t('FORM_TABLE.CREATED_AT')}`,
+      dataIndex: 'CREATED_AT',
+      key: 'CREATED_AT',
+      width: 150,
+      ellipsis: true,
+      render: (text) => <span title={text}>{text}</span>,
+    },
+    {
+      title: `${t('FORM_TABLE.Category')}`,
+      dataIndex: 'CREATED_AT',
+      key: 'CREATED_AT',
+      width: 150,
       ellipsis: true,
       render: (text) => <span title={text}>{text}</span>,
     },
@@ -81,7 +98,7 @@ export const ListOfForms: FC = () => {
       title: '',
       dataIndex: 'id',
       key: 'id',
-      width: 30,
+      width: 100,
       render: (id) => (
         <div
           className={`text-[#0075EF] cursor-pointer`}
@@ -100,7 +117,7 @@ export const ListOfForms: FC = () => {
       title: '',
       dataIndex: 'id',
       key: 'id',
-      width: 30,
+      width: 100,
       render: (text) => (
         <Link className={`text-[#0075EF]`} to={`/form/${text}`}>
           {t('FORM_TABLE.DETAILS')}
@@ -149,18 +166,16 @@ export const ListOfForms: FC = () => {
   return (
     <PagePadding>
       <PageHeader title={`${t('TITLE.Templates')}`} extra={pageExtra()} />
-      <WhiteContainer className={classes.listOfFormsRoundedContainer}>
-        <HaseenTable
-          dataSource={FormListQuery?.data ? FormListQuery?.data : []}
-          columns={unassignedColumns}
-          loading={FormListQuery?.isLoading}
-          pagination={{
-            pageSize: pageConfig.size,
-            total: FormListQuery?.data?.totalElements ?? 0,
-          }}
-          onChange={handleTableChange}
-        />
-      </WhiteContainer>
+      <HaseenTable
+        dataSource={FormListQuery?.data ? FormListQuery?.data : []}
+        columns={unassignedColumns}
+        loading={FormListQuery?.isLoading}
+        pagination={{
+          pageSize: pageConfig.size,
+          total: FormListQuery?.data?.totalElements ?? 0,
+        }}
+        onChange={handleTableChange}
+      />
     </PagePadding>
   );
 };

@@ -97,18 +97,16 @@ export const ListOfMyForms: FC = () => {
   return (
     <PagePadding>
       <PageHeader title={`${t('TITLE.MY_Templates')}`} />
-      <WhiteContainer className={classes.listOfFormsRoundedContainer}>
-        <HaseenTable
-          dataSource={FormListQuery?.data?.templateLocationsDTOS}
-          columns={unassignedColumns}
-          loading={FormListQuery?.isLoading}
-          pagination={{
-            pageSize: pageConfig.size,
-            total: FormListQuery?.data?.totalElements ?? 0,
-          }}
-          onChange={handleTableChange}
-        />
-      </WhiteContainer>
+      <HaseenTable
+        dataSource={FormListQuery?.data?.templateLocationsDTOS}
+        columns={unassignedColumns}
+        loading={FormListQuery?.isLoading}
+        pagination={{
+          pageSize: pageConfig.size,
+          total: FormListQuery?.data?.totalElements ?? 0,
+        }}
+        onChange={handleTableChange}
+      />
     </PagePadding>
   );
 };

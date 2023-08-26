@@ -18,9 +18,7 @@ export const useSurveyForm = () => {
   };
 
   const getFormDetails = async (id?: string) => {
-    const { data } = await apiPrivate.get<any>(
-      `/api/organization-template/get-by-template-id/${id}`
-    );
+    const { data } = await apiPrivate.get<any>(`/api/templates/${id}`);
     return data;
   };
 
@@ -31,7 +29,7 @@ export const useSurveyForm = () => {
 
   const getMyForms = async (params?: any) => {
     const { data } = await apiPrivate.get<any>(
-      '/api/organization-template/get-all-by-org-id/1101',
+      '/api/organization-template/get-my_templates',
       {
         params,
       }
@@ -40,12 +38,9 @@ export const useSurveyForm = () => {
   };
 
   const getInspections = async (params?: any) => {
-    const { data } = await apiPrivate.get<any>(
-      '/api/get-forms-by-org-id/1101',
-      {
-        params,
-      }
-    );
+    const { data } = await apiPrivate.get<any>('/api/get-my-forms', {
+      params,
+    });
     return data;
   };
 
@@ -79,6 +74,11 @@ export const useSurveyForm = () => {
 
   const copyForm = async (body: IForm) => {
     const { data } = await apiPrivate.post(API_URL, body);
+    return data;
+  };
+
+  const getDashboards = async () => {
+    const { data } = await apiPrivate.get<any>(`api/dashboard/by-category`);
     return data;
   };
 
@@ -170,5 +170,6 @@ export const useSurveyForm = () => {
     editAdvancedSurvey,
     getAdvancedSurvey,
     getAssignedFormById,
+    getDashboards,
   };
 };

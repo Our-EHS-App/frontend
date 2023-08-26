@@ -50,13 +50,29 @@ export const ListOfInspections: FC = () => {
       title: `${t('FORM_TABLE.NUMBER')}`,
       dataIndex: 'id',
       key: 'id',
-      width: 30,
+      width: 150,
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
       dataIndex: 'nameAr',
       key: 'nameAr',
-      width: 50,
+      width: 200,
+      ellipsis: true,
+      render: (text) => <span title={text}>{text}</span>,
+    },
+    {
+      title: `${t('FORM_TABLE.CREATED_AT')}`,
+      dataIndex: 'CREATED_AT',
+      key: 'CREATED_AT',
+      width: 150,
+      ellipsis: true,
+      render: (text) => <span title={text}>{text}</span>,
+    },
+    {
+      title: `${t('FORM_TABLE.Category')}`,
+      dataIndex: 'CREATED_AT',
+      key: 'CREATED_AT',
+      width: 150,
       ellipsis: true,
       render: (text) => <span title={text}>{text}</span>,
     },
@@ -64,7 +80,7 @@ export const ListOfInspections: FC = () => {
       title: '',
       dataIndex: 'id',
       key: 'id',
-      width: 30,
+      width: 150,
       render: (text) => (
         <Link className={`text-[#0075EF]`} to={`/form/fill/${text}`}>
           {t('FORM_TABLE.DETAILS')}
@@ -99,18 +115,16 @@ export const ListOfInspections: FC = () => {
   return (
     <PagePadding>
       <PageHeader title={`${t('TITLE.Inspections')}`} />
-      <WhiteContainer className={classes.listOfFormsRoundedContainer}>
-        <HaseenTable
-          dataSource={FormListQuery?.data}
-          columns={unassignedColumns}
-          loading={FormListQuery?.isLoading}
-          pagination={{
-            pageSize: pageConfig.size,
-            total: FormListQuery?.data?.totalElements ?? 0,
-          }}
-          onChange={handleTableChange}
-        />
-      </WhiteContainer>
+      <HaseenTable
+        dataSource={FormListQuery?.data}
+        columns={unassignedColumns}
+        loading={FormListQuery?.isLoading}
+        pagination={{
+          pageSize: pageConfig.size,
+          total: FormListQuery?.data?.totalElements ?? 0,
+        }}
+        onChange={handleTableChange}
+      />
     </PagePadding>
   );
 };

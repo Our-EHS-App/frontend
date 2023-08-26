@@ -28,7 +28,7 @@ export const useRouterLinks = () => {
           ),
         },
         {
-          path: 'form-list',
+          path: 'templates-list',
           children: [
             {
               index: true,
@@ -56,7 +56,7 @@ export const useRouterLinks = () => {
           ],
         },
         {
-          path: 'my-form-list',
+          path: 'my-templates-list',
           children: [
             {
               index: true,
@@ -131,11 +131,11 @@ export const useRouterLinks = () => {
         },
         {
           path: '*',
-          element: <Navigate to={'/form-list'} replace />,
+          element: <Navigate to={'/templates-list'} replace />,
         },
         {
           path: '/',
-          element: <Navigate to={'/form-list'} replace />,
+          element: <Navigate to={'/templates-list'} replace />,
         },
       ],
     },

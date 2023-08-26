@@ -5,6 +5,9 @@ import { PageHeader } from '../../components/PageHeader';
 import { PagePadding } from '../../components/PagePadding';
 import { Bar } from 'react-chartjs-2';
 import { Progress, Space } from 'antd';
+import { useSurveyForm } from '@services/surveyService';
+import { useQuery } from '@tanstack/react-query';
+import { Loading } from '../../components/Loading';
 
 interface ChartProps {
   data: number[];
@@ -12,7 +15,12 @@ interface ChartProps {
 }
 
 export const Dashboards: FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+  const { getDashboards } = useSurveyForm();
+
+  const DashboardsListQuery = useQuery(['dsh'], () => getDashboards());
+
   const chartData = {
     labels: [
       'location A',
@@ -27,12 +35,12 @@ export const Dashboards: FC = () => {
         label: 'Inspections',
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -55,45 +63,34 @@ export const Dashboards: FC = () => {
     },
   };
 
+  if (DashboardsListQuery.isFetching) {
+    return <Loading />;
+  }
+
   return (
     <PagePadding>
       <PageHeader title={`${t('TITLE.Dashboards')}`} />
-      <div className='flex gap-4'>
-        <div className='w-[500px] h-[300px] bg-white p-5 rounded-lg'>
+      <div className='grid md:grid-cols-2 gap-4'>
+        <div className='bg-white w-[500px] p-5 rounded-lg'>
           <Bar data={chartData} options={options} />
         </div>
-        <div className='w-[500px] h-[300px] bg-white p-5 rounded-lg flex items-center justify-center'>
-          <div>
-            <div className='text-lg pb-4 text-center'>{`${t(
-              'GENERAL.Inspections_Completed'
-            )}`}</div>
-            <div className=''>
-              <Progress type='circle' percent={75} />
+        {DashboardsListQuery?.data?.map?.((dashboards: any) => (
+          <div
+            key={dashboards?.id}
+            className='bg-white p-5 rounded-lg flex items-center justify-center'>
+            {/* Content for Column 3 */}
+            <div>
+              <div className='text-lg pb-4 text-center'>
+                {language === 'ar'
+                  ? dashboards?.categoryDTO?.nameAr
+                  : dashboards?.categoryDTO?.nameEn}
+              </div>
+              <div className=''>
+                <Progress type='circle' percent={dashboards?.percentage} />
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className='flex gap-4 mt-4'>
-        <div className='w-[500px] h-[300px] bg-white p-5 rounded-lg flex items-center justify-center'>
-          <div>
-            <div className='text-lg pb-4 text-center'>{`${t(
-              'GENERAL.Safety_compliance'
-            )}`}</div>
-            <div className=''>
-              <Progress type='circle' percent={90} />
-            </div>
-          </div>
-        </div>
-        <div className='w-[500px] h-[300px] bg-white p-5 rounded-lg flex items-center justify-center'>
-          <div>
-            <div className='text-lg pb-4 text-center'>{`${t(
-              'GENERAL.ISO_compliance'
-            )}`}</div>
-            <div className=''>
-              <Progress type='circle' percent={30} />
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </PagePadding>
   );

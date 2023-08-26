@@ -8,3 +8,4 @@ export const antPopover: string;
 export const next: string;
 export const root: string;
 export const svgFull: string;
+export const whiteContainerKf1o51: string;

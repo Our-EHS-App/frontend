@@ -273,75 +273,71 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
         </WhiteContainer>
       ) : (
         <WhiteContainer className='flex justify-center'>
-          <div className='max-w-5xl mx-auto'>
+          <div className='w-60 mx-3 md:max-w-5xl md:mx-auto'>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className='max-w-5xl mx-auto min-w-[700px]'>
-              {FormQuery?.data?.template?.fields.map(
-                (question: any, index: number) => {
-                  return (
-                    <div key={question?.id}>
+              {FormQuery?.data?.fields.map((question: any, index: number) => {
+                return (
+                  <div key={question?.id}>
+                    <div className='pt-4'>
                       <div className='pt-4'>
-                        <div className='pt-4'>
-                          <div className='text-black pb-4'>
-                            {question?.nameAr}
-                          </div>
-                          <Controller
-                            name={`values.${index}.fieldId`}
-                            control={control}
-                            defaultValue={question?.id}
-                            render={({ field: { onChange, value } }) => (
-                              <>
-                                <Input
-                                  id={`values.${index}.fieldId`}
-                                  value={question?.id}
-                                  hidden={true}
-                                />
-                              </>
-                            )}
-                          />
-                          <Controller
-                            name={`values.${index}.value`}
-                            render={({
-                              field: { onChange, value },
-                              fieldState: { error },
-                            }) => (
-                              <>
-                                <TextArea
-                                  id={`answer`}
-                                  placeholder={`${t(
-                                    'GENERAL.WRITE_YOUR_ANSWER'
-                                  )}`}
-                                  disabled={mode == 'VIEW'}
-                                  value={
-                                    mode == 'VIEW' ? question?.value : value
-                                  }
-                                  onChange={onChange}
-                                />
-                                {error && (
-                                  <div className={'mt-2 text-danger'}>
-                                    {error?.message}
-                                  </div>
-                                )}
-                              </>
-                            )}
-                            rules={{
-                              maxLength: {
-                                value: 500,
-                                message: t('ERRORS.CREATMODAL_MAXLENGTH', {
-                                  count: 500,
-                                }),
-                              },
-                            }}
-                            control={control}
-                            defaultValue={null}
-                          />
+                        <div className='text-black pb-4'>
+                          {question?.nameAr}
                         </div>
+                        <Controller
+                          name={`values.${index}.fieldId`}
+                          control={control}
+                          defaultValue={question?.id}
+                          render={({ field: { onChange, value } }) => (
+                            <>
+                              <Input
+                                id={`values.${index}.fieldId`}
+                                value={question?.id}
+                                hidden={true}
+                              />
+                            </>
+                          )}
+                        />
+                        <Controller
+                          name={`values.${index}.value`}
+                          render={({
+                            field: { onChange, value },
+                            fieldState: { error },
+                          }) => (
+                            <>
+                              <TextArea
+                                id={`answer`}
+                                placeholder={`${t(
+                                  'GENERAL.WRITE_YOUR_ANSWER'
+                                )}`}
+                                disabled={mode == 'VIEW'}
+                                value={mode == 'VIEW' ? question?.value : value}
+                                onChange={onChange}
+                              />
+                              {error && (
+                                <div className={'mt-2 text-danger'}>
+                                  {error?.message}
+                                </div>
+                              )}
+                            </>
+                          )}
+                          rules={{
+                            maxLength: {
+                              value: 500,
+                              message: t('ERRORS.CREATMODAL_MAXLENGTH', {
+                                count: 500,
+                              }),
+                            },
+                          }}
+                          control={control}
+                          defaultValue={null}
+                        />
                       </div>
                     </div>
-                  );
-                }
-              )}
+                  </div>
+                );
+              })}
 
               <div className='flex items-center justify-between pt-60'>
                 {data?.orderNumber !== data?.maxOrder ? (

@@ -117,7 +117,7 @@ export const CreateBasicSection: FC<{
         message: t('SURVEY.SUCCESS_MESSAGE'),
         duration: 1.5,
       });
-      navigate(`/form-list`);
+      navigate(`/templates-list`);
     },
   });
 
@@ -130,7 +130,7 @@ export const CreateBasicSection: FC<{
         message: t('SURVEY.SUCCESS_MESSAGE'),
         duration: 1.5,
       });
-      // navigate(`/form-list/${uuid}/view`);
+      // navigate(`/templates-list/${uuid}/view`);
     },
   });
 

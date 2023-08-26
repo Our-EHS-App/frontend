@@ -52,12 +52,12 @@
     "UPDATE_INFORMATION_FORM": "Update information form"
   },
   "FORM_TABLE": {
-    "NUMBER": "Form Id",
-    "NAME": "Form Name",
+    "NUMBER": "Template Id",
+    "NAME": "Template Name",
     "DESCRIPTION": "Form Description",
     "STATUS": "Form Status",
     "TYPE": "Form Type",
-    "DETAILS": "Details",
+    "DETAILS": "Viwe",
     "ACTIVE": "Active",
     "UNACTIVE": "Inactive",
     "COMPLETE": "Complete",
@@ -74,7 +74,8 @@
     "NUMBER_OF_PARTNERS": "Number of Partners",
     "ASSIGNED_AT": "Assigned at",
     "ASSIGNED_BY": "Assigned by",
-    "IMPORT": "Import"
+    "IMPORT": "Import",
+    "Category": "Category"
   },
   "ACTION": {
     "CREATE": "Create",
@@ -128,7 +129,9 @@
     "Inspections": "Inspections",
     "SETTING": "Setting",
     "MY_Templates": "My Templates",
-    "EMTIITHAL": "Emtithal"
+    "EMTIITHAL": "Emtithal",
+    "profile": "profile",
+    "Logout": "Logout"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "Survey page",

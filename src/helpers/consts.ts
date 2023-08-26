@@ -1,6 +1,6 @@
 export const keys = {
   userKey: 'user_data',
-  formList: 'form-list',
+  formList: 'templates-list',
   formDetails: 'form-details',
 };
 
