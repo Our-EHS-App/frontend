@@ -77,7 +77,9 @@ export const ListOfMyForms: FC = () => {
       width: 200,
       ellipsis: true,
       render: (rvalue: any, record: any) => (
-        <span>{record['templateDTO']['subCategory']['nameAr'] ?? 'non'}</span>
+        <span>
+          {record['templateDTO']?.['subCategory']?.['nameAr'] ?? 'non'}
+        </span>
       ),
     },
     {
