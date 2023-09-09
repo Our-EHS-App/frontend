@@ -126,6 +126,20 @@ export const useRouterLinks = () => {
           ],
         },
         {
+          path: 'form/fill-template/:formId',
+          children: [
+            {
+              index: true,
+              element: (
+                <PrivateRoute
+                  title={'TITLE.EMTIITHAL'}
+                  component={<FillingForm mode={'FILLTM'} />}
+                />
+              ),
+            },
+          ],
+        },
+        {
           path: '404',
           element: <PrivateRoute component={<AppNotFound />} />,
         },

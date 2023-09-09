@@ -14,6 +14,7 @@ import { useSurveyForm } from '../../services/surveyService';
 
 import { Loading } from '../../components/Loading';
 import classes from './ListOfMyForms.module.scss';
+import { dateFormatter } from '../../helpers/dateFormatter';
 
 export const getStatusColor = (s: string) => {
   switch (s) {
@@ -24,7 +25,8 @@ export const getStatusColor = (s: string) => {
   }
 };
 export const ListOfMyForms: FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
   const { getMyForms } = useSurveyForm();
 
   const [pageConfig, setPageConfig] = useState<PageConfig>({
@@ -48,23 +50,43 @@ export const ListOfMyForms: FC = () => {
       title: `${t('FORM_TABLE.NUMBER')}`,
       dataIndex: ['templateDTO', 'id'],
       key: 'id',
-      width: 30,
+      width: 150,
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
       dataIndex: ['templateDTO', 'titleAr'],
       key: 'titleAr',
-      width: 50,
+      width: 200,
       ellipsis: true,
       render: (text) => <span title={text}>{text}</span>,
+    },
+    {
+      title: `${t('FORM_TABLE.CREATED_AT')}`,
+      dataIndex: 'createdDate',
+      key: 'createdDate',
+      width: 200,
+      ellipsis: true,
+      render: (text) => (
+        <span>{dateFormatter(text, language, 'YYYY/MM/DD hh:mmA')}</span>
+      ),
+    },
+    {
+      title: `${t('FORM_TABLE.Category')}`,
+      dataIndex: 'templateDTO.subCategory',
+      key: 'nameAr',
+      width: 200,
+      ellipsis: true,
+      render: (rvalue: any, record: any) => (
+        <span>{record['templateDTO']['subCategory']['nameAr'] ?? 'non'}</span>
+      ),
     },
     {
       title: ``,
       dataIndex: ['templateDTO', 'id'],
       key: 'id',
-      width: 30,
+      width: 100,
       render: (text) => (
-        <Link className={`text-[#0075EF]`} to={`/form/${text}`}>
+        <Link className={`text-[#0075EF]`} to={`/form/fill-template/${text}`}>
           {t('FORM_TABLE.DETAILS')}
         </Link>
       ),

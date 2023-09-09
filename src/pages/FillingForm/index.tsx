@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Input, Skeleton } from 'antd';
+import { Collapse, Input, Skeleton } from 'antd';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -17,15 +17,18 @@ import { useSurveyForm } from '../../services/surveyService';
 import { Loading } from '../../components/Loading';
 
 const { TextArea } = Input;
+const { Panel } = Collapse;
+import classes from '../../components/CreateQuestion/CreateQuestion.module.scss';
 
-export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
+export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
   mode = 'VIEW',
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { formId } = useParams();
-  const { fillSurvey, getFormDetails, getFormDetailsFill } = useSurveyForm();
+  const { fillSurvey, getFormDetails, getFormDetailsFill, getMyFormFill } =
+    useSurveyForm();
   const { handleSubmit, control, reset, setValue } = useForm({
     mode: 'onChange',
   });
@@ -36,7 +39,11 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
   };
 
   const FormQuery = useQuery(['getFormDetails'], () =>
-    mode === 'VIEW' ? getFormDetails(formId) : getFormDetailsFill(formId)
+    mode === 'VIEW'
+      ? getFormDetails(formId)
+      : mode === 'FILL'
+      ? getFormDetailsFill(formId)
+      : getMyFormFill(formId)
   );
 
   const {
@@ -272,74 +279,258 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
           <Skeleton />
         </WhiteContainer>
       ) : (
-        <WhiteContainer className='flex justify-center'>
-          <div className='w-60 mx-3 md:max-w-5xl md:mx-auto'>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className='max-w-5xl mx-auto min-w-[700px]'>
-              {FormQuery?.data?.fields.map((question: any, index: number) => {
-                return (
-                  <div key={question?.id}>
-                    <div className='pt-4'>
-                      <div className='pt-4'>
-                        <div className='text-black pb-4'>
-                          {question?.nameAr}
-                        </div>
-                        <Controller
-                          name={`values.${index}.fieldId`}
-                          control={control}
-                          defaultValue={question?.id}
-                          render={({ field: { onChange, value } }) => (
-                            <>
-                              <Input
-                                id={`values.${index}.fieldId`}
-                                value={question?.id}
-                                hidden={true}
-                              />
-                            </>
-                          )}
-                        />
-                        <Controller
-                          name={`values.${index}.value`}
-                          render={({
-                            field: { onChange, value },
-                            fieldState: { error },
-                          }) => (
-                            <>
-                              <TextArea
-                                id={`answer`}
-                                placeholder={`${t(
-                                  'GENERAL.WRITE_YOUR_ANSWER'
-                                )}`}
-                                disabled={mode == 'VIEW'}
-                                value={mode == 'VIEW' ? question?.value : value}
-                                onChange={onChange}
-                              />
-                              {error && (
-                                <div className={'mt-2 text-danger'}>
-                                  {error?.message}
+        <WhiteContainer className=''>
+          <div className='mx-3'>
+            <form onSubmit={handleSubmit(onSubmit)} className=''>
+              {mode == 'FILLTM'
+                ? FormQuery?.data?.template?.fields?.map(
+                    (question: any, index: number) => {
+                      return (
+                        <Collapse
+                          ghost
+                          key={index}
+                          className={classes.customCollapse}>
+                          <Panel
+                            key={index}
+                            header={question?.nameAr}
+                            className={classes.primaryPanel}
+                            showArrow={false}>
+                            <div key={question?.id}>
+                              <div className=''>
+                                <div className=''>
+                                  <Controller
+                                    name={`values.${index}.fieldId`}
+                                    control={control}
+                                    defaultValue={question?.id}
+                                    render={({
+                                      field: { onChange, value },
+                                    }) => (
+                                      <>
+                                        <Input
+                                          id={`values.${index}.fieldId`}
+                                          value={question?.id}
+                                          hidden={true}
+                                        />
+                                      </>
+                                    )}
+                                  />
+                                  <Controller
+                                    name={`values.${index}.value`}
+                                    render={({
+                                      field: { onChange, value },
+                                      fieldState: { error },
+                                    }) => (
+                                      <>
+                                        <TextArea
+                                          id={`answer`}
+                                          placeholder={`${t(
+                                            'GENERAL.WRITE_YOUR_ANSWER'
+                                          )}`}
+                                          disabled={
+                                            FormQuery?.data?.listStatus === 1
+                                          }
+                                          value={
+                                            FormQuery?.data?.listStatus === 1
+                                              ? question?.value
+                                              : value
+                                          }
+                                          onChange={onChange}
+                                        />
+                                        {error && (
+                                          <div className={'mt-2 text-danger'}>
+                                            {error?.message}
+                                          </div>
+                                        )}
+                                      </>
+                                    )}
+                                    rules={{
+                                      maxLength: {
+                                        value: 500,
+                                        message: t(
+                                          'ERRORS.CREATMODAL_MAXLENGTH',
+                                          {
+                                            count: 500,
+                                          }
+                                        ),
+                                      },
+                                    }}
+                                    control={control}
+                                    defaultValue={null}
+                                  />
                                 </div>
-                              )}
-                            </>
-                          )}
-                          rules={{
-                            maxLength: {
-                              value: 500,
-                              message: t('ERRORS.CREATMODAL_MAXLENGTH', {
-                                count: 500,
-                              }),
-                            },
-                          }}
-                          control={control}
-                          defaultValue={null}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                              </div>
+                            </div>
+                          </Panel>
+                        </Collapse>
+                      );
+                    }
+                  )
+                : mode == 'VIEW'
+                ? FormQuery?.data?.fields?.map(
+                    (question: any, index: number) => {
+                      return (
+                        <Collapse
+                          ghost
+                          key={index}
+                          className={classes.customCollapse}>
+                          <Panel
+                            key={index}
+                            header={question?.nameAr}
+                            className={classes.primaryPanel}
+                            showArrow={false}>
+                            <div key={question?.id}>
+                              <div className=''>
+                                <div className=''>
+                                  <Controller
+                                    name={`values.${index}.fieldId`}
+                                    control={control}
+                                    defaultValue={question?.id}
+                                    render={({
+                                      field: { onChange, value },
+                                    }) => (
+                                      <>
+                                        <Input
+                                          id={`values.${index}.fieldId`}
+                                          value={question?.id}
+                                          hidden={true}
+                                          disabled={true}
+                                        />
+                                      </>
+                                    )}
+                                  />
+                                  <Controller
+                                    name={`values.${index}.value`}
+                                    render={({
+                                      field: { onChange, value },
+                                      fieldState: { error },
+                                    }) => (
+                                      <>
+                                        <TextArea
+                                          id={`answer`}
+                                          placeholder={`${t(
+                                            'GENERAL.WRITE_YOUR_ANSWER'
+                                          )}`}
+                                          disabled={true}
+                                          value={
+                                            FormQuery?.data?.listStatus === 1
+                                              ? question?.value
+                                              : value
+                                          }
+                                          onChange={onChange}
+                                        />
+                                        {error && (
+                                          <div className={'mt-2 text-danger'}>
+                                            {error?.message}
+                                          </div>
+                                        )}
+                                      </>
+                                    )}
+                                    rules={{
+                                      maxLength: {
+                                        value: 500,
+                                        message: t(
+                                          'ERRORS.CREATMODAL_MAXLENGTH',
+                                          {
+                                            count: 500,
+                                          }
+                                        ),
+                                      },
+                                    }}
+                                    control={control}
+                                    defaultValue={null}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </Panel>
+                        </Collapse>
+                      );
+                    }
+                  )
+                : FormQuery?.data?.template?.fields?.map(
+                    (question: any, index: number) => {
+                      return (
+                        <Collapse
+                          ghost
+                          key={index}
+                          className={classes.customCollapse}>
+                          <Panel
+                            key={index}
+                            header={question?.nameAr}
+                            className={classes.primaryPanel}
+                            showArrow={false}>
+                            <div key={question?.id}>
+                              <div className=''>
+                                <div className=''>
+                                  <Controller
+                                    name={`values.${index}.fieldId`}
+                                    control={control}
+                                    defaultValue={question?.id}
+                                    render={({
+                                      field: { onChange, value },
+                                    }) => (
+                                      <>
+                                        <Input
+                                          id={`values.${index}.fieldId`}
+                                          value={question?.id}
+                                          hidden={true}
+                                        />
+                                      </>
+                                    )}
+                                  />
+                                  <Controller
+                                    name={`values.${index}.value`}
+                                    render={({
+                                      field: { onChange, value },
+                                      fieldState: { error },
+                                    }) => (
+                                      <>
+                                        <TextArea
+                                          id={`answer`}
+                                          placeholder={`${t(
+                                            'GENERAL.WRITE_YOUR_ANSWER'
+                                          )}`}
+                                          disabled={
+                                            FormQuery?.data?.listStatus === 1
+                                          }
+                                          value={
+                                            FormQuery?.data?.listStatus === 1
+                                              ? question?.value
+                                              : value
+                                          }
+                                          onChange={onChange}
+                                        />
+                                        {error && (
+                                          <div className={'mt-2 text-danger'}>
+                                            {error?.message}
+                                          </div>
+                                        )}
+                                      </>
+                                    )}
+                                    rules={{
+                                      maxLength: {
+                                        value: 500,
+                                        message: t(
+                                          'ERRORS.CREATMODAL_MAXLENGTH',
+                                          {
+                                            count: 500,
+                                          }
+                                        ),
+                                      },
+                                    }}
+                                    control={control}
+                                    defaultValue={null}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </Panel>
+                        </Collapse>
+                      );
+                    }
+                  )}
 
-              <div className='flex items-center justify-between pt-60'>
+              <div className='flex items-center justify-between pt-8'>
                 {data?.orderNumber !== data?.maxOrder ? (
                   <div className=''>
                     <OutlineButton
@@ -363,7 +554,7 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' }> = ({
                   </div>
                 )}
                 <div className='flex items-center gap-4'>
-                  {mode != 'VIEW' && (
+                  {FormQuery?.data?.listStatus !== 1 && !(mode === 'VIEW') && (
                     <div className=''>
                       <PrimaryButton
                         text={`${t('ACTION.SAVE')}`}

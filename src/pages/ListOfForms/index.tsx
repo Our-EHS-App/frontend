@@ -20,6 +20,7 @@ import classes from './ListOfForms.module.scss';
 import { handleErrorNotifications } from '../../helpers/errorHandler';
 import { notification } from 'antd';
 import { Loading } from '../../components/Loading';
+import { dateFormatter } from '../../helpers/dateFormatter';
 
 export const getStatusColor = (s: string) => {
   switch (s) {
@@ -34,8 +35,8 @@ export const getStatusColor = (s: string) => {
 
 export const ListOfForms: FC = () => {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
   const { language } = i18n;
+  const navigate = useNavigate();
   const { organizationTemplateImport, getForms } = useSurveyForm();
   const { mutate } = useMutation(organizationTemplateImport, {
     onError: (error) => {
@@ -56,7 +57,7 @@ export const ListOfForms: FC = () => {
     page: 1,
   });
 
-  const FormListQuery = useQuery([keys.formList, pageConfig?.page], () =>
+  const FormListQuery = useQuery(['list-mytem', pageConfig?.page], () =>
     getForms({
       ...pageConfig,
       page: pageConfig.page - 1,
@@ -80,19 +81,27 @@ export const ListOfForms: FC = () => {
     },
     {
       title: `${t('FORM_TABLE.CREATED_AT')}`,
-      dataIndex: 'CREATED_AT',
-      key: 'CREATED_AT',
-      width: 150,
+      dataIndex: 'createdDate',
+      key: 'createdDate',
+      width: 200,
       ellipsis: true,
-      render: (text) => <span title={text}>{text}</span>,
+      render: (text) => (
+        <span>{dateFormatter(text, language, 'YYYY/MM/DD hh:mmA')}</span>
+      ),
     },
     {
       title: `${t('FORM_TABLE.Category')}`,
-      dataIndex: 'CREATED_AT',
-      key: 'CREATED_AT',
-      width: 150,
+      dataIndex: ['subCategory', 'nameAr'],
+      key: 'nameAr',
+      width: 200,
       ellipsis: true,
-      render: (text) => <span title={text}>{text}</span>,
+      render: (rvalue: any, record: any) => (
+        <span>
+          {record['subCategory']['nameAr']
+            ? record['subCategory']['nameAr']
+            : 'non'}
+        </span>
+      ),
     },
     {
       title: '',

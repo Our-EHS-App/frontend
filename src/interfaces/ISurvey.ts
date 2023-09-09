@@ -47,6 +47,7 @@ export type QuestionList = {
   rowSize?: number;
   titleAr: string;
   titleEn: string;
+  frequency: number;
   questionList: Question[];
 };
 

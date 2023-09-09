@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const options: AxiosRequestConfig = {
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -9,6 +10,7 @@ export const useApi = () => {
   const {
     i18n: { language },
   } = useTranslation();
+  const navigate = useNavigate();
   const apiPublic = axios.create(options);
   const apiPrivate = axios.create(options);
   // Add a request interceptor
@@ -27,6 +29,8 @@ export const useApi = () => {
     },
     function (error) {
       // Do something with request error
+      console.log(';;;;;;');
+
       if (
         error?.response?.headers['content-type'].includes('text/html') &&
         error.response.data.toLowerCase().includes('support id')
@@ -36,6 +40,7 @@ export const useApi = () => {
           `The requested URL was rejected. Please consult with your administrator. Your support ID is: ${ticketNumber}`
         );
       }
+
       return Promise.reject(error);
     }
   );
@@ -48,6 +53,9 @@ export const useApi = () => {
       return response;
     },
     function (error) {
+      if (error?.response?.data?.status === 401) {
+        navigate('/login');
+      }
       // Any status codes that falls outside the range of 2xx cause this
       // function to trigger Do something with response error
       if (

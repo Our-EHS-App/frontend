@@ -17,6 +17,7 @@ import { notification } from 'antd';
 import { Loading } from '../../components/Loading';
 import { handleErrorNotifications } from '../../helpers/errorHandler';
 import classes from './ListOfMyForms.module.scss';
+import { dateFormatter } from '../../helpers/dateFormatter';
 
 export const getStatusColor = (s: string) => {
   switch (s) {
@@ -27,7 +28,8 @@ export const getStatusColor = (s: string) => {
   }
 };
 export const ListOfInspections: FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
   const navigate = useNavigate();
   const { getInspections } = useSurveyForm();
 
@@ -62,19 +64,23 @@ export const ListOfInspections: FC = () => {
     },
     {
       title: `${t('FORM_TABLE.CREATED_AT')}`,
-      dataIndex: 'CREATED_AT',
-      key: 'CREATED_AT',
-      width: 150,
+      dataIndex: 'createdDate',
+      key: 'createdDate',
+      width: 200,
       ellipsis: true,
-      render: (text) => <span title={text}>{text}</span>,
+      render: (text) => (
+        <span>{dateFormatter(text, language, 'YYYY/MM/DD hh:mmA')}</span>
+      ),
     },
     {
-      title: `${t('FORM_TABLE.Category')}`,
-      dataIndex: 'CREATED_AT',
-      key: 'CREATED_AT',
-      width: 150,
+      title: `${t('FORM_TABLE.STATUS')}`,
+      dataIndex: ['listStatus', 'nameAr'],
+      key: 'nameAr',
+      width: 200,
       ellipsis: true,
-      render: (text) => <span title={text}>{text}</span>,
+      render: (rvalue: any, record: any) => (
+        <span>{record['listStatus']['nameAr'] ?? 'non'}</span>
+      ),
     },
     {
       title: '',

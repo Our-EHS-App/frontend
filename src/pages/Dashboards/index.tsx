@@ -71,7 +71,7 @@ export const Dashboards: FC = () => {
     <PagePadding>
       <PageHeader title={`${t('TITLE.Dashboards')}`} />
       <div className='grid md:grid-cols-2 gap-4'>
-        <div className='bg-white w-[500px] p-5 rounded-lg'>
+        <div className='bg-white w-full md:w-[500px] p-5 rounded-lg'>
           <Bar data={chartData} options={options} />
         </div>
         {DashboardsListQuery?.data?.map?.((dashboards: any) => (

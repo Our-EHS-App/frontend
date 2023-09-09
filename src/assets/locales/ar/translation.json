@@ -132,7 +132,8 @@
     "MY_Templates": "قوالبي",
     "EMTIITHAL": "امتثال",
     "profile": "حساب تعريفي",
-    "Logout": "تسجيل خروج"
+    "Logout": "تسجيل خروج",
+    "Language": "العربية"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "صفحة استبيانات",

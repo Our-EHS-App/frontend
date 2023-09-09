@@ -27,6 +27,13 @@ export const useSurveyForm = () => {
     return data;
   };
 
+  const getMyFormFill = async (id?: string) => {
+    const { data } = await apiPrivate.get<any>(
+      `/api/organization-template/get-by-template-id/${id}`
+    );
+    return data;
+  };
+
   const getMyForms = async (params?: any) => {
     const { data } = await apiPrivate.get<any>(
       '/api/organization-template/get-my_templates',
@@ -153,6 +160,7 @@ export const useSurveyForm = () => {
     getForms,
     getMyForms,
     getFormDetails,
+    getMyFormFill,
     fillSurvey,
     getFormDetailsFill,
     organizationTemplateImport,

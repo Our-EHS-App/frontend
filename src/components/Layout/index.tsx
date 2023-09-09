@@ -1,5 +1,4 @@
-import { FC, Fragment, useState } from 'react';
-import { useJwt } from 'react-jwt';
+import { FC, Fragment, useEffect, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
@@ -10,11 +9,13 @@ import {
   HomeIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
+import dayjs from 'dayjs';
+
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 function classNames(...classes: string[]) {
@@ -23,11 +24,19 @@ function classNames(...classes: string[]) {
 
 export const MainLayout: FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { t } = useTranslation();
+  const location = useLocation();
+  const { t, i18n } = useTranslation();
+  const { changeLanguage, language, dir } = i18n;
+
+  const changeLanguagep = (lang: string) => {
+    changeLanguage(lang);
+    window.location.reload();
+  };
 
   const userNavigation = [
     { name: `${t('TITLE.Logout')}`, href: '/login' },
     { name: `${t('TITLE.profile')}`, href: 'log' },
+    { name: `${t('TITLE.Language')}` },
   ];
 
   const navigation = [
@@ -56,17 +65,42 @@ export const MainLayout: FC = () => {
       current: false,
     },
   ];
+  const [navItems, setNavItems] = useState(navigation);
+
+  const handleClick = (index: number) => {
+    const updatedNavItems = navItems.map((item, i) => {
+      if (i === index) {
+        return { ...item, current: true };
+      } else {
+        return { ...item, current: false };
+      }
+    });
+    setNavItems(updatedNavItems);
+  };
+
+  useEffect(() => {
+    const pathname = location.pathname;
+    const updatedNavItems = navItems.map((item) => {
+      if (item.href === pathname) {
+        return { ...item, current: true };
+      } else {
+        return { ...item, current: false };
+      }
+    });
+    setNavItems(updatedNavItems);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (language === 'ar') {
+      dayjs.locale('ar-sa');
+    } else {
+      dayjs.locale();
+    }
+    document.body.dir = dir(language);
+  }, [language]);
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
@@ -105,7 +139,7 @@ export const MainLayout: FC = () => {
                     <div className='absolute left-full top-0 flex w-16 justify-center pt-5'>
                       <button
                         type='button'
-                        className='-m-2.5 p-2.5'
+                        className='-m-2.5 p-2.5 bg-transparent border-0'
                         onClick={() => setSidebarOpen(false)}>
                         <span className='sr-only'>Close sidebar</span>
                         <XMarkIcon
@@ -115,7 +149,6 @@ export const MainLayout: FC = () => {
                       </button>
                     </div>
                   </Transition.Child>
-                  {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4'>
                     <div className='flex h-16 shrink-0 items-center'>
                       <img
@@ -125,49 +158,44 @@ export const MainLayout: FC = () => {
                       />
                     </div>
                     <nav className='flex flex-1 flex-col'>
-                      <ul role='list' className='flex flex-1 flex-col gap-y-7'>
-                        <li>
-                          <ul role='list' className='-mx-2 space-y-1'>
-                            {navigation.map((item) => (
-                              <li key={item.name}>
-                                <a
-                                  href={item.href}
+                      <div className='flex flex-1 flex-col gap-y-7'>
+                        <div className='mx-2 space-y-1'>
+                          {navItems.map((item, index) => (
+                            <div key={item.name}>
+                              <a
+                                href={item.href}
+                                className={classNames(
+                                  item.current
+                                    ? 'bg-indigo-700 text-white'
+                                    : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                                  'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                )}
+                                onClick={() => handleClick(index)}>
+                                <item.icon
                                   className={classNames(
                                     item.current
-                                      ? 'bg-indigo-700 text-white'
-                                      : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                  )}>
-                                  <item.icon
-                                    className={classNames(
-                                      item.current
-                                        ? 'text-white'
-                                        : 'text-indigo-200 group-hover:text-white',
-                                      'h-6 w-6 shrink-0'
-                                    )}
-                                    aria-hidden='true'
-                                  />
-                                  {item.name}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
-                        <li>
-                          <div className='text-xs font-semibold leading-6 text-indigo-200'>
-                            Your teams
-                          </div>
-                        </li>
+                                      ? 'text-white'
+                                      : 'text-indigo-200 group-hover:text-white',
+                                    'h-6 w-6 shrink-0'
+                                  )}
+                                  aria-hidden='true'
+                                />
+                                {item.name}
+                              </a>
+                            </div>
+                          ))}
+                        </div>
                         <a
                           href='#'
-                          className='group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white'>
+                          className=' mb-4 group mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white'
+                          style={{ position: 'absolute', bottom: 0 }}>
                           <Cog6ToothIcon
                             className='h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white'
                             aria-hidden='true'
                           />
                           {`${t('TITLE.SETTING')}`}
                         </a>
-                      </ul>
+                      </div>
                     </nav>
                   </div>
                 </Dialog.Panel>
@@ -188,10 +216,10 @@ export const MainLayout: FC = () => {
               />
             </div>
             <nav className='flex flex-1 flex-col'>
-              <ul role='list' className='flex flex-1 flex-col gap-y-7'>
-                <ul role='list' className='-mx-2 space-y-1'>
-                  {navigation.map((item) => (
-                    <li key={item.name}>
+              <div className='flex flex-1 flex-col gap-y-7'>
+                <div className='-mx-2 space-y-1'>
+                  {navItems.map((item, index) => (
+                    <div key={item.name}>
                       <a
                         href={item.href}
                         className={classNames(
@@ -199,7 +227,8 @@ export const MainLayout: FC = () => {
                             ? 'bg-indigo-700 text-white'
                             : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
                           'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                        )}>
+                        )}
+                        onClick={() => handleClick(index)}>
                         <item.icon
                           className={classNames(
                             item.current
@@ -211,19 +240,20 @@ export const MainLayout: FC = () => {
                         />
                         {item.name}
                       </a>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
                 <a
                   href='#'
-                  className='group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white'>
+                  className=' mb-4 group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white'
+                  style={{ position: 'absolute', bottom: 0 }}>
                   <Cog6ToothIcon
                     className='h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white'
                     aria-hidden='true'
                   />
                   {`${t('TITLE.SETTING')}`}
                 </a>
-              </ul>
+              </div>
             </nav>
           </div>
         </div>
@@ -232,7 +262,7 @@ export const MainLayout: FC = () => {
           <div className='sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8'>
             <button
               type='button'
-              className='-m-2.5 p-2.5 text-gray-700 lg:hidden'
+              className='-m-2.5 p-2.5 bg-transparent border-0 lg:hidden'
               onClick={() => setSidebarOpen(true)}>
               <span className='sr-only'>Open sidebar</span>
               <Bars3Icon className='h-6 w-6' aria-hidden='true' />
@@ -264,7 +294,7 @@ export const MainLayout: FC = () => {
               <div className='flex items-center gap-x-4 lg:gap-x-6'>
                 <button
                   type='button'
-                  className='-m-2.5 p-2.5 text-gray-400 hover:text-gray-500'>
+                  className='-m-2.5 p-2.5 text-gray-400 bg-transparent border-0'>
                   <span className='sr-only'>View notifications</span>
                   <BellIcon className='h-6 w-6' aria-hidden='true' />
                 </button>
@@ -277,8 +307,7 @@ export const MainLayout: FC = () => {
 
                 {/* Profile dropdown */}
                 <Menu as='div' className='relative'>
-                  <Menu.Button className='-m-1.5 flex items-center p-1.5'>
-                    <span className='sr-only'>Open user menu</span>
+                  <Menu.Button className='-m-1.5 flex items-center p-1.5 bg-transparent border-0'>
                     <img
                       className='h-8 w-8 rounded-full bg-gray-50'
                       src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
@@ -308,14 +337,28 @@ export const MainLayout: FC = () => {
                       {userNavigation.map((item) => (
                         <Menu.Item key={item.name}>
                           {({ active }) => (
-                            <a
-                              href={item.href}
-                              className={classNames(
-                                active ? 'bg-gray-50' : '',
-                                'block px-3 py-1 text-sm leading-6 text-gray-900'
-                              )}>
-                              {item.name}
-                            </a>
+                            <>
+                              {item.href ? (
+                                <a
+                                  href={item.href}
+                                  className={classNames(
+                                    active ? 'bg-gray-50' : '',
+                                    'block px-3 py-1 text-sm leading-6 text-gray-900'
+                                  )}>
+                                  {item.name}
+                                </a>
+                              ) : (
+                                <div
+                                  className='block px-3 py-1 text-sm leading-6 text-gray-900'
+                                  onClick={() => {
+                                    changeLanguagep(
+                                      language == 'en' ? 'ar' : 'en'
+                                    );
+                                  }}>
+                                  {item.name}
+                                </div>
+                              )}
+                            </>
                           )}
                         </Menu.Item>
                       ))}

@@ -37,12 +37,14 @@ export const defaultQuestion: Question = {
 const defaultValues: QuestionList = {
   titleAr: '',
   titleEn: '',
+  frequency: 1,
   questionList: [defaultQuestion],
 };
 const defaultTableValues: QuestionList = {
   rowSize: 1,
   titleAr: '',
   titleEn: '',
+  frequency: 0,
   questionList: [defaultQuestion],
 };
 
@@ -313,6 +315,28 @@ export const CreateBasicSection: FC<{
                 <Input
                   id={`titleAr`}
                   placeholder={`العنوان`}
+                  value={value}
+                  disabled={data?.completed || data?.assigned}
+                  onChange={onChange}
+                />
+
+                {error && (
+                  <div className={'mt-2 text-danger'}>{error.message}</div>
+                )}
+              </>
+            )}
+          />
+          <div className={'text-primary text-lg my-4 font-bold'}>
+            {'Frequency'}
+          </div>
+          <Controller
+            name={`frequency`}
+            control={control}
+            render={({ field: { value, onChange }, fieldState: { error } }) => (
+              <>
+                <Input
+                  id={`frequency`}
+                  placeholder={'التكرار'}
                   value={value}
                   disabled={data?.completed || data?.assigned}
                   onChange={onChange}
