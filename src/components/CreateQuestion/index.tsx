@@ -116,7 +116,7 @@ export const CreateQuestion: FC<{
             ? classes.dangerPanel
             : classes.primaryPanel
         }
-        showArrow={false}>
+        showArrow={true}>
         <Row align={'top'} gutter={[12, 12]}>
           <Col span={16}>
             <Controller
