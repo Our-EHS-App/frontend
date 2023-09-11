@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { PageHeader } from '../../components/PageHeader';
 import { PagePadding } from '../../components/PagePadding';
 import { Bar } from 'react-chartjs-2';
-import { Progress, Space } from 'antd';
+import { Progress } from 'antd';
 import { useSurveyForm } from '@services/surveyService';
 import { useQuery } from '@tanstack/react-query';
 import { Loading } from '../../components/Loading';
@@ -78,7 +78,6 @@ export const Dashboards: FC = () => {
           <div
             key={dashboards?.id}
             className='bg-white p-5 rounded-lg flex items-center justify-center'>
-            {/* Content for Column 3 */}
             <div>
               <div className='text-lg pb-4 text-center'>
                 {language === 'ar'
