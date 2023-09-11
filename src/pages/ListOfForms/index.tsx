@@ -128,7 +128,7 @@ export const ListOfForms: FC = () => {
       key: 'id',
       width: 100,
       render: (text) => (
-        <Link className={`text-[#0075EF]`} to={`/form/${text}`}>
+        <Link className={`text-[#0075EF]`} to={`/template/${text}`}>
           {t('FORM_TABLE.DETAILS')}
         </Link>
       ),

@@ -98,7 +98,7 @@ export const useRouterLinks = () => {
           ],
         },
         {
-          path: 'form/:formId',
+          path: 'template/:formId',
           children: [
             {
               index: true,
