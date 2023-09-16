@@ -9,7 +9,7 @@ import checker from 'vite-plugin-checker';
 export default defineConfig({
   server: {
     port: 3000,
-    host: process.env.APP_HOST,
+    host: 'localhost',
     proxy: {
       '/api': {
         target: process.env.API_URL,
