@@ -10,7 +10,7 @@
     "build:test": "tsc && vite build --mode test",
     "build:demo": "tsc && vite build --mode demo",
     "build:release/*": "tsc && vite build --mode stage",
-    "build:master": "tsc && vite build --mode production",
+    "build:master": ".env && tsc && vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {

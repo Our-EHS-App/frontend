@@ -12,7 +12,7 @@ export default defineConfig({
     host: 'localhost',
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: process.env.API_URL,
         // target: 'https://nca-if.dev.site.sa/api',
         changeOrigin: false,
         secure: false,
