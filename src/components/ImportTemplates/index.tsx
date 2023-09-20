@@ -50,7 +50,6 @@ export const ImportTemplates: FC<Props> = ({
 
   const handleOk = () => {
     mutate({
-      orgId: template_id,
       templateId: template_id,
       locationIds: list,
     });
