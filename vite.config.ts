@@ -13,7 +13,6 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: process.env.API_URL,
-        // target: 'https://nca-if.dev.site.sa/api',
         changeOrigin: false,
         secure: false,
         // rewrite: (path) => path.replace(/^\/api/, ''),
