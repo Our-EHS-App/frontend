@@ -368,16 +368,17 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                   </div>
                 )}
                 <div className='flex items-center gap-4'>
-                  {FormQuery?.data?.listStatus == 4 && !(mode === 'VIEW') && (
-                    <div className=''>
-                      <PrimaryButton
-                        text={`${t('ACTION.SAVE')}`}
-                        onClick={saveAndGoNext}
-                        id={'saveAndGoBack'}
-                        disabled={isLoading}
-                      />
-                    </div>
-                  )}
+                  {FormQuery?.data?.listStatus?.id == 4 &&
+                    !(mode === 'VIEW') && (
+                      <div className=''>
+                        <PrimaryButton
+                          text={`${t('ACTION.SAVE')}`}
+                          onClick={saveAndGoNext}
+                          id={'saveAndGoBack'}
+                          disabled={isLoading}
+                        />
+                      </div>
+                    )}
                 </div>
               </div>
             </form>
