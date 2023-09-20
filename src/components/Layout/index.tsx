@@ -305,6 +305,7 @@ export const MainLayout: FC = () => {
                   type='button'
                   onClick={() => {
                     changeLanguage(language == 'en' ? 'ar' : 'en');
+                    window.location.reload();
                   }}
                   className='-m-2.5 p-2.5 text-gray-400 bg-transparent border-0'>
                   <span className='sr-only'>View notifications</span>

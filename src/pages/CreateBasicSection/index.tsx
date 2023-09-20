@@ -360,8 +360,7 @@ export const CreateBasicSection: FC<{
                   defaultValue={CategoriesListQuery?.data?.[0]}
                   options={CategoriesListQuery?.data?.map((Category: any) => ({
                     value: Category?.id,
-                    label:
-                      language === 'ar' ? Category?.nameAr : Category?.nameEn,
+                    label: Category?.nameAr,
                   }))}
                 />
 
