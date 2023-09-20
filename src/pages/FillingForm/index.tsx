@@ -368,7 +368,7 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                   </div>
                 )}
                 <div className='flex items-center gap-4'>
-                  {FormQuery?.data?.listStatus?.id == 4 &&
+                  {FormQuery?.data?.listStatus?.id == 1 &&
                     !(mode === 'VIEW') && (
                       <div className=''>
                         <PrimaryButton
