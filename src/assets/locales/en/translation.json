@@ -192,5 +192,8 @@
   "NO": "No",
   "NCA_FOOTER": "National Cybersecurity Authority © 2022",
   "ADDED_THIRD_LEVEL": "The third level has not been added",
-  "COPY_FORM_MESSAGE": "Note: Once the form is copied, a new form will be recreated without the assigned Partners in the original form."
+  "COPY_FORM_MESSAGE": "Note: Once the form is copied, a new form will be recreated without the assigned Partners in the original form.",
+  "title": "Title",
+  "frequency": "Frequency",
+  "search": "Search"
 }

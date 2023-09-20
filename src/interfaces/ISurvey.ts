@@ -48,6 +48,7 @@ export type QuestionList = {
   titleAr: string;
   titleEn: string;
   frequency: number;
+  subCategory: any;
   questionList: Question[];
 };
 

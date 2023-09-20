@@ -21,6 +21,7 @@ import { handleErrorNotifications } from '../../helpers/errorHandler';
 import { notification } from 'antd';
 import { Loading } from '../../components/Loading';
 import { dateFormatter } from '../../helpers/dateFormatter';
+import { ImportTemplates } from '../../components/ImportTemplates';
 
 export const getStatusColor = (s: string) => {
   switch (s) {
@@ -36,8 +37,11 @@ export const getStatusColor = (s: string) => {
 export const ListOfForms: FC = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
+  const [importModal, setImportModal] = useState(false);
+  const [idForm, setIdForm] = useState('');
   const navigate = useNavigate();
-  const { organizationTemplateImport, getForms } = useSurveyForm();
+  const { organizationTemplateImport, getForms, getLocations } =
+    useSurveyForm();
   const { mutate } = useMutation(organizationTemplateImport, {
     onError: (error) => {
       handleErrorNotifications(error as any);
@@ -49,6 +53,10 @@ export const ListOfForms: FC = () => {
       });
     },
   });
+
+  const locaionListQuery = useQuery(['list-/api/locaion'], () =>
+    getLocations()
+  );
 
   const [pageConfig, setPageConfig] = useState<PageConfig>({
     size: 10,
@@ -112,11 +120,8 @@ export const ListOfForms: FC = () => {
         <div
           className={`text-[#0075EF] cursor-pointer`}
           onClick={() => {
-            mutate({
-              orgId: 1101,
-              templateId: id,
-              locationIds: [1201],
-            });
+            setIdForm(id);
+            setImportModal(true);
           }}>
           {t('FORM_TABLE.IMPORT')}
         </div>
@@ -184,6 +189,14 @@ export const ListOfForms: FC = () => {
           total: FormListQuery?.data?.totalElements ?? 0,
         }}
         onChange={handleTableChange}
+      />
+      <ImportTemplates
+        openModal={importModal}
+        data={locaionListQuery?.data}
+        template_id={idForm}
+        closeModal={() => {
+          setImportModal(false);
+        }}
       />
     </PagePadding>
   );

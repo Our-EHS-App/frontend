@@ -69,6 +69,16 @@ export const useSurveyForm = () => {
     return data;
   };
 
+  const getCategories = async () => {
+    const { data } = await apiPrivate.get<any>('/api/categories');
+    return data;
+  };
+
+  const getLocations = async () => {
+    const { data } = await apiPrivate.get<any>('/api/locations');
+    return data;
+  };
+
   const deleteFormById = async (uuid?: string) => {
     const { data } = await apiPrivate.delete(`${API_URL}/${uuid}`);
     return data;
@@ -173,6 +183,8 @@ export const useSurveyForm = () => {
     addSurvey,
     editSurvey,
     getSurvey,
+    getCategories,
+    getLocations,
     deleteSurveyById,
     addAdvancedSurvey,
     editAdvancedSurvey,

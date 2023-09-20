@@ -31,9 +31,12 @@ module.exports = {
       minHeight: {
         '400': '400px',
       },
+      direction: {
+        ltr: 'ltr',
+        rtl: 'rtl',
+      },
     },
   },
-
   plugins: [],
   corePlugins: {
     preflight: false,

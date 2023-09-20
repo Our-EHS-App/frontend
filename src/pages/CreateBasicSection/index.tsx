@@ -39,6 +39,7 @@ const defaultValues: QuestionList = {
   titleEn: '',
   frequency: 1,
   questionList: [defaultQuestion],
+  subCategory: null,
 };
 const defaultTableValues: QuestionList = {
   rowSize: 1,
@@ -46,6 +47,7 @@ const defaultTableValues: QuestionList = {
   titleEn: '',
   frequency: 0,
   questionList: [defaultQuestion],
+  subCategory: null,
 };
 
 export const CreateBasicSection: FC<{
@@ -53,7 +55,8 @@ export const CreateBasicSection: FC<{
   mode?: 'CREATE' | 'EDIT';
 }> = ({ type = 'BASIC', mode = 'CREATE' }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
 
   const questionSchema = z.lazy(() =>
     z.object({
@@ -97,7 +100,7 @@ export const CreateBasicSection: FC<{
   });
 
   const { uuid, pageUuid, surveyUuid } = useParams();
-  const { editSurvey, addSurvey, getSurvey, deleteSurveyById } =
+  const { editSurvey, addSurvey, getSurvey, deleteSurveyById, getCategories } =
     useSurveyForm();
   const [pageName, setPageName] = useState<string | undefined>();
   const [activeKeys, setActiveKeys] = useState<number[]>([]);
@@ -163,6 +166,10 @@ export const CreateBasicSection: FC<{
     }
   );
 
+  const CategoriesListQuery = useQuery(['list-/api/categories'], () =>
+    getCategories()
+  );
+
   useEffect(() => {
     if (data) {
       reset(data); // reset means setting all values
@@ -170,27 +177,16 @@ export const CreateBasicSection: FC<{
   }, [data]);
 
   const onSubmit = (body: QuestionList) => {
-    console.log(body);
-
     const surveyPayload: any = {
       ...body,
+      frequency: getValues('frequency'),
+      subCategory: { id: getValues('subCategory') },
       fields: body.questionList.map((v, i) => ({
         ...v,
         orderNumber: i + 1,
       })),
     };
     mutate(surveyPayload);
-
-    // if (mode == 'CREATE') {
-    //   console.log(surveyPayload, 'Payload');
-    //   // mutate(surveyPayload);
-    // } else {
-    //   editMutate({
-    //     ...surveyPayload,
-    //     pageUuid: data?.pageUuid as string,
-    //     uuid: surveyUuid as string,
-    //   });
-    // }
   };
 
   const closeKey = (index: number) => {
@@ -306,7 +302,9 @@ export const CreateBasicSection: FC<{
       <form onSubmit={handleSubmit(onSubmit)}>
         <PageHeader title={pageName ?? ''} extra={renderExtra()} />
         <WhiteContainer className={'mb-4'}>
-          <div className={'text-primary text-lg mb-4 font-bold'}>{'title'}</div>
+          <div className={'text-primary text-lg mb-4 font-bold'}>{`${t(
+            'title'
+          )}`}</div>
           <Controller
             name={`titleAr`}
             control={control}
@@ -314,7 +312,7 @@ export const CreateBasicSection: FC<{
               <>
                 <Input
                   id={`titleAr`}
-                  placeholder={`العنوان`}
+                  placeholder={`${t('title')}`}
                   value={value}
                   disabled={data?.completed || data?.assigned}
                   onChange={onChange}
@@ -327,19 +325,44 @@ export const CreateBasicSection: FC<{
             )}
           />
           <div className={'text-primary text-lg my-4 font-bold'}>
-            {'Frequency'}
+            {`${t('frequency')}`}
           </div>
           <Controller
-            name={`frequency`}
+            name='frequency'
             control={control}
             render={({ field: { value, onChange }, fieldState: { error } }) => (
               <>
                 <Input
-                  id={`frequency`}
-                  placeholder={'التكرار'}
+                  id='frequency'
+                  placeholder={`${t('frequency')}`}
                   value={value}
                   disabled={data?.completed || data?.assigned}
                   onChange={onChange}
+                />
+
+                {error && (
+                  <div className='mt-2 text-danger'>{error.message}</div>
+                )}
+              </>
+            )}
+          />
+          <div className={'text-primary text-lg my-4 font-bold'}>
+            {`${t('FORM_TABLE.Category')}`}
+          </div>
+          <Controller
+            name={`subCategory`}
+            control={control}
+            render={({ field: { value, onChange }, fieldState: { error } }) => (
+              <>
+                <Select
+                  onChange={onChange}
+                  style={{ width: '100%' }}
+                  defaultValue={CategoriesListQuery?.data?.[0]}
+                  options={CategoriesListQuery?.data?.map((Category: any) => ({
+                    value: Category?.id,
+                    label:
+                      language === 'ar' ? Category?.nameAr : Category?.nameEn,
+                  }))}
                 />
 
                 {error && (

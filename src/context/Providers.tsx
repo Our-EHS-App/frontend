@@ -65,7 +65,7 @@ export const Providers: FC<FCProps> = ({ children }) => {
           direction={i18n.dir(i18n.language)}
           theme={antDTheme}
           renderEmpty={customEmpty}>
-            {children}
+          {children}
         </ConfigProvider>
       </QueryClientProvider>
     </Suspense>
