@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Collapse, Input, Skeleton } from 'antd';
+import { Collapse, Input, Select, Skeleton } from 'antd';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -82,7 +82,11 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
 
   return (
     <PagePadding className={''}>
-      <PageHeader title={FormQuery?.data?.nameAr} />
+      <PageHeader
+        title={
+          mode == 'VIEW' ? FormQuery?.data?.titleAr : FormQuery?.data?.nameAr
+        }
+      />
       {isLoading ? (
         <WhiteContainer>
           <Skeleton />
@@ -90,7 +94,32 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
       ) : (
         <WhiteContainer className=''>
           <div className='mx-3'>
-            <form onSubmit={handleSubmit(onSubmit)} className=''>
+            <div className={'text-primary text-lg my-4 font-bold'}>
+              {`${t('frequency')}`}
+            </div>
+            <Input
+              id='frequency'
+              placeholder={`${t('frequency')}`}
+              value={
+                mode == 'VIEW'
+                  ? FormQuery?.data?.frequency
+                  : FormQuery?.data?.template?.frequency
+              }
+              disabled
+            />
+            <div className={'text-primary text-lg my-4 font-bold'}>
+              {`${t('FORM_TABLE.Category')}`}
+            </div>
+            <Select
+              style={{ width: '100%' }}
+              defaultValue={
+                mode == 'VIEW'
+                  ? FormQuery?.data?.subCategory?.nameAr
+                  : FormQuery?.data?.template?.subCategory?.nameAr
+              }
+              disabled
+            />
+            <form onSubmit={handleSubmit(onSubmit)} className='mt-6'>
               {mode == 'FILLTM'
                 ? FormQuery?.data?.template?.fields?.map(
                     (question: any, index: number) => {

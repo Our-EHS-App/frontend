@@ -8,6 +8,10 @@
   :global(.ant-collapse-header-text) {
     @apply whitespace-nowrap overflow-ellipsis overflow-hidden;
   }
+
+  &:global(.ant-collapse) {
+    @apply border border-solid border-[#C2C2C2] rounded-lg cursor-grab mb-3;
+  }
 }
 
 .primary-panel {

@@ -66,8 +66,9 @@ export const ImportTemplates: FC<Props> = ({
         className={classes.importTemplatesContainer}
         open={openModal}
         closable={false}
+        okButtonProps={{ disabled: list?.length === 0 }}
         onCancel={close}>
-        <div>
+        <div className='py-10'>
           <Select
             mode='multiple'
             allowClear

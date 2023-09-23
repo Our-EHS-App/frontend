@@ -107,7 +107,7 @@ export const ListOfForms: FC = () => {
         <span>
           {record['subCategory']?.['nameAr']
             ? record['subCategory']?.['nameAr']
-            : 'non'}
+            : ''}
         </span>
       ),
     },

@@ -79,7 +79,22 @@ export const ListOfInspections: FC = () => {
       width: 200,
       ellipsis: true,
       render: (rvalue: any, record: any) => (
-        <span>{record['listStatus']['nameAr'] ?? 'non'}</span>
+        <span
+          className={`${
+            record['listStatus']['id'] === 1
+              ? `text-[#5fdba7]`
+              : record['listStatus']['id'] === 2
+              ? `text-[#d3d3d3]`
+              : record['listStatus']['id'] === 3
+              ? `text-[#64a338]`
+              : record['listStatus']['id'] === 4
+              ? `text-[#3865a3]`
+              : record['listStatus']['id'] === 5
+              ? `text-[#e03b24]`
+              : `text-[#5fdba7]`
+          }`}>
+          {record['listStatus']['nameAr'] ?? ''}
+        </span>
       ),
     },
     {

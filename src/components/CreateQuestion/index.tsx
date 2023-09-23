@@ -111,11 +111,7 @@ export const CreateQuestion: FC<{
             : `${type == 'TABLE' ? t('SURVEY.COLUMN') : t('SURVEY.QUESTION')}
                  ${index + 1}`
         }
-        className={
-          errors?.questionList && errors?.questionList[index]
-            ? classes.dangerPanel
-            : classes.primaryPanel
-        }
+        className={classes.primaryPanel}
         showArrow={true}>
         <Row align={'top'} gutter={[12, 12]}>
           <Col span={16}>
