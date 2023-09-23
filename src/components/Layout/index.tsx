@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import { Avatar } from 'antd';
+import Company from '../../assets/emtithal.jpeg';
 
 import {
   ChevronDownIcon,
@@ -155,7 +156,7 @@ export const MainLayout: FC = () => {
                     <div className='flex h-16 shrink-0 items-center'>
                       <img
                         className='h-8 w-auto'
-                        src='https://tailwindui.com/img/logos/mark.svg?color=white'
+                        src={Company}
                         alt='Your Company'
                       />
                     </div>
@@ -211,11 +212,7 @@ export const MainLayout: FC = () => {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4'>
             <div className='flex h-16 shrink-0 items-center'>
-              <img
-                className='h-8 w-auto'
-                src='https://tailwindui.com/img/logos/mark.svg?color=white'
-                alt='Your Company'
-              />
+              <img className='h-8 w-auto' src={Company} alt='Your Company' />
             </div>
             <nav className='flex flex-1 flex-col'>
               <div className='flex flex-1 flex-col gap-y-7'>
