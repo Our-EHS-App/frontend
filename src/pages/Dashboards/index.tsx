@@ -8,6 +8,7 @@ import { Progress } from 'antd';
 import { useSurveyForm } from '@services/surveyService';
 import { useQuery } from '@tanstack/react-query';
 import { Loading } from '../../components/Loading';
+import WarehouseChart from '../../components/WarehouseChart';
 
 interface ChartProps {
   data: number[];
@@ -17,43 +18,14 @@ interface ChartProps {
 export const Dashboards: FC = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
-  const { getDashboards } = useSurveyForm();
+  const { getDashboards, getByLocation } = useSurveyForm();
+  const LocationListQuery = useQuery(['oihuuei'], () => getByLocation());
 
   const DashboardsListQuery = useQuery(['dsh'], () => getDashboards());
-
-  const chartData = {
-    labels: [
-      'location A',
-      'location B',
-      'location C',
-      'location D',
-      'location F',
-      'location G',
-    ],
-    datasets: [
-      {
-        label: 'Inspections',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
+  const { data, isLoading, isError } = useQuery(
+    ['getByLocation'],
+    () => getByLocation
+  );
 
   const options = {
     scales: {
@@ -72,7 +44,7 @@ export const Dashboards: FC = () => {
       <PageHeader title={`${t('TITLE.Dashboards')}`} />
       <div className='grid md:grid-cols-2 gap-4'>
         <div className='bg-white w-full md:w-[500px] p-5 rounded-lg'>
-          <Bar data={chartData} options={options} />
+          <WarehouseChart LocationListQuery={LocationListQuery} />
         </div>
         {DashboardsListQuery?.data?.map?.((dashboards: any) => (
           <div

@@ -99,6 +99,11 @@ export const useSurveyForm = () => {
     return data;
   };
 
+  const getByLocation = async () => {
+    const { data } = await apiPrivate.get<any>(`api/dashboard/by-location`);
+    return data;
+  };
+
   const getAssignedFormById = async (uuid?: string) => {
     const { data } = await apiPrivate.get<IForm>(`${API_URL}/${uuid}`);
     return data;
@@ -173,6 +178,7 @@ export const useSurveyForm = () => {
     getMyFormFill,
     fillSurvey,
     getFormDetailsFill,
+    getByLocation,
     organizationTemplateImport,
     getInspections,
     addForm,
