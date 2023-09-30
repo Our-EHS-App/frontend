@@ -160,7 +160,8 @@ export const CreateQuestion: FC<{
                     value={value}
                     className={'w-full'}>
                     <Option value={'1'}>{t('SURVEY.TEXT')}</Option>
-                    <Option value={'2'}>{t('SURVEY.NUMBER')}</Option>
+                    <Option value={'3'}>{t('SURVEY.NUMBER')}</Option>
+                    <Option value={'2'}>{t('SURVEY.CHECKBOX')}</Option>
                     {/* <Option value={'SELECT_ONE'}>
                       {t('SURVEY.SELECT_ONE')}
                     </Option>

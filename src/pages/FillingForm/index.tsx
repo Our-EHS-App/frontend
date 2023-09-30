@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Collapse, Input, Select, Skeleton } from 'antd';
+import { Collapse, Input, Radio, Select, Skeleton } from 'antd';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -159,23 +159,41 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                                       fieldState: { error },
                                     }) => (
                                       <>
-                                        <TextArea
-                                          id={`answer`}
-                                          placeholder={`${t(
-                                            'GENERAL.WRITE_YOUR_ANSWER'
-                                          )}`}
-                                          disabled={
-                                            FormQuery?.data?.listStatus?.id ===
-                                            4
-                                          }
-                                          value={
-                                            FormQuery?.data?.listStatus?.id ===
-                                            4
-                                              ? question?.value
-                                              : value
-                                          }
-                                          onChange={onChange}
-                                        />
+                                        {question?.fieldType?.id == 2 ? (
+                                          <Radio.Group
+                                            onChange={onChange}
+                                            disabled={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                            }
+                                            value={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                                ? Number(question?.value)
+                                                : value
+                                            }>
+                                            <Radio value={1}>{t('Yes')}</Radio>
+                                            <Radio value={2}>{t('No')}</Radio>
+                                          </Radio.Group>
+                                        ) : (
+                                          <TextArea
+                                            id={`answer`}
+                                            placeholder={`${t(
+                                              'GENERAL.WRITE_YOUR_ANSWER'
+                                            )}`}
+                                            disabled={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                            }
+                                            value={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                                ? question?.value
+                                                : value
+                                            }
+                                            onChange={onChange}
+                                          />
+                                        )}
                                         {error && (
                                           <div className={'mt-2 text-danger'}>
                                             {error?.message}
@@ -208,6 +226,7 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                 : mode == 'VIEW'
                 ? FormQuery?.data?.fields?.map(
                     (question: any, index: number) => {
+                      console.log(question, 'question');
                       return (
                         <Collapse
                           ghost
@@ -245,20 +264,35 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                                       fieldState: { error },
                                     }) => (
                                       <>
-                                        <TextArea
-                                          id={`answer`}
-                                          placeholder={`${t(
-                                            'GENERAL.WRITE_YOUR_ANSWER'
-                                          )}`}
-                                          disabled={true}
-                                          value={
-                                            FormQuery?.data?.listStatus?.id ===
-                                            4
-                                              ? question?.value
-                                              : value
-                                          }
-                                          onChange={onChange}
-                                        />
+                                        {question?.fieldType?.id == 2 ? (
+                                          <Radio.Group
+                                            onChange={onChange}
+                                            disabled={true}
+                                            value={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                                ? question?.value
+                                                : value
+                                            }>
+                                            <Radio value={1}>{t('Yes')}</Radio>
+                                            <Radio value={2}>{t('No')}</Radio>
+                                          </Radio.Group>
+                                        ) : (
+                                          <TextArea
+                                            id={`answer`}
+                                            placeholder={`${t(
+                                              'GENERAL.WRITE_YOUR_ANSWER'
+                                            )}`}
+                                            disabled={true}
+                                            value={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                                ? question?.value
+                                                : value
+                                            }
+                                            onChange={onChange}
+                                          />
+                                        )}
                                         {error && (
                                           <div className={'mt-2 text-danger'}>
                                             {error?.message}
@@ -326,23 +360,41 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                                       fieldState: { error },
                                     }) => (
                                       <>
-                                        <TextArea
-                                          id={`answer`}
-                                          placeholder={`${t(
-                                            'GENERAL.WRITE_YOUR_ANSWER'
-                                          )}`}
-                                          disabled={
-                                            FormQuery?.data?.listStatus?.id ===
-                                            4
-                                          }
-                                          value={
-                                            FormQuery?.data?.listStatus?.id ===
-                                            4
-                                              ? question?.value
-                                              : value
-                                          }
-                                          onChange={onChange}
-                                        />
+                                        {question?.fieldType?.id == 2 ? (
+                                          <Radio.Group
+                                            onChange={onChange}
+                                            disabled={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                            }
+                                            value={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                                ? Number(question?.value)
+                                                : value
+                                            }>
+                                            <Radio value={1}>{t('Yes')}</Radio>
+                                            <Radio value={2}>{t('No')}</Radio>
+                                          </Radio.Group>
+                                        ) : (
+                                          <TextArea
+                                            id={`answer`}
+                                            placeholder={`${t(
+                                              'GENERAL.WRITE_YOUR_ANSWER'
+                                            )}`}
+                                            disabled={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                            }
+                                            value={
+                                              FormQuery?.data?.listStatus
+                                                ?.id === 4
+                                                ? question?.value
+                                                : value
+                                            }
+                                            onChange={onChange}
+                                          />
+                                        )}
                                         {error && (
                                           <div className={'mt-2 text-danger'}>
                                             {error?.message}

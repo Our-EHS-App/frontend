@@ -180,7 +180,8 @@
     "MAIN_LEVEL": "المستوى الرئيسي",
     "Main_LEVEL": "المستوى الرئيسي",
     "SECOND_LEVEL_TITLE": "عنوان المستوى الثاني",
-    "DROPDOWN_MENU": "قائمة منسدلة"
+    "DROPDOWN_MENU": "قائمة منسدلة",
+    "CHECKBOX": "اختيار واحد"
   },
   "BASIC_SECTION": {
     "DESCRIPTION": "وصف النموذج",

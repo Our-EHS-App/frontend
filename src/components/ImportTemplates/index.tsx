@@ -41,6 +41,7 @@ export const ImportTemplates: FC<Props> = ({
         duration: 1.5,
       });
       setList([]);
+      close();
     },
   });
 

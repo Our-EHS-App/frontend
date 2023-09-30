@@ -174,7 +174,8 @@
     "MAIN_LEVEL": "Main level",
     "Main_LEVEL": "Main Level",
     "SECOND_LEVEL_TITLE": "second level titel",
-    "DROPDOWN_MENU": "Dropdown Menu"
+    "DROPDOWN_MENU": "Dropdown Menu",
+    "CHECKBOX": "Checkbox"
   },
   "BASIC_SECTION": {
     "DESCRIPTION": "Description form",

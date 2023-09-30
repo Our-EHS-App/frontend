@@ -181,9 +181,11 @@ export const CreateBasicSection: FC<{
       ...body,
       frequency: getValues('frequency'),
       subCategory: { id: getValues('subCategory') },
-      fields: body.questionList.map((v, i) => ({
+      fields: getValues('questionList')?.map((v, i) => ({
         ...v,
-        orderNumber: i + 1,
+        fieldType: {
+          id: v?.fieldType,
+        },
       })),
     };
     mutate(surveyPayload);
