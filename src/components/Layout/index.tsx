@@ -130,7 +130,10 @@ export const MainLayout: FC = () => {
                 leave='transition ease-in-out duration-300 transform'
                 leaveFrom='translate-x-0'
                 leaveTo='-translate-x-full'>
-                <Dialog.Panel className='relative mr-16 flex w-full max-w-xs flex-1'>
+                <Dialog.Panel
+                  className={`relative ${
+                    language === 'ar' ? `` : `mr-16`
+                  } flex w-full max-w-xs flex-1`}>
                   <Transition.Child
                     as={Fragment}
                     enter='ease-in-out duration-300'
@@ -139,7 +142,10 @@ export const MainLayout: FC = () => {
                     leave='ease-in-out duration-300'
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'>
-                    <div className='absolute left-full top-0 flex w-16 justify-center pt-5'>
+                    <div
+                      className={`absolute ${
+                        language === 'ar' ? `right-full` : `left-full`
+                      }  top-0 flex w-16 justify-center pt-5`}>
                       <button
                         type='button'
                         className='-m-2.5 p-2.5 bg-transparent border-0'
