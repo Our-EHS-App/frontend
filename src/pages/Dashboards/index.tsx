@@ -57,7 +57,15 @@ export const Dashboards: FC = () => {
                   : dashboards?.categoryDTO?.nameEn}
               </div>
               <div className=''>
-                <Progress type='circle' percent={dashboards?.percentage} />
+                {dashboards?.percentage === 100.0 ? (
+                  <Progress type='circle' percent={100} format={() => '100%'} />
+                ) : (
+                  <Progress
+                    type='circle'
+                    percent={dashboards?.percentage}
+                    format={() => `${dashboards?.percentage}%`}
+                  />
+                )}
               </div>
             </div>
           </div>
