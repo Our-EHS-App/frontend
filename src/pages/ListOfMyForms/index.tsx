@@ -107,7 +107,7 @@ export const ListOfMyForms: FC = () => {
       sort:
         columnKey && order
           ? `${columnKey},${order.replace('end', '')}`
-          : 'lastUpdatedAt,desc',
+          : 'createdDate,desc',
     };
     setPageConfig((p) => ({ ...p, ...requestPrams }));
   };

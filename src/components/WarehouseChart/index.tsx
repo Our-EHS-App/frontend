@@ -47,7 +47,7 @@ const WarehouseChart = ({ LocationListQuery }: any) => {
 
   return (
     <div>
-      <h2>Warehouse Counts</h2>
+      <h2>Location Inspections</h2>
       <Bar data={chartData} />
     </div>
   );
