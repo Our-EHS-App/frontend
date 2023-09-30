@@ -64,6 +64,25 @@ export const ListOfInspections: FC = () => {
       render: (text) => <span title={text}>{text}</span>,
     },
     {
+      title: `${t('Location')}`,
+      dataIndex: ['location', 'nameAr'],
+      key: 'nameAr',
+      width: 200,
+      ellipsis: true,
+      render: (rvalue: any, record: any) => (
+        <span
+          title={
+            language === 'ar'
+              ? record['location']['nameAr']
+              : record['location']['nameEn']
+          }>
+          {language === 'ar'
+            ? record['location']['nameAr']
+            : record['location']['nameEn']}
+        </span>
+      ),
+    },
+    {
       title: `${t('FORM_TABLE.CREATED_AT')}`,
       dataIndex: 'createdDate',
       key: 'createdDate',

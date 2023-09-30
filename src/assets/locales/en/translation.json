@@ -132,7 +132,8 @@
     "EMTIITHAL": "Emtithal",
     "profile": "profile",
     "Logout": "Logout",
-    "Language": "English"
+    "Language": "English",
+    "Location_Inspections": "Location Inspections"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "Survey page",
@@ -196,5 +197,6 @@
   "COPY_FORM_MESSAGE": "Note: Once the form is copied, a new form will be recreated without the assigned Partners in the original form.",
   "title": "Title",
   "frequency": "Frequency",
-  "search": "Search"
+  "search": "Search",
+  "Location": "Location"
 }

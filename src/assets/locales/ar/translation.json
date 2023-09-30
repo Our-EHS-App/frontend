@@ -133,7 +133,8 @@
     "EMTIITHAL": "امتثال",
     "profile": "حساب تعريفي",
     "Logout": "تسجيل خروج",
-    "Language": "العربية"
+    "Language": "العربية",
+    "Location_Inspections": "عمليات تفتيش الموقع"
   },
   "CREATE_PAGE": {
     "SURVEY_PAGE": "صفحة استبيانات",
@@ -204,5 +205,6 @@
   },
   "title": "عنوان",
   "frequency": "تكرار",
-  "search": "يبحث"
+  "search": "يبحث",
+  "Location": "موقع"
 }

@@ -23,7 +23,9 @@ import classes from '../../components/CreateQuestion/CreateQuestion.module.scss'
 export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
   mode = 'VIEW',
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+
   const navigate = useNavigate();
 
   const { formId } = useParams();
@@ -95,30 +97,28 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
         <WhiteContainer className=''>
           <div className='mx-3'>
             <div className={'text-primary text-lg my-4 font-bold'}>
-              {`${t('frequency')}`}
-            </div>
-            <Input
-              id='frequency'
-              placeholder={`${t('frequency')}`}
-              value={
+              {`${t('frequency')} : ${
                 mode == 'VIEW'
                   ? FormQuery?.data?.frequency
                   : FormQuery?.data?.template?.frequency
-              }
-              disabled
-            />
-            <div className={'text-primary text-lg my-4 font-bold'}>
-              {`${t('FORM_TABLE.Category')}`}
+              }`}
             </div>
-            <Select
-              style={{ width: '100%' }}
-              defaultValue={
+            <div className={'text-primary text-lg my-4 font-bold'}>
+              {`${t('FORM_TABLE.Category')} : ${
                 mode == 'VIEW'
                   ? FormQuery?.data?.subCategory?.nameAr
                   : FormQuery?.data?.template?.subCategory?.nameAr
-              }
-              disabled
-            />
+              }`}
+            </div>
+            {FormQuery?.data?.location && (
+              <div className={'text-primary text-lg my-4 font-bold'}>
+                {`${t('Location')} : ${
+                  language === 'ar'
+                    ? FormQuery?.data?.location?.nameAr
+                    : FormQuery?.data?.location?.nameAr
+                }`}
+              </div>
+            )}
             <form onSubmit={handleSubmit(onSubmit)} className='mt-6'>
               {mode == 'FILLTM'
                 ? FormQuery?.data?.template?.fields?.map(

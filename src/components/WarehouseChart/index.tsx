@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 const WarehouseChart = ({ LocationListQuery }: any) => {
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
   useEffect(() => {
     LocationListQuery?.refetch();
   }, []);
@@ -26,8 +29,8 @@ const WarehouseChart = ({ LocationListQuery }: any) => {
   }
 
   // Extracting labels and count values from the data
-  const labels = LocationListQuery?.data?.map(
-    (warehouse: any) => warehouse.nameEn
+  const labels = LocationListQuery?.data?.map((warehouse: any) =>
+    language === 'ar' ? warehouse.nameAr : warehouse.nameEn
   );
   const countKeys = Object.keys(LocationListQuery?.data[0].counts);
   const colorPalette = ['#007bff', '#dc3545', '#ffc107', '#28a745'];
@@ -47,7 +50,7 @@ const WarehouseChart = ({ LocationListQuery }: any) => {
 
   return (
     <div>
-      <h2>Location Inspections</h2>
+      <h2>{t('TITLE.Location_Inspections')}</h2>
       <Bar data={chartData} />
     </div>
   );
