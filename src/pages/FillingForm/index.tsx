@@ -169,11 +169,15 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                                             value={
                                               FormQuery?.data?.listStatus
                                                 ?.id === 4
-                                                ? Number(question?.value)
+                                                ? question?.value
                                                 : value
                                             }>
-                                            <Radio value={1}>{t('Yes')}</Radio>
-                                            <Radio value={2}>{t('No')}</Radio>
+                                            <Radio value={'true'}>
+                                              {t('Yes')}
+                                            </Radio>
+                                            <Radio value={'false'}>
+                                              {t('No')}
+                                            </Radio>
                                           </Radio.Group>
                                         ) : (
                                           <TextArea
@@ -226,7 +230,6 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                 : mode == 'VIEW'
                 ? FormQuery?.data?.fields?.map(
                     (question: any, index: number) => {
-                      console.log(question, 'question');
                       return (
                         <Collapse
                           ghost
@@ -274,8 +277,12 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                                                 ? question?.value
                                                 : value
                                             }>
-                                            <Radio value={1}>{t('Yes')}</Radio>
-                                            <Radio value={2}>{t('No')}</Radio>
+                                            <Radio value={'true'}>
+                                              {t('Yes')}
+                                            </Radio>
+                                            <Radio value={'false'}>
+                                              {t('No')}
+                                            </Radio>
                                           </Radio.Group>
                                         ) : (
                                           <TextArea
@@ -370,11 +377,15 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                                             value={
                                               FormQuery?.data?.listStatus
                                                 ?.id === 4
-                                                ? Number(question?.value)
+                                                ? question?.value
                                                 : value
                                             }>
-                                            <Radio value={1}>{t('Yes')}</Radio>
-                                            <Radio value={2}>{t('No')}</Radio>
+                                            <Radio value={'true'}>
+                                              {t('Yes')}
+                                            </Radio>
+                                            <Radio value={'false'}>
+                                              {t('No')}
+                                            </Radio>
                                           </Radio.Group>
                                         ) : (
                                           <TextArea
