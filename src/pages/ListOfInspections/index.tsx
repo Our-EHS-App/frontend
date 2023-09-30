@@ -44,6 +44,7 @@ export const ListOfInspections: FC = () => {
     getInspections({
       ...pageConfig,
       page: pageConfig.page - 1,
+      sort: 'createdDate,desc',
     })
   );
 

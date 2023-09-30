@@ -42,6 +42,7 @@ export const ListOfMyForms: FC = () => {
       getMyForms({
         ...pageConfig,
         page: pageConfig.page - 1,
+        sort: 'createdDate,desc',
       })
   );
 
