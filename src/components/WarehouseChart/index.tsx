@@ -30,12 +30,13 @@ const WarehouseChart = ({ LocationListQuery }: any) => {
     (warehouse: any) => warehouse.nameEn
   );
   const countKeys = Object.keys(LocationListQuery?.data[0].counts);
-  const datasets = countKeys.map((key) => ({
+  const colorPalette = ['#007bff', '#dc3545', '#ffc107', '#28a745'];
+  const datasets = countKeys.map((key, index) => ({
     label: key,
     data: LocationListQuery?.data?.map(
       (warehouse: any) => warehouse.counts[key]
     ),
-    backgroundColor: getRandomColor(), // Custom color for bars
+    backgroundColor: colorPalette[index % colorPalette.length], // Custom color for bars
   }));
 
   // Creating the chart data object
@@ -60,16 +61,6 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
-}
-
-// Example implementation of getByLocation function
-function getByLocation() {
-  return fetch('your-api-endpoint')
-    .then((response) => response.json())
-    .then((data) => {
-      // Process and return the warehouse data
-      return data.warehouses;
-    });
 }
 
 export default WarehouseChart;

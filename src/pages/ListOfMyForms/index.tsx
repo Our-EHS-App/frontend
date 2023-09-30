@@ -120,12 +120,12 @@ export const ListOfMyForms: FC = () => {
     <PagePadding>
       <PageHeader title={`${t('TITLE.MY_Templates')}`} />
       <HaseenTable
-        dataSource={FormListQuery?.data?.templateLocationsDTOS}
+        dataSource={FormListQuery?.data?.templateLocationsDTOS?.content}
         columns={unassignedColumns}
         loading={FormListQuery?.isLoading}
         pagination={{
           pageSize: pageConfig.size,
-          total: FormListQuery?.data?.totalElements ?? 0,
+          total: FormListQuery?.data?.content?.totalElements ?? 0,
         }}
         onChange={handleTableChange}
       />

@@ -137,7 +137,7 @@ export const ListOfInspections: FC = () => {
     <PagePadding>
       <PageHeader title={`${t('TITLE.Inspections')}`} />
       <HaseenTable
-        dataSource={FormListQuery?.data}
+        dataSource={FormListQuery?.data?.content}
         columns={unassignedColumns}
         loading={FormListQuery?.isLoading}
         pagination={{

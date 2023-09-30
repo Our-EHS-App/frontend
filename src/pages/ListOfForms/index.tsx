@@ -181,7 +181,9 @@ export const ListOfForms: FC = () => {
     <PagePadding>
       <PageHeader title={`${t('TITLE.Templates')}`} extra={pageExtra()} />
       <HaseenTable
-        dataSource={FormListQuery?.data ? FormListQuery?.data : []}
+        dataSource={
+          FormListQuery?.data?.content ? FormListQuery?.data?.content : []
+        }
         columns={unassignedColumns}
         loading={FormListQuery?.isLoading}
         pagination={{
