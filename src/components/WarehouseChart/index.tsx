@@ -32,12 +32,14 @@ const WarehouseChart = ({ LocationListQuery }: any) => {
   const labels = LocationListQuery?.data?.map((warehouse: any) =>
     language === 'ar' ? warehouse.nameAr : warehouse.nameEn
   );
-  const countKeys = Object.keys(LocationListQuery?.data[0].counts);
+  const countKeys =
+    LocationListQuery?.data[0].counts ??
+    Object.keys(LocationListQuery?.data[0].counts);
   const colorPalette = ['#054ca8', '#0eacb8', '#11c89c', '#2be178'];
-  const datasets = countKeys.map((key, index) => ({
+  const datasets = countKeys.map((key: any, index:any) => ({
     label: key,
     data: LocationListQuery?.data?.map(
-      (warehouse: any) => warehouse.counts[key]
+      (warehouse: any) => warehouse?.counts[key]
     ),
     backgroundColor: colorPalette[index % colorPalette.length], // Custom color for bars
   }));
