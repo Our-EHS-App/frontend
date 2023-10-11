@@ -33,7 +33,7 @@ const WarehouseChart = ({ LocationListQuery }: any) => {
     language === 'ar' ? warehouse.nameAr : warehouse.nameEn
   );
   const countKeys = Object.keys(LocationListQuery?.data[0].counts);
-  const colorPalette = ['#007bff', '#dc3545', '#ffc107', '#28a745'];
+  const colorPalette = ['#054ca8', '#0eacb8', '#11c89c', '#2be178'];
   const datasets = countKeys.map((key, index) => ({
     label: key,
     data: LocationListQuery?.data?.map(
