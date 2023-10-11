@@ -46,30 +46,35 @@ export const Dashboards: FC = () => {
         <div className='bg-white w-full md:w-[500px] p-5 rounded-lg'>
           <WarehouseChart LocationListQuery={LocationListQuery} />
         </div>
-        {DashboardsListQuery?.data?.map?.((dashboards: any) => (
-          <div
-            key={dashboards?.id}
-            className='bg-white p-5 rounded-lg flex items-center justify-center'>
-            <div>
-              <div className='text-lg pb-4 text-center'>
-                {language === 'ar'
-                  ? dashboards?.categoryDTO?.nameAr
-                  : dashboards?.categoryDTO?.nameEn}
-              </div>
-              <div className=''>
-                {dashboards?.percentage === 100.0 ? (
-                  <Progress type='circle' percent={100} format={() => '100%'} />
-                ) : (
-                  <Progress
-                    type='circle'
-                    percent={dashboards?.percentage}
-                    format={() => `${dashboards?.percentage}%`}
-                  />
-                )}
+        {DashboardsListQuery?.data &&
+          DashboardsListQuery?.data?.map?.((dashboards: any) => (
+            <div
+              key={dashboards?.id}
+              className='bg-white p-5 rounded-lg flex items-center justify-center'>
+              <div>
+                <div className='text-lg pb-4 text-center'>
+                  {language === 'ar'
+                    ? dashboards?.categoryDTO?.nameAr
+                    : dashboards?.categoryDTO?.nameEn}
+                </div>
+                <div className=''>
+                  {dashboards?.percentage === 100.0 ? (
+                    <Progress
+                      type='circle'
+                      percent={100}
+                      format={() => '100%'}
+                    />
+                  ) : (
+                    <Progress
+                      type='circle'
+                      percent={dashboards?.percentage}
+                      format={() => `${dashboards?.percentage}%`}
+                    />
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </PagePadding>
   );

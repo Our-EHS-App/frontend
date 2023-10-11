@@ -1,6 +1,6 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { ColumnsType } from 'antd/lib/table';
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
@@ -152,14 +152,14 @@ export const ListOfForms: FC = () => {
     );
   };
 
-  const handleTableChange: HandleChangeArgs<any> = async (
+  const handleTableChange: HandleChangeArgs<ReactNode> = (
     pagination,
     sorter
   ) => {
     const { current = 1, pageSize = 10 } = pagination;
     const { columnKey, order }: any = sorter;
-
-    const requestParams: Partial<PageConfig> = {
+    let requestPrams: Partial<any> = {};
+    requestPrams = {
       page: current,
       size: pageSize,
       sort:
@@ -167,11 +167,7 @@ export const ListOfForms: FC = () => {
           ? `${columnKey},${order.replace('end', '')}`
           : 'createdDate,desc',
     };
-
-    setPageConfig((prevPageConfig) => ({
-      ...prevPageConfig,
-      ...requestParams,
-    }));
+    setPageConfig((p) => ({ ...p, ...requestPrams }));
   };
 
   if (FormListQuery.isFetching) {
@@ -189,6 +185,7 @@ export const ListOfForms: FC = () => {
         loading={FormListQuery?.isLoading}
         pagination={{
           pageSize: pageConfig.size,
+          current: pageConfig.page,
           total: FormListQuery?.data?.totalElements ?? 0,
         }}
         onChange={handleTableChange}

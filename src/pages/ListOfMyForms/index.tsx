@@ -1,5 +1,5 @@
 import { ColumnsType } from 'antd/es/table';
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -94,14 +94,13 @@ export const ListOfMyForms: FC = () => {
     },
   ];
 
-  const handleTableChange: HandleChangeArgs<any> = async (
+  const handleTableChange: HandleChangeArgs<ReactNode> = (
     pagination,
     sorter
   ) => {
     const { current = 1, pageSize = 10 } = pagination;
     const { columnKey, order }: any = sorter;
-
-    let requestPrams: Partial<PageConfig> = {};
+    let requestPrams: Partial<any> = {};
     requestPrams = {
       page: current,
       size: pageSize,
@@ -126,7 +125,8 @@ export const ListOfMyForms: FC = () => {
         loading={FormListQuery?.isLoading}
         pagination={{
           pageSize: pageConfig.size,
-          total: FormListQuery?.data?.content?.totalElements ?? 0,
+          current: pageConfig.page,
+          total: FormListQuery?.data?.totalElements ?? 0,
         }}
         onChange={handleTableChange}
       />
