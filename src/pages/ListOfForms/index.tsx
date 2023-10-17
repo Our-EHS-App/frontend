@@ -79,6 +79,7 @@ export const ListOfForms: FC = () => {
       dataIndex: 'id',
       key: 'id',
       width: 150,
+      sorter: true,
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
@@ -94,6 +95,7 @@ export const ListOfForms: FC = () => {
       key: 'createdDate',
       width: 200,
       ellipsis: true,
+      sorter: true,
       render: (text) => (
         <span>{dateFormatter(text, language, 'YYYY/MM/DD hh:mmA')}</span>
       ),
@@ -116,7 +118,7 @@ export const ListOfForms: FC = () => {
       title: '',
       dataIndex: 'id',
       key: 'id',
-      width: 100,
+      width: 150,
       render: (id) => (
         <div
           className={`text-[#0075EF] cursor-pointer`}

@@ -52,6 +52,7 @@ export const ListOfMyForms: FC = () => {
       dataIndex: ['templateDTO', 'id'],
       key: 'id',
       width: 150,
+      sorter: true,
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
@@ -67,6 +68,7 @@ export const ListOfMyForms: FC = () => {
       key: 'createdDate',
       width: 200,
       ellipsis: true,
+      sorter: true,
       render: (text) => (
         <span>{dateFormatter(text, language, 'YYYY/MM/DD hh:mmA')}</span>
       ),

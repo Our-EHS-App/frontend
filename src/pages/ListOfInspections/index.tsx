@@ -54,6 +54,7 @@ export const ListOfInspections: FC = () => {
       dataIndex: 'id',
       key: 'id',
       width: 150,
+      sorter: true,
     },
     {
       title: `${t('FORM_TABLE.NAME')}`,
@@ -87,6 +88,7 @@ export const ListOfInspections: FC = () => {
       dataIndex: 'createdDate',
       key: 'createdDate',
       width: 200,
+      sorter: true,
       ellipsis: true,
       render: (text) => (
         <span>{dateFormatter(text, language, 'YYYY/MM/DD hh:mmA')}</span>
@@ -113,7 +115,9 @@ export const ListOfInspections: FC = () => {
               ? `text-[#e03b24]`
               : `text-[#5fdba7]`
           }`}>
-          {record['listStatus']['nameAr'] ?? ''}
+          {language === 'ar'
+            ? record['listStatus']['nameAr']
+            : record['listStatus']['nameEn'] ?? ''}
         </span>
       ),
     },

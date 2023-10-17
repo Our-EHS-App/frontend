@@ -2,7 +2,7 @@
 /* eslint-disable prefer-const */
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Collapse, Input, Radio, Select, Skeleton } from 'antd';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -19,6 +19,7 @@ import { Loading } from '../../components/Loading';
 const { TextArea } = Input;
 const { Panel } = Collapse;
 import classes from '../../components/CreateQuestion/CreateQuestion.module.scss';
+import { ImportTemplates } from '../../components/ImportTemplates';
 
 export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
   mode = 'VIEW',
@@ -26,14 +27,24 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
   const { t, i18n } = useTranslation();
   const { language } = i18n;
 
+  const [importModal, setImportModal] = useState(false);
+
   const navigate = useNavigate();
 
   const { formId } = useParams();
-  const { fillSurvey, getFormDetails, getFormDetailsFill, getMyFormFill } =
-    useSurveyForm();
+  const {
+    fillSurvey,
+    getFormDetails,
+    getFormDetailsFill,
+    getMyFormFill,
+    getLocations,
+  } = useSurveyForm();
   const { handleSubmit, control, reset, setValue } = useForm({
     mode: 'onChange',
   });
+  const locaionListQuery = useQuery(['list-/api/locaion'], () =>
+    getLocations()
+  );
   const payload: any = {
     formId: formId ?? '',
     uuid: null,
@@ -87,6 +98,21 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
       <PageHeader
         title={
           mode == 'VIEW' ? FormQuery?.data?.titleAr : FormQuery?.data?.nameAr
+        }
+        extra={
+          mode == 'VIEW' ? (
+            <>
+              <OutlineButton
+                text={t('FORM_TABLE.IMPORT')}
+                onClick={() => {
+                  setImportModal(true);
+                }}
+                id={'setImportModal'}
+              />
+            </>
+          ) : (
+            <></>
+          )
         }
       />
       {isLoading ? (
@@ -231,101 +257,111 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
                 ? FormQuery?.data?.fields?.map(
                     (question: any, index: number) => {
                       return (
-                        <Collapse
-                          ghost
-                          key={index}
-                          className={classes.customCollapse}>
-                          <Panel
+                        <>
+                          <Collapse
+                            ghost
                             key={index}
-                            header={question?.nameAr}
-                            className={classes.primaryPanel}
-                            showArrow={true}>
-                            <div key={question?.id}>
-                              <div className=''>
+                            className={classes.customCollapse}>
+                            <Panel
+                              key={index}
+                              header={question?.nameAr}
+                              className={classes.primaryPanel}
+                              showArrow={true}>
+                              <div key={question?.id}>
                                 <div className=''>
-                                  <Controller
-                                    name={`values.${index}.fieldId`}
-                                    control={control}
-                                    defaultValue={question?.id}
-                                    render={({
-                                      field: { onChange, value },
-                                    }) => (
-                                      <>
-                                        <Input
-                                          id={`values.${index}.fieldId`}
-                                          value={question?.id}
-                                          hidden={true}
-                                          disabled={true}
-                                        />
-                                      </>
-                                    )}
-                                  />
-                                  <Controller
-                                    name={`values.${index}.value`}
-                                    render={({
-                                      field: { onChange, value },
-                                      fieldState: { error },
-                                    }) => (
-                                      <>
-                                        {question?.fieldType?.id == 2 ? (
-                                          <Radio.Group
-                                            onChange={onChange}
+                                  <div className=''>
+                                    <Controller
+                                      name={`values.${index}.fieldId`}
+                                      control={control}
+                                      defaultValue={question?.id}
+                                      render={({
+                                        field: { onChange, value },
+                                      }) => (
+                                        <>
+                                          <Input
+                                            id={`values.${index}.fieldId`}
+                                            value={question?.id}
+                                            hidden={true}
                                             disabled={true}
-                                            value={
-                                              FormQuery?.data?.listStatus
-                                                ?.id === 4
-                                                ? question?.value
-                                                : value
-                                            }>
-                                            <Radio value={'true'}>
-                                              {t('Yes')}
-                                            </Radio>
-                                            <Radio value={'false'}>
-                                              {t('No')}
-                                            </Radio>
-                                          </Radio.Group>
-                                        ) : (
-                                          <TextArea
-                                            id={`answer`}
-                                            placeholder={`${t(
-                                              'GENERAL.WRITE_YOUR_ANSWER'
-                                            )}`}
-                                            disabled={true}
-                                            value={
-                                              FormQuery?.data?.listStatus
-                                                ?.id === 4
-                                                ? question?.value
-                                                : value
-                                            }
-                                            onChange={onChange}
                                           />
-                                        )}
-                                        {error && (
-                                          <div className={'mt-2 text-danger'}>
-                                            {error?.message}
-                                          </div>
-                                        )}
-                                      </>
-                                    )}
-                                    rules={{
-                                      maxLength: {
-                                        value: 500,
-                                        message: t(
-                                          'ERRORS.CREATMODAL_MAXLENGTH',
-                                          {
-                                            count: 500,
-                                          }
-                                        ),
-                                      },
-                                    }}
-                                    control={control}
-                                    defaultValue={null}
-                                  />
+                                        </>
+                                      )}
+                                    />
+                                    <Controller
+                                      name={`values.${index}.value`}
+                                      render={({
+                                        field: { onChange, value },
+                                        fieldState: { error },
+                                      }) => (
+                                        <>
+                                          {question?.fieldType?.id == 2 ? (
+                                            <Radio.Group
+                                              onChange={onChange}
+                                              disabled={true}
+                                              value={
+                                                FormQuery?.data?.listStatus
+                                                  ?.id === 4
+                                                  ? question?.value
+                                                  : value
+                                              }>
+                                              <Radio value={'true'}>
+                                                {t('Yes')}
+                                              </Radio>
+                                              <Radio value={'false'}>
+                                                {t('No')}
+                                              </Radio>
+                                            </Radio.Group>
+                                          ) : (
+                                            <TextArea
+                                              id={`answer`}
+                                              placeholder={`${t(
+                                                'GENERAL.WRITE_YOUR_ANSWER'
+                                              )}`}
+                                              disabled={true}
+                                              value={
+                                                FormQuery?.data?.listStatus
+                                                  ?.id === 4
+                                                  ? question?.value
+                                                  : value
+                                              }
+                                              onChange={onChange}
+                                            />
+                                          )}
+                                          {error && (
+                                            <div className={'mt-2 text-danger'}>
+                                              {error?.message}
+                                            </div>
+                                          )}
+                                        </>
+                                      )}
+                                      rules={{
+                                        maxLength: {
+                                          value: 500,
+                                          message: t(
+                                            'ERRORS.CREATMODAL_MAXLENGTH',
+                                            {
+                                              count: 500,
+                                            }
+                                          ),
+                                        },
+                                      }}
+                                      control={control}
+                                      defaultValue={null}
+                                    />
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </Panel>
-                        </Collapse>
+                            </Panel>
+                          </Collapse>
+                          <ImportTemplates
+                            openModal={importModal}
+                            data={locaionListQuery?.data}
+                            template_id={formId}
+                            closeModal={() => {
+                              setImportModal(false);
+                            }}
+                          />
+                        </>
                       );
                     }
                   )
