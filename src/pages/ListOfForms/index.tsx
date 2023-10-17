@@ -108,8 +108,11 @@ export const ListOfForms: FC = () => {
       ellipsis: true,
       render: (rvalue: any, record: any) => (
         <span>
-          {record['subCategory']?.['nameAr']
-            ? record['subCategory']?.['nameAr']
+          {record['subCategory']?.['nameAr'] &&
+          record['subCategory']?.['nameAr']
+            ? language === 'ar'
+              ? record['subCategory']?.['nameAr']
+              : record['subCategory']?.['nameEN']
             : ''}
         </span>
       ),
