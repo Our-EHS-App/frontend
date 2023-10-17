@@ -132,8 +132,12 @@ export const FillingForm: FC<{ mode?: 'VIEW' | 'FILL' | 'FILLTM' }> = ({
             <div className={'text-primary text-lg my-4 font-bold'}>
               {`${t('FORM_TABLE.Category')} : ${
                 mode == 'VIEW'
-                  ? FormQuery?.data?.subCategory?.nameAr
-                  : FormQuery?.data?.template?.subCategory?.nameAr
+                  ? language === 'ar'
+                    ? FormQuery?.data?.subCategory?.nameAr
+                    : FormQuery?.data?.subCategory?.nameEn
+                  : language === 'ar'
+                  ? FormQuery?.data?.template?.subCategory?.nameAr
+                  : FormQuery?.data?.template?.subCategory?.nameEn
               }`}
             </div>
             {FormQuery?.data?.location && (

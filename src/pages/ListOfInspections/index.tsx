@@ -40,12 +40,13 @@ export const ListOfInspections: FC = () => {
     page: 1,
   });
 
-  const FormListQuery = useQuery(['ListOfInspections', pageConfig?.page], () =>
-    getInspections({
-      ...pageConfig,
-      page: pageConfig.page - 1,
-      sort: 'createdDate,desc',
-    })
+  const FormListQuery = useQuery(
+    ['ListOfInspections', pageConfig?.page, pageConfig?.sort],
+    () =>
+      getInspections({
+        ...pageConfig,
+        page: pageConfig.page - 1,
+      })
   );
 
   const unassignedColumns: ColumnsType<any> = [
@@ -136,6 +137,7 @@ export const ListOfInspections: FC = () => {
 
   const handleTableChange: HandleChangeArgs<ReactNode> = (
     pagination,
+    filters,
     sorter
   ) => {
     const { current = 1, pageSize = 10 } = pagination;

@@ -65,12 +65,13 @@ export const ListOfForms: FC = () => {
     page: 1,
   });
 
-  const FormListQuery = useQuery(['list-mytem', pageConfig?.page], () =>
-    getForms({
-      ...pageConfig,
-      page: pageConfig.page - 1,
-      sort: 'createdDate,desc',
-    })
+  const FormListQuery = useQuery(
+    ['list-mytem', pageConfig?.page, pageConfig?.sort],
+    () =>
+      getForms({
+        ...pageConfig,
+        page: pageConfig.page - 1,
+      })
   );
 
   const unassignedColumns: ColumnsType<any> = [
@@ -109,10 +110,10 @@ export const ListOfForms: FC = () => {
       render: (rvalue: any, record: any) => (
         <span>
           {record['subCategory']?.['nameAr'] &&
-          record['subCategory']?.['nameAr']
+          record['subCategory']?.['nameEn']
             ? language === 'ar'
               ? record['subCategory']?.['nameAr']
-              : record['subCategory']?.['nameEN']
+              : record['subCategory']?.['nameEn']
             : ''}
         </span>
       ),
@@ -159,6 +160,7 @@ export const ListOfForms: FC = () => {
 
   const handleTableChange: HandleChangeArgs<ReactNode> = (
     pagination,
+    filters,
     sorter
   ) => {
     const { current = 1, pageSize = 10 } = pagination;

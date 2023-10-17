@@ -37,12 +37,11 @@ export const ListOfMyForms: FC = () => {
   });
 
   const FormListQuery = useQuery(
-    ['FormListQuery-mytmplt', pageConfig?.page],
+    ['FormListQuery-mytmplt', pageConfig?.page, pageConfig?.sort],
     () =>
       getMyForms({
         ...pageConfig,
         page: pageConfig.page - 1,
-        sort: 'createdDate,desc',
       })
   );
 
@@ -82,10 +81,10 @@ export const ListOfMyForms: FC = () => {
       render: (rvalue: any, record: any) => (
         <span>
           {record['templateDTO']?.['subCategory']?.['nameAr'] &&
-          record['templateDTO']?.['subCategory']?.['nameEN']
+          record['templateDTO']?.['subCategory']?.['nameEn']
             ? language === 'ar'
               ? record['templateDTO']?.['subCategory']?.['nameAr']
-              : record['templateDTO']?.['subCategory']?.['nameEN']
+              : record['templateDTO']?.['subCategory']?.['nameEn']
             : ''}
         </span>
       ),
@@ -105,6 +104,7 @@ export const ListOfMyForms: FC = () => {
 
   const handleTableChange: HandleChangeArgs<ReactNode> = (
     pagination,
+    filters,
     sorter
   ) => {
     const { current = 1, pageSize = 10 } = pagination;
