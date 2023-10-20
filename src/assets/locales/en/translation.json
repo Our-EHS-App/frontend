@@ -114,7 +114,10 @@
     "SHOW_THIRD_LEVEL": "View the third level",
     "FORM_COPY": "Copy Form",
     "COPY_NEW_FORM": "Copy the form",
-    "GO_BACK": "Back"
+    "GO_BACK": "Back",
+    "SEARCH_FOR": "Search for",
+    "CLEAR": "clear",
+    "SEARCH": "search"
   },
   "TITLE": {
     "HOME": "Home",

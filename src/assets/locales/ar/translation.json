@@ -83,7 +83,10 @@
     "SHOW_THIRD_LEVEL": "عرض المستوى الثالث",
     "FORM_COPY": "نسخ النموذج",
     "COPY_NEW_FORM": "نسخ النموذج",
-    "GO_BACK": "العودة"
+    "GO_BACK": "العودة",
+    "SEARCH_FOR": "بحث عن",
+    "CLEAR": "حذف",
+    "SEARCH": "يبحث"
   },
   "CREATMODAL": {
     "INFORMATION_FORM": "تفاصيل النموذج",

@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import { ColumnsType } from 'antd/lib/table';
 import { FC, ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,10 +18,11 @@ import { useSurveyForm } from '../../services/surveyService';
 
 import classes from './ListOfForms.module.scss';
 import { handleErrorNotifications } from '../../helpers/errorHandler';
-import { notification } from 'antd';
+import { Input, notification } from 'antd';
 import { Loading } from '../../components/Loading';
 import { dateFormatter } from '../../helpers/dateFormatter';
 import { ImportTemplates } from '../../components/ImportTemplates';
+import { OutlineButton } from '../../components/OutlineButton';
 
 export const getStatusColor = (s: string) => {
   switch (s) {
@@ -38,6 +39,7 @@ export const ListOfForms: FC = () => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
   const [importModal, setImportModal] = useState(false);
+  const [nameSearch, setNameSearch] = useState<string | undefined>(undefined);
   const [idForm, setIdForm] = useState('');
   const navigate = useNavigate();
   const { organizationTemplateImport, getForms, getLocations } =
@@ -65,8 +67,19 @@ export const ListOfForms: FC = () => {
     page: 1,
   });
 
+  const handleNameSearch = (name?: string) => {
+    if (name) {
+      setPageConfig((p) => ({ ...p, name }));
+    }
+  };
+
+  const handleClearNameSearch = () => {
+    setPageConfig((p) => ({ ...p, name: null }));
+    setNameSearch(undefined);
+  };
+
   const FormListQuery = useQuery(
-    ['list-mytem', pageConfig?.page, pageConfig?.sort],
+    ['list-mytem', pageConfig?.page, pageConfig?.sort, pageConfig?.name],
     () =>
       getForms({
         ...pageConfig,
@@ -88,6 +101,39 @@ export const ListOfForms: FC = () => {
       key: 'titleAr',
       width: 200,
       ellipsis: true,
+      filterIcon: <SearchOutlined />,
+      filterDropdown: () => (
+        <div className='w-80'>
+          <div className='p-4'>
+            <div className='pb-4'>{`${t('ACTION.SEARCH_FOR')}`}</div>
+            <Input
+              value={nameSearch}
+              placeholder={`${t('ACTION.SEARCH_FOR')}`}
+              maxLength={100}
+              onChange={(v) => {
+                if (
+                  v?.target?.value?.trim()?.length ||
+                  v?.target?.value?.length == 0
+                ) {
+                  setNameSearch(v.target.value);
+                }
+              }}
+            />
+            <div className='pt-4 flex justify-between'>
+              <OutlineButton
+                id={'clear-search'}
+                text={`${t('ACTION.CLEAR')}`}
+                onClick={() => handleClearNameSearch()}
+              />
+              <PrimaryButton
+                id={'search-name'}
+                text={`${t('ACTION.SEARCH')}`}
+                onClick={() => handleNameSearch(nameSearch)}
+              />
+            </div>
+          </div>
+        </div>
+      ),
       render: (text) => <span title={text}>{text}</span>,
     },
     {

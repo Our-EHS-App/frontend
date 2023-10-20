@@ -8,6 +8,7 @@ interface PageConfig {
   totalPages: number | null;
   page: number;
   sort?: string | null;
+  name?: string | null;
 }
 
 interface Page<DATA_TYPE> extends PageConfig {
