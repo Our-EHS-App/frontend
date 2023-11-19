@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const options: AxiosRequestConfig = {
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: 'https://emtithal-backend.up.railway.app',
 };
 
 export const useApi = () => {
