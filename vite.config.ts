@@ -13,7 +13,7 @@ export default defineConfig({
       '/api': {
         target: 'https://emtithal-backend.up.railway.app',
         changeOrigin: true,
-        secure: true,
+        secure: false, // Set to false if the backend server doesn't use HTTPS
       },
     },
   },
@@ -22,16 +22,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@pages': path.resolve(__dirname, './src/pages'),
-      '@components': path.resolve(__dirname, './src/components'),
-      '@hooks': path.resolve(__dirname, './src/hooks'),
-      '@interfaces': path.resolve(__dirname, './src/interfaces'),
-      '@context': path.resolve(__dirname, './src/context'),
-      '@routes': path.resolve(__dirname, './src/routes'),
-      '@services': path.resolve(__dirname, './src/services'),
-      '@helpers': path.resolve(__dirname, './src/helpers'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@styles': path.resolve(__dirname, './src/styles'),
+      // Your alias configurations
     },
   },
   esbuild: {
