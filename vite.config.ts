@@ -11,7 +11,7 @@ export default defineConfig({
     host: 'localhost',
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://emtithal-backend.up.railway.app',
         changeOrigin: true,
         secure: false,
       },
