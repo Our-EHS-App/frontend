@@ -13,7 +13,7 @@ export default defineConfig({
       '/api': {
         target: 'https://emtithal-backend.up.railway.app',
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },
