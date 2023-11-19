@@ -1,21 +1,19 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import * as path from 'path';
+import path from 'path';
 import svgrPlugin from 'vite-plugin-svgr';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import checker from 'vite-plugin-checker';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   server: {
     port: 3000,
     host: 'localhost',
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: false,
+        target: 'https://emtithal-backend.up.railway.app',
+        changeOrigin: true,
         secure: false,
-        // rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
@@ -37,24 +35,18 @@ export default defineConfig({
     },
   },
   esbuild: {
-    pure: [
-      'console.log',
-      'console.error',
-      'console.warn',
-      'console.debug',
-      'console.trace',
-    ],
+    pure: ['console'],
   },
   envDir: './environments',
   plugins: [
-    react({}),
+    react(),
     svgrPlugin({
       svgrOptions: {
         icon: true,
         // ...svgr options (https://react-svgr.com/docs/options/)
       },
     }),
-    createHtmlPlugin({}),
+    createHtmlPlugin(),
     checker({
       typescript: true,
     }),
